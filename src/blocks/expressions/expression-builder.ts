@@ -1,4 +1,4 @@
-// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetTango/NetTango
+// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import { ExpressionDefinition, Expression } from "../../types/types"
 import { StringBuffer } from "../../utils/string-buffer"

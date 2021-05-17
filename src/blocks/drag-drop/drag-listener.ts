@@ -1,4 +1,4 @@
-// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetTango/NetTango
+// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import interact from "interactjs"
 import type { InteractEvent } from '@interactjs/core/InteractEvent'

@@ -1,4 +1,4 @@
-// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetTango/NetTango
+// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import { z } from "zod"
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../nettango-defaults"

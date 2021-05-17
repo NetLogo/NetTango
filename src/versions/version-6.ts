@@ -1,4 +1,4 @@
-// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetTango/NetTango
+// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import { makeAttributeDefault, makeExpressionValue } from "../blocks/attributes/attribute-factory"
 import { Attribute, AttributeValue, BlockDefinition, BlockInstance, Chain, Clause, ClauseInstance, CodeWorkspace, codeWorkspaceSchema } from "../types/types"

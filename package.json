@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NetTango/NetTango.git"
+    "url": "git+https://github.com/NetLogo/NetTango.git"
   },
   "author": "Michael Horn",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/NetTango/NetTango/issues"
+    "url": "https://github.com/NetLogo/NetTango/issues"
   },
-  "homepage": "https://github.com/NetTango/NetTango#readme",
+  "homepage": "https://github.com/NetLogo/NetTango#readme",
   "devDependencies": {
     "@types/jest": "^26.0.19",
     "jest": "^26.0.19",

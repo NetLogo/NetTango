@@ -1,4 +1,4 @@
-// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetTango/NetTango
+// NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import { BlockPlacement } from "../src/blocks/block-placement"
 import { CodeFormatter } from "../src/blocks/code-formatter"
