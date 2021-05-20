@@ -123,7 +123,7 @@ class CodeWorkspaceUI {
         return block
       }
     }
-    throw new Error(`Block with given instance ID not found in workspace: ${instanceId}`)
+    throw new Error(`Block with given definition and instance IDs not found in workspace: ${definitionId} / ${instanceId}`)
   }
 
   draw(): void {
