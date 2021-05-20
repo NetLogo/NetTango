@@ -8,15 +8,25 @@ to do-go
       ]
       if food > 0
       [
+        if food > 0 [  
+           set food food - 1    
+           set color orange + 1
+         ]
+        right 180
+        uphill-nest-scent
       ]
     ]
     if color != red
     [
       if not nest?
       [
+        uphill-nest-scent
+        set chemical chemical + 60 
       ]
       if nest?
       [
+        set color red
+        right 180
       ]
     ]
     right random 40 

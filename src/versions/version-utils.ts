@@ -39,18 +39,29 @@ class VersionUtils {
     }
 
     const program: any = json["program"]
+
+    const seen = new Set<any>()
+    const handleBlockInstanceRec = (b: any) => {
+      if (seen.has(b)) {
+        console.log("Processed already: ", b)
+        throw new Error("Uh, we already processed this?")
+      }
+      seen.add(b)
+      blockInstanceHandler(b)
+
+      // the `children` property was removed in version 5, but this should be harmless to
+      // leave in as it checks the existence of the property first.  This line can be
+      // removed the next time a big structure change requires changing `updateBlocks()`.
+      // -Jeremy B July 2020
+      ArrayUtils.maybeForEach(b, "children", (child) => handleBlockInstanceRec(child))
+      ArrayUtils.maybeForEach(b, "clauses", (clause) => {
+        ArrayUtils.maybeForEach(clause, "children", (child) => handleBlockInstanceRec(child))
+      })
+    }
+
     ArrayUtils.maybeForEach(program, "chains", (chain) => {
       ArrayUtils.maybeForEach(chain, "blocks", (b) => {
-        blockInstanceHandler(b)
-        // the `children` property was removed in version 5, but this should be harmless to
-        // leave in as it checks the existence of the property first.  This line can be
-        // removed the next time a big structure change requires changing `updateBlocks()`.
-        // -Jeremy B July 2020
-        ArrayUtils.maybeForEach(b, "children", (child) => blockInstanceHandler(child))
-
-        ArrayUtils.maybeForEach(b, "clauses", (clause) => {
-          ArrayUtils.maybeForEach(clause, "children", (child) => blockInstanceHandler(child))
-        })
+        handleBlockInstanceRec(b)
       })
     })
 
@@ -80,10 +91,25 @@ class VersionUtils {
       return
     }
 
+    const seen = new Set<any>()
+    const handleBlockInstanceRec = (b: any) => {
+      if (seen.has(b)) {
+        console.log("Processed already: ", b)
+        throw new Error("Uh, we already processed this?")
+      }
+      seen.add(b)
+      blockInstanceHandler(b)
+
+      ArrayUtils.maybeForEach(b, "children", (child) => handleBlockInstanceRec(child))
+      ArrayUtils.maybeForEach(b, "clauses", (clause) => {
+        ArrayUtils.maybeForEach(clause, "children", (child) => handleBlockInstanceRec(child))
+      })
+    }
+
     const program = json["program"]
     ArrayUtils.maybeForEach(program, "chains", (chain) => {
       for (var b of chain) {
-        blockInstanceHandler(b)
+        handleBlockInstanceRec(b)
       }
     })
   }
