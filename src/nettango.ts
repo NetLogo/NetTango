@@ -79,7 +79,7 @@ class NetTango {
   /// Call `restore` to instantiate a workspace associated with an HTML canvas.
   /// TODO: Document JSON specification format--for now see README.md
   static restore(language: "NetLogo", containerId: string, definition: any, formatAttribute: FormatAttributeType): void {
-    const workspaceEnc: CodeWorkspace = VersionManager.updateWorkspace(definition)
+    const ws: CodeWorkspace = VersionManager.updateWorkspace(definition)
 
     try {
       var notifier = null
@@ -88,7 +88,7 @@ class NetTango {
         oldWs.removeEventListeners()
         notifier = oldWs.notifier
       }
-      const workspace = restoreWorkspace(containerId, workspaceEnc, language, formatAttribute)
+      const workspace = restoreWorkspace(containerId, ws, language, formatAttribute)
       NetTango.workspaces.set(containerId, workspace)
       workspace.draw()
       workspace.notifier = notifier
