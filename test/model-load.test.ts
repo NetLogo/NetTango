@@ -60,7 +60,7 @@ function testModel(modelFile: string, modelName: string) {
       wsErrors.push(error)
     }
     try {
-      checkNetTangoData(workspaceId, JSON.stringify(saved))
+      checkNetTangoData(workspaceId, JSON.stringify(saved, null, "  "))
     } catch (error) {
       wsErrors.push(error)
     }

@@ -1,1 +1,335 @@
-{"version":6,"height":600,"width":450,"blocks":[{"id":0,"action":"behave like rollypollies","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to behave-like-rollypollies","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":"#bb5555","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":true,"control":false},{"id":1,"action":"move","isRequired":false,"placement":"child","type":"nlogo:command","format":"move","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":2,"action":"if on a preferred patch","isRequired":false,"placement":"child","type":"nlogo:if","format":"if member? ([condition] of patch-here)  preferred-conditions ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true},{"id":3,"action":"chance","isRequired":false,"placement":"child","type":"nlogo:if","format":"if random 100 < {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#8899aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[{"name":"percent","unit":"%","step":0.5,"random":false,"default":20,"type":"range","min":0,"max":100}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true},{"id":4,"action":"if not on a preferred patch","isRequired":false,"placement":"child","type":"nlogo:if","format":"if not member? ([condition] of patch-here)  preferred-conditions ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true}],"program":{"chains":[]},"chainOpen":null,"chainClose":null,"blockStyles":null,"variables":[],"expressions":[{"name":"true","type":"bool","arguments":[],"format":null},{"name":"false","type":"bool","arguments":[],"format":null},{"name":"AND","type":"bool","arguments":["bool","bool"],"format":"({0} and {1})"},{"name":"OR","type":"bool","arguments":["bool","bool"],"format":"({0} or {1})"},{"name":"NOT","type":"bool","arguments":["bool"],"format":"(not {0})"},{"name":">","type":"bool","arguments":["num","num"],"format":null},{"name":">=","type":"bool","arguments":["num","num"],"format":null},{"name":"<","type":"bool","arguments":["num","num"],"format":null},{"name":"<=","type":"bool","arguments":["num","num"],"format":null},{"name":"!=","type":"bool","arguments":["num","num"],"format":null},{"name":"=","type":"bool","arguments":["num","num"],"format":null},{"name":"+","type":"num","arguments":["num","num"],"format":null},{"name":"-","type":"num","arguments":["num","num"],"format":null},{"name":"×","type":"num","arguments":["num","num"],"format":"({0} * {1})"},{"name":"/","type":"num","arguments":["num","num"],"format":null},{"name":"random","type":"num","arguments":["num"],"format":"random-float {0}"}]}
+{
+  "version": 6,
+  "height": 600,
+  "width": 450,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "behave like rollypollies",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to behave-like-rollypollies",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": true,
+      "control": false
+    },
+    {
+      "id": 1,
+      "action": "move",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "move",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 2,
+      "action": "if on a preferred patch",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if member? ([condition] of patch-here)  preferred-conditions ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 3,
+      "action": "chance",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if random 100 < {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [
+        {
+          "name": "percent",
+          "unit": "%",
+          "step": 0.5,
+          "random": false,
+          "default": 20,
+          "type": "range",
+          "min": 0,
+          "max": 100
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 4,
+      "action": "if not on a preferred patch",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if not member? ([condition] of patch-here)  preferred-conditions ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    }
+  ],
+  "program": {
+    "chains": []
+  },
+  "chainOpen": null,
+  "chainClose": null,
+  "blockStyles": null,
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}

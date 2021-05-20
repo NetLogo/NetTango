@@ -1,1 +1,523 @@
-{"version":6,"height":600,"width":450,"blocks":[{"id":0,"action":"➤➤  At GO","isRequired":false,"placement":"child","type":"nlogo:procedure","format":"to define-particle-behavior","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":"#ffd479","textColor":"#5e5e5e","borderColor":"#d4fb79","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":true,"control":false},{"id":1,"action":"⚪️    the particle","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask particle (min [who] of particles + {0})","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9437ff","textColor":"#ffffff","borderColor":"#d783ff","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[{"name":"number","unit":"","type":"num","default":"1"}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true},{"id":2,"action":"⚪️・・⚪️    each particle","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask particles","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":2,"note":null,"blockColor":"#9437ff","textColor":"#ffffff","borderColor":"#d783ff","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true},{"id":3,"action":"⎮⇠    if touches a wall","isRequired":false,"placement":"child","type":"nlogo:if","format":"if particle-is \"touching a wall\" ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":4,"note":null,"blockColor":"#797979","textColor":"#ffffff","borderColor":"#212121","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true},{"id":4,"action":"⇢💥⇠   if touches another particle","isRequired":false,"placement":"child","type":"nlogo:if","format":"if particle-is \"touching another particle\" ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":4,"note":null,"blockColor":"#797979","textColor":"#ffffff","borderColor":"#212121","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true},{"id":5,"action":"⇠🏃🏽‍♀️🏃‍♂️⇠    moves ","isRequired":false,"placement":"child","type":"nlogo:command","format":"set move-behavior {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#0096ff","textColor":"#ffffff","borderColor":"#005493","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"amount","unit":"","type":"select","default":"1","quoteValues":"smart-quote","values":[{"actual":"\"straight\"","display":null},{"actual":"\"spinning\"","display":null},{"actual":"\"zig-zag\"","display":null},{"actual":"\"erratic\"","display":null}],"def":"1"}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":6,"action":"⇠⚪️⚪️⇢    bounces back   ","isRequired":false,"placement":"child","type":"nlogo:command","format":"set-particle-behavior {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":4,"note":null,"blockColor":"#ff7e79","textColor":"#ffffff","borderColor":"#ff2600","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"angle","unit":"","type":"select","default":"10","quoteValues":"smart-quote","values":[{"actual":"\"🎈 like a balloon\"","display":null},{"actual":"\"🏈 like a football\"","display":null},{"actual":"\"🎱 like a billiard ball\"","display":null},{"actual":"\"🏀 like a basketball\"","display":null}]}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false}],"program":{"chains":[{"x":22,"y":35,"blocks":[{"definitionId":0,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown","start":false},{"definitionId":2,"instanceId":0,"clauses":[{"blocks":[{"definitionId":5,"instanceId":0,"clauses":[],"params":[{"type":"select","value":"\"zig-zag\""}],"properties":[],"propertiesDisplay":"shown","start":true},{"definitionId":3,"instanceId":0,"clauses":[{"blocks":[{"definitionId":6,"instanceId":0,"clauses":[],"params":[{"type":"select","value":"\"🏈 like a football\""}],"properties":[],"propertiesDisplay":"shown","start":true}]}],"params":[],"properties":[],"propertiesDisplay":"shown","start":true}]}],"params":[],"properties":[],"propertiesDisplay":"shown","start":true}]}]},"chainOpen":null,"chainClose":null,"blockStyles":null,"variables":[],"expressions":[{"name":"true","type":"bool","arguments":[],"format":null},{"name":"false","type":"bool","arguments":[],"format":null},{"name":"AND","type":"bool","arguments":["bool","bool"],"format":"({0} and {1})"},{"name":"OR","type":"bool","arguments":["bool","bool"],"format":"({0} or {1})"},{"name":"NOT","type":"bool","arguments":["bool"],"format":"(not {0})"},{"name":">","type":"bool","arguments":["num","num"],"format":null},{"name":">=","type":"bool","arguments":["num","num"],"format":null},{"name":"<","type":"bool","arguments":["num","num"],"format":null},{"name":"<=","type":"bool","arguments":["num","num"],"format":null},{"name":"!=","type":"bool","arguments":["num","num"],"format":null},{"name":"=","type":"bool","arguments":["num","num"],"format":null},{"name":"+","type":"num","arguments":["num","num"],"format":null},{"name":"-","type":"num","arguments":["num","num"],"format":null},{"name":"×","type":"num","arguments":["num","num"],"format":"({0} * {1})"},{"name":"/","type":"num","arguments":["num","num"],"format":null},{"name":"random","type":"num","arguments":["num"],"format":"random-float {0}"}]}
+{
+  "version": 6,
+  "height": 600,
+  "width": 450,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "➤➤  At GO",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:procedure",
+      "format": "to define-particle-behavior",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#ffd479",
+      "textColor": "#5e5e5e",
+      "borderColor": "#d4fb79",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": true,
+      "control": false
+    },
+    {
+      "id": 1,
+      "action": "⚪️    the particle",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask particle (min [who] of particles + {0})",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9437ff",
+      "textColor": "#ffffff",
+      "borderColor": "#d783ff",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [
+        {
+          "name": "number",
+          "unit": "",
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 2,
+      "action": "⚪️・・⚪️    each particle",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask particles",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 2,
+      "note": null,
+      "blockColor": "#9437ff",
+      "textColor": "#ffffff",
+      "borderColor": "#d783ff",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 3,
+      "action": "⎮⇠    if touches a wall",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if particle-is \"touching a wall\" ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 4,
+      "note": null,
+      "blockColor": "#797979",
+      "textColor": "#ffffff",
+      "borderColor": "#212121",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 4,
+      "action": "⇢💥⇠   if touches another particle",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if particle-is \"touching another particle\" ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 4,
+      "note": null,
+      "blockColor": "#797979",
+      "textColor": "#ffffff",
+      "borderColor": "#212121",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 5,
+      "action": "⇠🏃🏽‍♀️🏃‍♂️⇠    moves ",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set move-behavior {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#0096ff",
+      "textColor": "#ffffff",
+      "borderColor": "#005493",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "amount",
+          "unit": "",
+          "type": "select",
+          "default": "1",
+          "quoteValues": "smart-quote",
+          "values": [
+            {
+              "actual": "\"straight\"",
+              "display": null
+            },
+            {
+              "actual": "\"spinning\"",
+              "display": null
+            },
+            {
+              "actual": "\"zig-zag\"",
+              "display": null
+            },
+            {
+              "actual": "\"erratic\"",
+              "display": null
+            }
+          ],
+          "def": "1"
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 6,
+      "action": "⇠⚪️⚪️⇢    bounces back   ",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set-particle-behavior {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 4,
+      "note": null,
+      "blockColor": "#ff7e79",
+      "textColor": "#ffffff",
+      "borderColor": "#ff2600",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "angle",
+          "unit": "",
+          "type": "select",
+          "default": "10",
+          "quoteValues": "smart-quote",
+          "values": [
+            {
+              "actual": "\"🎈 like a balloon\"",
+              "display": null
+            },
+            {
+              "actual": "\"🏈 like a football\"",
+              "display": null
+            },
+            {
+              "actual": "\"🎱 like a billiard ball\"",
+              "display": null
+            },
+            {
+              "actual": "\"🏀 like a basketball\"",
+              "display": null
+            }
+          ]
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    }
+  ],
+  "program": {
+    "chains": [
+      {
+        "x": 22,
+        "y": 35,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown",
+            "start": false
+          },
+          {
+            "definitionId": 2,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 5,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [
+                      {
+                        "type": "select",
+                        "value": "\"zig-zag\""
+                      }
+                    ],
+                    "properties": [],
+                    "propertiesDisplay": "shown",
+                    "start": true
+                  },
+                  {
+                    "definitionId": 3,
+                    "instanceId": 0,
+                    "clauses": [
+                      {
+                        "blocks": [
+                          {
+                            "definitionId": 6,
+                            "instanceId": 0,
+                            "clauses": [],
+                            "params": [
+                              {
+                                "type": "select",
+                                "value": "\"🏈 like a football\""
+                              }
+                            ],
+                            "properties": [],
+                            "propertiesDisplay": "shown",
+                            "start": true
+                          }
+                        ]
+                      }
+                    ],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown",
+                    "start": true
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown",
+            "start": true
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": null,
+  "blockStyles": null,
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}

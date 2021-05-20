@@ -1,1 +1,884 @@
-{"version":6,"height":800,"width":700,"blocks":[{"id":0,"action":"go","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to go-nettango","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"control":false},{"id":1,"action":"setup","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to setup-nettango","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"control":false},{"id":3,"action":"start an earthquake","isRequired":true,"placement":"starter","type":null,"format":"to quake","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":"attach the fault line you want to quake when you press the \"start an earthquake\" button. For example, if you try attaching the Wasacht Fault line quake block to this one, and then Press the start an earthquake button, what happens?","blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":2,"action":"Granger Fault Quake","isRequired":false,"placement":"child","type":"nlogo:command","format":"Earthquake 15 {P0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"magnitude","unit":null,"type":"num","default":"1"}],"control":false},{"id":4,"action":"West Valley Fault Quake","isRequired":false,"placement":"child","type":"nlogo:command","format":"earthquake 45 {P0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"magnitude","unit":null,"type":"num","default":"1"}],"control":false},{"id":5,"action":"Taylorsville Fault Quake","isRequired":false,"placement":"child","type":"nlogo:command","format":"earthquake 125 {P0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"magnitude","unit":null,"type":"num","default":"1"}],"control":false},{"id":6,"action":"Virginia Street Fault Quake","isRequired":false,"placement":"child","type":"nlogo:command","format":"earthquake 65 {P0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"magnitude","unit":null,"type":"num","default":"1"}],"control":false},{"id":7,"action":"Beach Fault Quake","isRequired":false,"placement":"child","type":"nlogo:command","format":"earthquake 85 {P0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"magnitude","unit":null,"type":"num","default":"1","def":"1"}],"control":false},{"id":8,"action":"Wasatch Fault Quake","isRequired":false,"placement":"child","type":"nlogo:command","format":"earthquake 25 {P0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"magnitude","unit":null,"type":"num","default":"1"}],"control":false},{"id":11,"action":"set amplitude","isRequired":false,"placement":"child","type":"nlogo:command","format":"set quake-amplitude {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Parameter 0","unit":null,"type":"num","default":"14"}],"properties":[],"control":false},{"id":12,"action":"set frequency","isRequired":false,"placement":"child","type":"nlogo:command","format":"set quake-frequency {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Parameter 0","unit":null,"type":"num","default":"80"}],"properties":[],"control":false},{"id":13,"action":"ask pieces of ground","isRequired":false,"placement":"child","type":null,"format":"ask wavers with [not driver? and not edge?]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[]},{"id":14,"action":"give energy to my neighbors","isRequired":false,"placement":"child","type":"nlogo:command","format":"propagate","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"control":false},{"id":15,"action":"ask houses","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask buildings","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"control":true},{"id":16,"action":"take damage from earthquakes","isRequired":false,"placement":"child","type":"nlogo:command","format":"damage","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"control":false},{"id":17,"action":"change graphics when take damage","isRequired":false,"placement":"child","type":"nlogo:command","format":"shake","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"control":false},{"id":18,"action":"Age the building","isRequired":false,"placement":"child","type":"nlogo:command","format":"set age age + 1","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"control":false},{"id":19,"action":"create custom rock","isRequired":false,"placement":"child","type":null,"format":"set customcolor {P1}\nset customfriction {P2}\nset customstiffness {P3}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"name","unit":null,"type":"text","default":"blurpeous"},{"name":"color","unit":null,"step":1,"random":false,"default":55,"type":"int"},{"name":"friction","unit":null,"type":"num","default":"10"},{"name":"stiffness","unit":null,"type":"num","default":"10"}]}],"program":{"chains":[{"x":4,"y":17,"blocks":[{"definitionId":3,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":8,"instanceId":0,"clauses":[],"params":[],"properties":[{"type":"num","value":{"name":"4","type":"num","format":null,"children":[]},"expressionValue":"0"}],"propertiesDisplay":"shown"}]},{"x":19,"y":222,"blocks":[{"definitionId":0,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":13,"instanceId":0,"clauses":[{"blocks":[{"definitionId":14,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":15,"instanceId":0,"clauses":[{"blocks":[{"definitionId":16,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":17,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":18,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"}]},{"x":22,"y":567,"blocks":[{"definitionId":1,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":11,"instanceId":0,"clauses":[],"params":[{"type":"num","value":{"name":"14","type":"num","format":null,"children":[]},"expressionValue":"0"}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":12,"instanceId":0,"clauses":[],"params":[{"type":"num","value":{"name":"80","type":"num","format":null,"children":[]},"expressionValue":"0"}],"properties":[],"propertiesDisplay":"shown"}]}]},"chainOpen":null,"chainClose":null,"blockStyles":{"starterBlockStyle":{"blockColor":"#d08216","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"containerBlockStyle":{"blockColor":"#448212","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"commandBlockStyle":{"blockColor":"#48280f","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""}},"variables":[],"expressions":[{"name":"true","type":"bool","arguments":[],"format":null},{"name":"false","type":"bool","arguments":[],"format":null},{"name":"AND","type":"bool","arguments":["bool","bool"],"format":"({0} and {1})"},{"name":"OR","type":"bool","arguments":["bool","bool"],"format":"({0} or {1})"},{"name":"NOT","type":"bool","arguments":["bool"],"format":"(not {0})"},{"name":">","type":"bool","arguments":["num","num"],"format":null},{"name":">=","type":"bool","arguments":["num","num"],"format":null},{"name":"<","type":"bool","arguments":["num","num"],"format":null},{"name":"<=","type":"bool","arguments":["num","num"],"format":null},{"name":"!=","type":"bool","arguments":["num","num"],"format":null},{"name":"=","type":"bool","arguments":["num","num"],"format":null},{"name":"+","type":"num","arguments":["num","num"],"format":null},{"name":"-","type":"num","arguments":["num","num"],"format":null},{"name":"×","type":"num","arguments":["num","num"],"format":"({0} * {1})"},{"name":"/","type":"num","arguments":["num","num"],"format":null},{"name":"random","type":"num","arguments":["num"],"format":"random-float {0}"}]}
+{
+  "version": 6,
+  "height": 800,
+  "width": 700,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "go",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to go-nettango",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "control": false
+    },
+    {
+      "id": 1,
+      "action": "setup",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to setup-nettango",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "control": false
+    },
+    {
+      "id": 3,
+      "action": "start an earthquake",
+      "isRequired": true,
+      "placement": "starter",
+      "type": null,
+      "format": "to quake",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": "attach the fault line you want to quake when you press the \"start an earthquake\" button. For example, if you try attaching the Wasacht Fault line quake block to this one, and then Press the start an earthquake button, what happens?",
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 2,
+      "action": "Granger Fault Quake",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "Earthquake 15 {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "magnitude",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "control": false
+    },
+    {
+      "id": 4,
+      "action": "West Valley Fault Quake",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "earthquake 45 {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "magnitude",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "control": false
+    },
+    {
+      "id": 5,
+      "action": "Taylorsville Fault Quake",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "earthquake 125 {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "magnitude",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "control": false
+    },
+    {
+      "id": 6,
+      "action": "Virginia Street Fault Quake",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "earthquake 65 {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "magnitude",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "control": false
+    },
+    {
+      "id": 7,
+      "action": "Beach Fault Quake",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "earthquake 85 {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "magnitude",
+          "unit": null,
+          "type": "num",
+          "default": "1",
+          "def": "1"
+        }
+      ],
+      "control": false
+    },
+    {
+      "id": 8,
+      "action": "Wasatch Fault Quake",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "earthquake 25 {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "magnitude",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "control": false
+    },
+    {
+      "id": 11,
+      "action": "set amplitude",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set quake-amplitude {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "num",
+          "default": "14"
+        }
+      ],
+      "properties": [],
+      "control": false
+    },
+    {
+      "id": 12,
+      "action": "set frequency",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set quake-frequency {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "num",
+          "default": "80"
+        }
+      ],
+      "properties": [],
+      "control": false
+    },
+    {
+      "id": 13,
+      "action": "ask pieces of ground",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask wavers with [not driver? and not edge?]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 14,
+      "action": "give energy to my neighbors",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "propagate",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "control": false
+    },
+    {
+      "id": 15,
+      "action": "ask houses",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask buildings",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "control": true
+    },
+    {
+      "id": 16,
+      "action": "take damage from earthquakes",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "damage",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "control": false
+    },
+    {
+      "id": 17,
+      "action": "change graphics when take damage",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "shake",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "control": false
+    },
+    {
+      "id": 18,
+      "action": "Age the building",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set age age + 1",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "control": false
+    },
+    {
+      "id": 19,
+      "action": "create custom rock",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set customcolor {P1}\nset customfriction {P2}\nset customstiffness {P3}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "name",
+          "unit": null,
+          "type": "text",
+          "default": "blurpeous"
+        },
+        {
+          "name": "color",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 55,
+          "type": "int"
+        },
+        {
+          "name": "friction",
+          "unit": null,
+          "type": "num",
+          "default": "10"
+        },
+        {
+          "name": "stiffness",
+          "unit": null,
+          "type": "num",
+          "default": "10"
+        }
+      ]
+    }
+  ],
+  "program": {
+    "chains": [
+      {
+        "x": 4,
+        "y": 17,
+        "blocks": [
+          {
+            "definitionId": 3,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 8,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [
+              {
+                "type": "num",
+                "value": {
+                  "name": "4",
+                  "type": "num",
+                  "format": null,
+                  "children": []
+                },
+                "expressionValue": "0"
+              }
+            ],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      },
+      {
+        "x": 19,
+        "y": 222,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 13,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 14,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 15,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 16,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  },
+                  {
+                    "definitionId": 17,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  },
+                  {
+                    "definitionId": 18,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      },
+      {
+        "x": 22,
+        "y": 567,
+        "blocks": [
+          {
+            "definitionId": 1,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 11,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "num",
+                "value": {
+                  "name": "14",
+                  "type": "num",
+                  "format": null,
+                  "children": []
+                },
+                "expressionValue": "0"
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 12,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "num",
+                "value": {
+                  "name": "80",
+                  "type": "num",
+                  "format": null,
+                  "children": []
+                },
+                "expressionValue": "0"
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": null,
+  "blockStyles": {
+    "starterBlockStyle": {
+      "blockColor": "#d08216",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "containerBlockStyle": {
+      "blockColor": "#448212",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "commandBlockStyle": {
+      "blockColor": "#48280f",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    }
+  },
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}

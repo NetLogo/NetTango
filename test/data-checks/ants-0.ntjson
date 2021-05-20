@@ -1,1 +1,470 @@
-{"version":6,"height":500,"width":500,"blocks":[{"id":0,"action":"Setup","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to do-setup","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":"#4f8f00","textColor":"#ffffff","borderColor":"#005493","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":700,"fontSize":24,"fontFace":"'Poppins', sans-serif","start":true,"control":false},{"id":2,"action":"Create a nest","isRequired":false,"placement":"child","type":"nlogo:command","format":"ask patches [        \n set nest? (distancexy 0 0) < {0}        \n if nest? [set pcolor violet]\n set nest-scent 200 - distancexy 0 0 \n]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":"#424242","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Diameter","unit":"","step":1,"random":false,"default":5,"type":"range","min":0,"max":10}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":4,"action":"Create Ants","isRequired":false,"placement":"child","type":"nlogo:command","format":"create-turtles {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#919191","textColor":null,"borderColor":"#212121","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"how many?","unit":"","step":1,"random":false,"default":125,"type":"range","min":1,"max":300}],"properties":[],"start":false,"control":false},{"id":3,"action":"Create a food pile","isRequired":false,"placement":"child","type":"nlogo:command","format":"ask patches with [distancexy {0} {1} < 5] [          \n   set food one-of [1 2]         \n   set pcolor {P0}    \n]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9437ff","textColor":"#ffffff","borderColor":"#212121","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"X Coordinate","unit":"","step":1,"random":false,"default":10,"type":"range","min":-30,"max":30},{"name":"Y Coordinate","unit":"","step":1,"random":false,"default":10,"type":"range","min":-30,"max":30}],"properties":[{"name":"Color","unit":"","type":"select","default":"Cyan","quoteValues":"never-quote","values":[{"actual":"Cyan","display":"Cyan"},{"actual":"Sky","display":"Sky"},{"actual":"Blue","display":"Blue"},{"actual":"Red","display":"Red"},{"actual":"Yellow","display":"Yellow"}]}],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false}],"program":{"chains":[{"x":37,"y":40,"blocks":[{"definitionId":0,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":2,"instanceId":0,"clauses":[],"params":[{"type":"range","value":5}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":4,"instanceId":0,"clauses":[],"params":[{"type":"range","value":125}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":3,"instanceId":0,"clauses":[],"params":[{"type":"range","value":20},{"type":"range","value":0}],"properties":[{"type":"select","value":"Blue"}],"propertiesDisplay":"shown"},{"definitionId":3,"instanceId":1,"clauses":[],"params":[{"type":"range","value":-25},{"type":"range","value":30}],"properties":[{"type":"select","value":"Yellow"}],"propertiesDisplay":"shown"},{"definitionId":3,"instanceId":2,"clauses":[],"params":[{"type":"range","value":-20},{"type":"range","value":-20}],"properties":[{"type":"select","value":"Red"}],"propertiesDisplay":"shown"}]}]},"chainOpen":null,"chainClose":null,"blockStyles":{"starterBlockStyle":{"blockColor":"#bb5555","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"containerBlockStyle":{"blockColor":"#8899aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"commandBlockStyle":{"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""}},"variables":[],"expressions":[{"name":"true","type":"bool","arguments":[],"format":null},{"name":"false","type":"bool","arguments":[],"format":null},{"name":"AND","type":"bool","arguments":["bool","bool"],"format":"({0} and {1})"},{"name":"OR","type":"bool","arguments":["bool","bool"],"format":"({0} or {1})"},{"name":"NOT","type":"bool","arguments":["bool"],"format":"(not {0})"},{"name":">","type":"bool","arguments":["num","num"],"format":null},{"name":">=","type":"bool","arguments":["num","num"],"format":null},{"name":"<","type":"bool","arguments":["num","num"],"format":null},{"name":"<=","type":"bool","arguments":["num","num"],"format":null},{"name":"!=","type":"bool","arguments":["num","num"],"format":null},{"name":"=","type":"bool","arguments":["num","num"],"format":null},{"name":"+","type":"num","arguments":["num","num"],"format":null},{"name":"-","type":"num","arguments":["num","num"],"format":null},{"name":"×","type":"num","arguments":["num","num"],"format":"({0} * {1})"},{"name":"/","type":"num","arguments":["num","num"],"format":null},{"name":"random","type":"num","arguments":["num"],"format":"random-float {0}"}]}
+{
+  "version": 6,
+  "height": 500,
+  "width": 500,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "Setup",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to do-setup",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#4f8f00",
+      "textColor": "#ffffff",
+      "borderColor": "#005493",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 700,
+      "fontSize": 24,
+      "fontFace": "'Poppins', sans-serif",
+      "start": true,
+      "control": false
+    },
+    {
+      "id": 2,
+      "action": "Create a nest",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "ask patches [        \n set nest? (distancexy 0 0) < {0}        \n if nest? [set pcolor violet]\n set nest-scent 200 - distancexy 0 0 \n]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#424242",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Diameter",
+          "unit": "",
+          "step": 1,
+          "random": false,
+          "default": 5,
+          "type": "range",
+          "min": 0,
+          "max": 10
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 4,
+      "action": "Create Ants",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "create-turtles {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#919191",
+      "textColor": null,
+      "borderColor": "#212121",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "how many?",
+          "unit": "",
+          "step": 1,
+          "random": false,
+          "default": 125,
+          "type": "range",
+          "min": 1,
+          "max": 300
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 3,
+      "action": "Create a food pile",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "ask patches with [distancexy {0} {1} < 5] [          \n   set food one-of [1 2]         \n   set pcolor {P0}    \n]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9437ff",
+      "textColor": "#ffffff",
+      "borderColor": "#212121",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "X Coordinate",
+          "unit": "",
+          "step": 1,
+          "random": false,
+          "default": 10,
+          "type": "range",
+          "min": -30,
+          "max": 30
+        },
+        {
+          "name": "Y Coordinate",
+          "unit": "",
+          "step": 1,
+          "random": false,
+          "default": 10,
+          "type": "range",
+          "min": -30,
+          "max": 30
+        }
+      ],
+      "properties": [
+        {
+          "name": "Color",
+          "unit": "",
+          "type": "select",
+          "default": "Cyan",
+          "quoteValues": "never-quote",
+          "values": [
+            {
+              "actual": "Cyan",
+              "display": "Cyan"
+            },
+            {
+              "actual": "Sky",
+              "display": "Sky"
+            },
+            {
+              "actual": "Blue",
+              "display": "Blue"
+            },
+            {
+              "actual": "Red",
+              "display": "Red"
+            },
+            {
+              "actual": "Yellow",
+              "display": "Yellow"
+            }
+          ]
+        }
+      ],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    }
+  ],
+  "program": {
+    "chains": [
+      {
+        "x": 37,
+        "y": 40,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 2,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 5
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 4,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 125
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 3,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 20
+              },
+              {
+                "type": "range",
+                "value": 0
+              }
+            ],
+            "properties": [
+              {
+                "type": "select",
+                "value": "Blue"
+              }
+            ],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 3,
+            "instanceId": 1,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": -25
+              },
+              {
+                "type": "range",
+                "value": 30
+              }
+            ],
+            "properties": [
+              {
+                "type": "select",
+                "value": "Yellow"
+              }
+            ],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 3,
+            "instanceId": 2,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": -20
+              },
+              {
+                "type": "range",
+                "value": -20
+              }
+            ],
+            "properties": [
+              {
+                "type": "select",
+                "value": "Red"
+              }
+            ],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": null,
+  "blockStyles": {
+    "starterBlockStyle": {
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "containerBlockStyle": {
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "commandBlockStyle": {
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    }
+  },
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}

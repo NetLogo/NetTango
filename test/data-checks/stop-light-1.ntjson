@@ -1,1 +1,598 @@
-{"version":6,"height":500,"width":430,"blocks":[{"id":0,"action":"Go Car","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to go\n   wait dt\n   display\n   update-plots\n   tick-advance dt\n  ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":1,"action":"if brake pressed","isRequired":false,"placement":"child","type":"nlogo:if","format":"if brake?","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[]},{"id":2,"action":"if gaspedal pressed","isRequired":false,"placement":"child","type":"nlogo:if","format":"if gaspedal?","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[]},{"id":3,"action":"increasing speed","isRequired":false,"placement":"child","type":"nlogo:command","format":"ask turtle 0 [set speed speed + {0} * dt]\nset gaspedal? false","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"acceleration","unit":"m/s.s","type":"num","default":"0"}],"properties":[]},{"id":4,"action":"decreasing speed","isRequired":false,"placement":"child","type":"nlogo:command","format":"ask turtle 0 [set speed max list 0 (speed - {0} * dt)]\nset brake? false","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Deceleration","unit":"m/s.s","step":1,"random":false,"default":0,"type":"range","min":0,"max":10}],"properties":[]},{"id":5,"action":"Move the Car","isRequired":false,"placement":"child","type":"nlogo:command","format":"ask turtle 0 [fd speed * dt\n  set displacement displacement + speed * dt]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":6,"action":"if seconds =","isRequired":false,"placement":"child","type":"nlogo:if","format":"if round ticks = {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[{"name":"seconds","unit":"sec","type":"num","default":"0"}],"properties":[]},{"id":7,"action":"Change light","isRequired":false,"placement":"child","type":"nlogo:command","format":"ask traffic-light [set pcolor {0}]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Color","unit":null,"type":"select","default":"green","quoteValues":"never-quote","values":[{"actual":"yellow","display":"yellow"},{"actual":"red","display":"red"},{"actual":"green","display":"green"}]}],"properties":[]}],"program":{"chains":[{"x":28,"y":16,"blocks":[{"definitionId":0,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":5,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":1,"instanceId":0,"clauses":[{"blocks":[{"definitionId":4,"instanceId":0,"clauses":[],"params":[{"type":"range","value":3}],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":2,"instanceId":0,"clauses":[{"blocks":[{"definitionId":3,"instanceId":0,"clauses":[],"params":[{"type":"num","value":{"name":"2","type":"num","format":null,"children":[]},"expressionValue":"0"}],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":6,"instanceId":0,"clauses":[{"blocks":[{"definitionId":7,"instanceId":0,"clauses":[],"params":[{"type":"select","value":"yellow"}],"properties":[],"propertiesDisplay":"shown"}]}],"params":[{"type":"num","value":{"name":"3","type":"num","format":null,"children":[]},"expressionValue":"0"}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":6,"instanceId":1,"clauses":[{"blocks":[{"definitionId":7,"instanceId":1,"clauses":[],"params":[{"type":"select","value":"red"}],"properties":[],"propertiesDisplay":"shown"}]}],"params":[{"type":"num","value":{"name":"5","type":"num","format":null,"children":[]},"expressionValue":"0"}],"properties":[],"propertiesDisplay":"shown"}]}]},"chainOpen":null,"chainClose":null,"blockStyles":{"starterBlockStyle":{"blockColor":"#bb5555","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"containerBlockStyle":{"blockColor":"#8899aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"commandBlockStyle":{"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""}},"variables":[],"expressions":[{"name":"true","type":"bool","arguments":[],"format":null},{"name":"false","type":"bool","arguments":[],"format":null},{"name":"AND","type":"bool","arguments":["bool","bool"],"format":"({0} and {1})"},{"name":"OR","type":"bool","arguments":["bool","bool"],"format":"({0} or {1})"},{"name":"NOT","type":"bool","arguments":["bool"],"format":"(not {0})"},{"name":">","type":"bool","arguments":["num","num"],"format":null},{"name":">=","type":"bool","arguments":["num","num"],"format":null},{"name":"<","type":"bool","arguments":["num","num"],"format":null},{"name":"<=","type":"bool","arguments":["num","num"],"format":null},{"name":"!=","type":"bool","arguments":["num","num"],"format":null},{"name":"=","type":"bool","arguments":["num","num"],"format":null},{"name":"+","type":"num","arguments":["num","num"],"format":null},{"name":"-","type":"num","arguments":["num","num"],"format":null},{"name":"×","type":"num","arguments":["num","num"],"format":"({0} * {1})"},{"name":"/","type":"num","arguments":["num","num"],"format":null},{"name":"random","type":"num","arguments":["num"],"format":"random-float {0}"}]}
+{
+  "version": 6,
+  "height": 500,
+  "width": 430,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "Go Car",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to go\n   wait dt\n   display\n   update-plots\n   tick-advance dt\n  ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 1,
+      "action": "if brake pressed",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if brake?",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 2,
+      "action": "if gaspedal pressed",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if gaspedal?",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 3,
+      "action": "increasing speed",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "ask turtle 0 [set speed speed + {0} * dt]\nset gaspedal? false",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "acceleration",
+          "unit": "m/s.s",
+          "type": "num",
+          "default": "0"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 4,
+      "action": "decreasing speed",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "ask turtle 0 [set speed max list 0 (speed - {0} * dt)]\nset brake? false",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Deceleration",
+          "unit": "m/s.s",
+          "step": 1,
+          "random": false,
+          "default": 0,
+          "type": "range",
+          "min": 0,
+          "max": 10
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 5,
+      "action": "Move the Car",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "ask turtle 0 [fd speed * dt\n  set displacement displacement + speed * dt]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 6,
+      "action": "if seconds =",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if round ticks = {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [
+        {
+          "name": "seconds",
+          "unit": "sec",
+          "type": "num",
+          "default": "0"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 7,
+      "action": "Change light",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "ask traffic-light [set pcolor {0}]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Color",
+          "unit": null,
+          "type": "select",
+          "default": "green",
+          "quoteValues": "never-quote",
+          "values": [
+            {
+              "actual": "yellow",
+              "display": "yellow"
+            },
+            {
+              "actual": "red",
+              "display": "red"
+            },
+            {
+              "actual": "green",
+              "display": "green"
+            }
+          ]
+        }
+      ],
+      "properties": []
+    }
+  ],
+  "program": {
+    "chains": [
+      {
+        "x": 28,
+        "y": 16,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 5,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 1,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 4,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [
+                      {
+                        "type": "range",
+                        "value": 3
+                      }
+                    ],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 2,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 3,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [
+                      {
+                        "type": "num",
+                        "value": {
+                          "name": "2",
+                          "type": "num",
+                          "format": null,
+                          "children": []
+                        },
+                        "expressionValue": "0"
+                      }
+                    ],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 6,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 7,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [
+                      {
+                        "type": "select",
+                        "value": "yellow"
+                      }
+                    ],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [
+              {
+                "type": "num",
+                "value": {
+                  "name": "3",
+                  "type": "num",
+                  "format": null,
+                  "children": []
+                },
+                "expressionValue": "0"
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 6,
+            "instanceId": 1,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 7,
+                    "instanceId": 1,
+                    "clauses": [],
+                    "params": [
+                      {
+                        "type": "select",
+                        "value": "red"
+                      }
+                    ],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [
+              {
+                "type": "num",
+                "value": {
+                  "name": "5",
+                  "type": "num",
+                  "format": null,
+                  "children": []
+                },
+                "expressionValue": "0"
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": null,
+  "blockStyles": {
+    "starterBlockStyle": {
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "containerBlockStyle": {
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "commandBlockStyle": {
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    }
+  },
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}

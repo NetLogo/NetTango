@@ -1,1 +1,725 @@
-{"version":6,"height":1200,"width":600,"blocks":[{"id":0,"action":"setup","isRequired":true,"placement":"starter","type":null,"format":"to setup-springs","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":1,"action":"go","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to go","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":5,"action":"set energy","isRequired":false,"placement":"child","type":null,"format":"set vibration-amplitude {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ed5b0c","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Volume","unit":null,"step":1,"random":false,"default":41,"type":"range","min":3,"max":50}],"properties":[]},{"id":6,"action":"set pitch","isRequired":false,"placement":"child","type":null,"format":"set vibration-frequency {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ed5b0c","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Pitch","unit":null,"step":0.25,"random":false,"default":3,"type":"range","min":1.5,"max":4.5,"def":3}],"properties":[]},{"id":7,"action":"add speaker","isRequired":false,"placement":"child","type":null,"format":"set speaker-visible? true","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ed5b0c","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":8,"action":"turn speaker on","isRequired":false,"placement":"child","type":null,"format":"set speaker-on? true","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ed5b0c","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":9,"action":"add particles","isRequired":false,"placement":"child","type":null,"format":"set particles? true","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#41af44","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":10,"action":"add listener","isRequired":false,"placement":"child","type":null,"format":"set hearer? true\nset hearingarea-x {0}\nset hearingarea-y hearingarea-x + 1\n\n;ask patches with [pxcor > hearingarea-x] [ set pcolor blue + 3]\n;ask patches with [pxcor > hearingarea-y] [ set pcolor 9.9]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#739bd3","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Parameter 0","unit":null,"type":"num","default":"17"}],"properties":[]},{"id":11,"action":"ask particles","isRequired":false,"placement":"child","type":null,"format":"ask turtles","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#41af44","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[]},{"id":12,"action":"move when hit","isRequired":false,"placement":"child","type":null,"format":"propagate-across-particles-turtles","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#41af44","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":14,"action":"ask speaker","isRequired":false,"placement":"child","type":null,"format":"ask arrows","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ed5b0c","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[]},{"id":15,"action":"vibrate","isRequired":false,"placement":"child","type":null,"format":"set speaker-on? true\nmove-speaker","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ed5b0c","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":20,"action":"set material airium","isRequired":false,"placement":"child","type":null,"format":"set friction-in-medium 0\nset stiffness 3","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ff00ae","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":21,"action":"set material wetonium","isRequired":false,"placement":"child","type":null,"format":"set friction-in-medium 3\nset stiffness 6\n","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ff00ae","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]},{"id":22,"action":"set material vibratium","isRequired":false,"placement":"child","type":null,"format":"set friction-in-medium 7\nset stiffness 50\n","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#ff00ae","textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[]}],"program":{"chains":[{"x":16,"y":13,"blocks":[{"definitionId":0,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":5,"instanceId":0,"clauses":[],"params":[{"type":"range","value":41}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":6,"instanceId":0,"clauses":[],"params":[{"type":"range","value":3}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":7,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":8,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":9,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":10,"instanceId":0,"clauses":[],"params":[{"type":"num","value":{"name":"17","type":"num","format":null,"children":[]},"expressionValue":"0"}],"properties":[],"propertiesDisplay":"shown"}]},{"x":14,"y":389,"blocks":[{"definitionId":1,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":11,"instanceId":0,"clauses":[{"blocks":[{"definitionId":12,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":14,"instanceId":0,"clauses":[{"blocks":[{"definitionId":15,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"}]}]},"chainOpen":null,"chainClose":null,"blockStyles":{"starterBlockStyle":{"blockColor":"#bb5555","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"containerBlockStyle":{"blockColor":"#8899aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"commandBlockStyle":{"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""}},"variables":[],"expressions":[{"name":"true","type":"bool","arguments":[],"format":null},{"name":"false","type":"bool","arguments":[],"format":null},{"name":"AND","type":"bool","arguments":["bool","bool"],"format":"({0} and {1})"},{"name":"OR","type":"bool","arguments":["bool","bool"],"format":"({0} or {1})"},{"name":"NOT","type":"bool","arguments":["bool"],"format":"(not {0})"},{"name":">","type":"bool","arguments":["num","num"],"format":null},{"name":">=","type":"bool","arguments":["num","num"],"format":null},{"name":"<","type":"bool","arguments":["num","num"],"format":null},{"name":"<=","type":"bool","arguments":["num","num"],"format":null},{"name":"!=","type":"bool","arguments":["num","num"],"format":null},{"name":"=","type":"bool","arguments":["num","num"],"format":null},{"name":"+","type":"num","arguments":["num","num"],"format":null},{"name":"-","type":"num","arguments":["num","num"],"format":null},{"name":"×","type":"num","arguments":["num","num"],"format":"({0} * {1})"},{"name":"/","type":"num","arguments":["num","num"],"format":null},{"name":"random","type":"num","arguments":["num"],"format":"random-float {0}"}]}
+{
+  "version": 6,
+  "height": 1200,
+  "width": 600,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "setup",
+      "isRequired": true,
+      "placement": "starter",
+      "type": null,
+      "format": "to setup-springs",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 1,
+      "action": "go",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to go",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 5,
+      "action": "set energy",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set vibration-amplitude {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ed5b0c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Volume",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 41,
+          "type": "range",
+          "min": 3,
+          "max": 50
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 6,
+      "action": "set pitch",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set vibration-frequency {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ed5b0c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Pitch",
+          "unit": null,
+          "step": 0.25,
+          "random": false,
+          "default": 3,
+          "type": "range",
+          "min": 1.5,
+          "max": 4.5,
+          "def": 3
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 7,
+      "action": "add speaker",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set speaker-visible? true",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ed5b0c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 8,
+      "action": "turn speaker on",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set speaker-on? true",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ed5b0c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 9,
+      "action": "add particles",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set particles? true",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#41af44",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 10,
+      "action": "add listener",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set hearer? true\nset hearingarea-x {0}\nset hearingarea-y hearingarea-x + 1\n\n;ask patches with [pxcor > hearingarea-x] [ set pcolor blue + 3]\n;ask patches with [pxcor > hearingarea-y] [ set pcolor 9.9]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#739bd3",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "num",
+          "default": "17"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 11,
+      "action": "ask particles",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask turtles",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#41af44",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 12,
+      "action": "move when hit",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "propagate-across-particles-turtles",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#41af44",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 14,
+      "action": "ask speaker",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask arrows",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ed5b0c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 15,
+      "action": "vibrate",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set speaker-on? true\nmove-speaker",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ed5b0c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 20,
+      "action": "set material airium",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set friction-in-medium 0\nset stiffness 3",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ff00ae",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 21,
+      "action": "set material wetonium",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set friction-in-medium 3\nset stiffness 6\n",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ff00ae",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 22,
+      "action": "set material vibratium",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set friction-in-medium 7\nset stiffness 50\n",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ff00ae",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    }
+  ],
+  "program": {
+    "chains": [
+      {
+        "x": 16,
+        "y": 13,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 5,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 41
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 6,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 3
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 7,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 8,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 9,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 10,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "num",
+                "value": {
+                  "name": "17",
+                  "type": "num",
+                  "format": null,
+                  "children": []
+                },
+                "expressionValue": "0"
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      },
+      {
+        "x": 14,
+        "y": 389,
+        "blocks": [
+          {
+            "definitionId": 1,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 11,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 12,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 14,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 15,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": null,
+  "blockStyles": {
+    "starterBlockStyle": {
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "containerBlockStyle": {
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "commandBlockStyle": {
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    }
+  },
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}

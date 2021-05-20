@@ -1,1 +1,1837 @@
-{"version":6,"height":1600,"width":700,"blocks":[{"id":0,"action":"setup","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to setup","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":true,"control":false},{"id":1,"action":"go","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to go","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":true,"control":false},{"id":21,"action":"nature-infects","isRequired":false,"placement":"child","type":"nlogo:command","format":"nature-infects {0}\nset nature-infects-number {P0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"# to infect","unit":null,"type":"num","default":"1"}],"properties":[{"name":"How many people to keep healthy","unit":null,"type":"num","default":"10"}],"start":false,"control":false},{"id":3,"action":"move","isRequired":false,"placement":"child","type":"nlogo:command","format":" move ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":4,"action":"chance","isRequired":false,"placement":"child","type":"nlogo:if","format":"if random 100 < {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[{"name":"percent","unit":"%","step":0.01,"random":false,"default":0.01,"type":"range","min":0,"max":100}],"properties":[],"start":false,"control":true},{"id":6,"action":"ask healthy people","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask healthies","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":24,"action":"ask sick people","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask sicks","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":26,"action":"ask surfaces","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask patches","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":9,"action":"ask contaminated surfaces","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask patches with [contaminated? = true]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":39,"action":"ask everyone","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask turtles","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":5,"action":"if I'm near someone who's sick","isRequired":false,"placement":"child","type":"nlogo:if","format":"if one-of other turtles-here with [infected? = true]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":7,"action":"Emit Sick Particles","isRequired":false,"placement":"child","type":"nlogo:command","format":"emitvirus 1","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":8,"action":"contaminate surface","isRequired":false,"placement":"child","type":"nlogo:command","format":"contaminate-surface","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":10,"action":"infect nearby people","isRequired":false,"placement":"child","type":"nlogo:command","format":"infect-from-surface","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":11,"action":"if infected","isRequired":false,"placement":"child","type":"nlogo:if","format":"if infected?","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":12,"action":"infect","isRequired":false,"placement":"child","type":"nlogo:command","format":"infect","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":13,"action":"die","isRequired":false,"placement":"child","type":"nlogo:command","format":"die","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":14,"action":"recover","isRequired":false,"placement":"child","type":"nlogo:command","format":"set infected? false \nset color green + 1\nset breed healthies\nset shape \"person\"\nset num-infected num-infected - 1","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":41,"action":"set immunity","isRequired":false,"placement":"child","type":"nlogo:command","format":"set immunity? {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"have immunity?","unit":null,"type":"text","default":"false","def":"false"}],"properties":[],"start":false,"control":false},{"id":15,"action":"add sick people","isRequired":false,"placement":"child","type":"nlogo:command","format":"create-sick-people {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"# of sick","unit":null,"type":"num","default":"1"}],"properties":[],"start":false,"control":false},{"id":16,"action":"add healthy people","isRequired":false,"placement":"child","type":"nlogo:command","format":"create-healthy-people {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"start population","unit":null,"type":"num","default":"100"}],"properties":[],"start":false,"control":false},{"id":17,"action":"avoid","isRequired":false,"placement":"child","type":"nlogo:command","format":" back 6 set heading -180 ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"distance ahead to check","unit":null,"type":"num","default":"1"}],"properties":[],"start":false,"control":false},{"id":18,"action":"tick","isRequired":false,"placement":"child","type":"nlogo:command","format":"tick","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":19,"action":"make clearer","isRequired":false,"placement":"child","type":"nlogo:command","format":"set color blue","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":20,"action":"infect one person next to you","isRequired":false,"placement":"child","type":"nlogo:command","format":"experiment1","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":22,"action":"Set Infectiousness","isRequired":false,"placement":"child","type":"nlogo:command","format":"set infectiousness {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"infectiousness","unit":null,"step":0.05,"random":false,"default":1.36,"type":"range","min":0.01,"max":100}],"properties":[],"start":false,"control":false},{"id":25,"action":"sneeze","isRequired":false,"placement":"child","type":"nlogo:command","format":"emitvirus {P2} {P0} {P1}\nset num-infected num-infected - 1","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"Size of Germs","unit":" Germ Size ","step":1,"random":false,"default":0,"type":"int"},{"name":"How far to sneeze","unit":null,"type":"num","default":"3"},{"name":"How many viruses","unit":null,"type":"num","default":"5"}],"start":false,"control":false},{"id":27,"action":"cough","isRequired":false,"placement":"child","type":"nlogo:command","format":"emitvirus {P3} {P0} {P1}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"Size of Germs","unit":" Germ Size ","step":1,"random":false,"default":0,"type":"int"},{"name":"How far to sneeze","unit":null,"type":"num","default":"0"},{"name":"number of viruses","unit":null,"type":"num","default":"5"}],"start":false,"control":false},{"id":28,"action":"ask viruses","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask germs","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":29,"action":"infect one person next to you","isRequired":false,"placement":"child","type":"nlogo:command","format":"experiment1","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":30,"action":"set immune system strength","isRequired":false,"placement":"child","type":"nlogo:command","format":"set immune-system-strength {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Immune","unit":null,"type":"num","default":"1"}],"properties":[],"start":false,"control":false},{"id":31,"action":"increase immune system strength","isRequired":false,"placement":"child","type":"nlogo:command","format":"set immune-system-strength immune-system-strength + {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Parameter 0","unit":null,"type":"num","default":"1","def":"1"}],"properties":[],"start":false,"control":false},{"id":32,"action":"decrease immune system strength","isRequired":false,"placement":"child","type":"nlogo:command","format":"set immune-system-strength immune-system-strength - {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Parameter 0","unit":null,"type":"num","default":"1"}],"properties":[],"start":false,"control":false},{"id":33,"action":"if immune system strength below","isRequired":false,"placement":"child","type":"nlogo:if","format":"if immune-system-strength < {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[{"name":"Parameter 0","unit":null,"type":"num","default":"1"}],"properties":[],"start":false,"control":true},{"id":34,"action":"set label immune-system-strength","isRequired":false,"placement":"child","type":"nlogo:command","format":" set label immune-system-strength","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"start":false,"control":false},{"id":35,"action":"ask some healthy people","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask n-of {0} healthies","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[{"name":"Parameter 0","unit":null,"type":"num","default":"10","def":"10"}],"properties":[],"start":false,"control":true},{"id":37,"action":"ask some healthy people","isRequired":false,"placement":"child","type":"nlogo:if","format":"ask n-of {0} sicks","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[{"name":"Parameter 0","unit":null,"type":"num","default":"10"}],"properties":[],"start":false,"control":true},{"id":38,"action":"prevention-measures","isRequired":false,"placement":"child","type":"nlogo:command","format":"set mask-strength {P0}\nset gloves-strength {P1}\nset face-tocuhing {P2}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[{"name":"Mask Strength","unit":null,"type":"num","default":"0"},{"name":"Gloves-Strength","unit":null,"type":"num","default":"0"},{"name":"Face-touching-frequency","unit":null,"type":"num","default":"0"}],"start":false,"control":false},{"id":40,"action":"if virus penetrates mask","isRequired":false,"placement":"child","type":"nlogo:if","format":"if random mask-strength < 2","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"start":false,"control":true},{"id":42,"action":"if immunity","isRequired":false,"placement":"child","type":"nlogo:if","format":"if immunity? = {P0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[{"name":"equals","unit":null,"type":"text","default":"false"}],"start":false,"control":true},{"id":36,"action":"set color","isRequired":false,"placement":"child","type":"nlogo:command","format":"set color {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":null,"textColor":null,"borderColor":null,"font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"Parameter 0","unit":null,"type":"text","default":"orange"}],"properties":[],"start":false,"control":false}],"program":{"chains":[{"x":77,"y":73,"blocks":[{"definitionId":0,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":15,"instanceId":0,"clauses":[],"params":[{"type":"num","value":{"name":"6","type":"num","format":null,"children":[]},"expressionValue":"0"}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":16,"instanceId":0,"clauses":[],"params":[{"type":"num","value":{"name":"500","type":"num","format":null,"children":[]},"expressionValue":"0"}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":22,"instanceId":0,"clauses":[],"params":[{"type":"range","value":21.96}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":6,"instanceId":0,"clauses":[{"blocks":[{"definitionId":41,"instanceId":0,"clauses":[],"params":[{"type":"text","value":"false"}],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":24,"instanceId":0,"clauses":[{"blocks":[{"definitionId":38,"instanceId":0,"clauses":[],"params":[],"properties":[{"type":"num","value":{"name":"20","type":"num","format":null,"children":[]},"expressionValue":"0"},{"type":"num","value":{"name":"0","type":"num","format":null,"children":[]},"expressionValue":"0"},{"type":"num","value":{"name":"0","type":"num","format":null,"children":[]},"expressionValue":"0"}],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"}]},{"x":66,"y":486,"blocks":[{"definitionId":1,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":6,"instanceId":1,"clauses":[{"blocks":[{"definitionId":3,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":24,"instanceId":1,"clauses":[{"blocks":[{"definitionId":12,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":4,"instanceId":0,"clauses":[{"blocks":[{"definitionId":14,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown","x":0,"y":0},{"definitionId":41,"instanceId":1,"clauses":[],"params":[{"type":"text","value":"true"}],"properties":[],"propertiesDisplay":"shown","x":0,"y":0}]}],"params":[{"type":"range","value":0.91}],"properties":[],"propertiesDisplay":"shown"},{"definitionId":4,"instanceId":1,"clauses":[{"blocks":[{"definitionId":41,"instanceId":2,"clauses":[],"params":[{"type":"text","value":"false"}],"properties":[],"propertiesDisplay":"shown","x":0,"y":0}]}],"params":[{"type":"range","value":0.2}],"properties":[],"propertiesDisplay":"shown"}]}],"params":[],"properties":[],"propertiesDisplay":"shown"},{"definitionId":18,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown"}]}]},"chainOpen":null,"chainClose":null,"blockStyles":{"starterBlockStyle":{"blockColor":"#bb5555","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"containerBlockStyle":{"blockColor":"#8899aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"commandBlockStyle":{"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""}},"variables":[],"expressions":[{"name":"true","type":"bool","arguments":[],"format":null},{"name":"false","type":"bool","arguments":[],"format":null},{"name":"AND","type":"bool","arguments":["bool","bool"],"format":"({0} and {1})"},{"name":"OR","type":"bool","arguments":["bool","bool"],"format":"({0} or {1})"},{"name":"NOT","type":"bool","arguments":["bool"],"format":"(not {0})"},{"name":">","type":"bool","arguments":["num","num"],"format":null},{"name":">=","type":"bool","arguments":["num","num"],"format":null},{"name":"<","type":"bool","arguments":["num","num"],"format":null},{"name":"<=","type":"bool","arguments":["num","num"],"format":null},{"name":"!=","type":"bool","arguments":["num","num"],"format":null},{"name":"=","type":"bool","arguments":["num","num"],"format":null},{"name":"+","type":"num","arguments":["num","num"],"format":null},{"name":"-","type":"num","arguments":["num","num"],"format":null},{"name":"×","type":"num","arguments":["num","num"],"format":"({0} * {1})"},{"name":"/","type":"num","arguments":["num","num"],"format":null},{"name":"random","type":"num","arguments":["num"],"format":"random-float {0}"}]}
+{
+  "version": 6,
+  "height": 1600,
+  "width": 700,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "setup",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to setup",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": true,
+      "control": false
+    },
+    {
+      "id": 1,
+      "action": "go",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to go",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": true,
+      "control": false
+    },
+    {
+      "id": 21,
+      "action": "nature-infects",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "nature-infects {0}\nset nature-infects-number {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "# to infect",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "properties": [
+        {
+          "name": "How many people to keep healthy",
+          "unit": null,
+          "type": "num",
+          "default": "10"
+        }
+      ],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 3,
+      "action": "move",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": " move ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 4,
+      "action": "chance",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if random 100 < {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [
+        {
+          "name": "percent",
+          "unit": "%",
+          "step": 0.01,
+          "random": false,
+          "default": 0.01,
+          "type": "range",
+          "min": 0,
+          "max": 100
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 6,
+      "action": "ask healthy people",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask healthies",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 24,
+      "action": "ask sick people",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask sicks",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 26,
+      "action": "ask surfaces",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask patches",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 9,
+      "action": "ask contaminated surfaces",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask patches with [contaminated? = true]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 39,
+      "action": "ask everyone",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask turtles",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 5,
+      "action": "if I'm near someone who's sick",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if one-of other turtles-here with [infected? = true]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 7,
+      "action": "Emit Sick Particles",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "emitvirus 1",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 8,
+      "action": "contaminate surface",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "contaminate-surface",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 10,
+      "action": "infect nearby people",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "infect-from-surface",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 11,
+      "action": "if infected",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if infected?",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 12,
+      "action": "infect",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "infect",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 13,
+      "action": "die",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "die",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 14,
+      "action": "recover",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set infected? false \nset color green + 1\nset breed healthies\nset shape \"person\"\nset num-infected num-infected - 1",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 41,
+      "action": "set immunity",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set immunity? {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "have immunity?",
+          "unit": null,
+          "type": "text",
+          "default": "false",
+          "def": "false"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 15,
+      "action": "add sick people",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "create-sick-people {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "# of sick",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 16,
+      "action": "add healthy people",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "create-healthy-people {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "start population",
+          "unit": null,
+          "type": "num",
+          "default": "100"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 17,
+      "action": "avoid",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": " back 6 set heading -180 ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "distance ahead to check",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 18,
+      "action": "tick",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "tick",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 19,
+      "action": "make clearer",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set color blue",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 20,
+      "action": "infect one person next to you",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "experiment1",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 22,
+      "action": "Set Infectiousness",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set infectiousness {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "infectiousness",
+          "unit": null,
+          "step": 0.05,
+          "random": false,
+          "default": 1.36,
+          "type": "range",
+          "min": 0.01,
+          "max": 100
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 25,
+      "action": "sneeze",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "emitvirus {P2} {P0} {P1}\nset num-infected num-infected - 1",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "Size of Germs",
+          "unit": " Germ Size ",
+          "step": 1,
+          "random": false,
+          "default": 0,
+          "type": "int"
+        },
+        {
+          "name": "How far to sneeze",
+          "unit": null,
+          "type": "num",
+          "default": "3"
+        },
+        {
+          "name": "How many viruses",
+          "unit": null,
+          "type": "num",
+          "default": "5"
+        }
+      ],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 27,
+      "action": "cough",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "emitvirus {P3} {P0} {P1}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "Size of Germs",
+          "unit": " Germ Size ",
+          "step": 1,
+          "random": false,
+          "default": 0,
+          "type": "int"
+        },
+        {
+          "name": "How far to sneeze",
+          "unit": null,
+          "type": "num",
+          "default": "0"
+        },
+        {
+          "name": "number of viruses",
+          "unit": null,
+          "type": "num",
+          "default": "5"
+        }
+      ],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 28,
+      "action": "ask viruses",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask germs",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 29,
+      "action": "infect one person next to you",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "experiment1",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 30,
+      "action": "set immune system strength",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set immune-system-strength {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Immune",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 31,
+      "action": "increase immune system strength",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set immune-system-strength immune-system-strength + {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "num",
+          "default": "1",
+          "def": "1"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 32,
+      "action": "decrease immune system strength",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set immune-system-strength immune-system-strength - {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 33,
+      "action": "if immune system strength below",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if immune-system-strength < {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "num",
+          "default": "1"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 34,
+      "action": "set label immune-system-strength",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": " set label immune-system-strength",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 35,
+      "action": "ask some healthy people",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask n-of {0} healthies",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "num",
+          "default": "10",
+          "def": "10"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 37,
+      "action": "ask some healthy people",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "ask n-of {0} sicks",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "num",
+          "default": "10"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 38,
+      "action": "prevention-measures",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set mask-strength {P0}\nset gloves-strength {P1}\nset face-tocuhing {P2}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "Mask Strength",
+          "unit": null,
+          "type": "num",
+          "default": "0"
+        },
+        {
+          "name": "Gloves-Strength",
+          "unit": null,
+          "type": "num",
+          "default": "0"
+        },
+        {
+          "name": "Face-touching-frequency",
+          "unit": null,
+          "type": "num",
+          "default": "0"
+        }
+      ],
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 40,
+      "action": "if virus penetrates mask",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if random mask-strength < 2",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 42,
+      "action": "if immunity",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if immunity? = {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [
+        {
+          "name": "equals",
+          "unit": null,
+          "type": "text",
+          "default": "false"
+        }
+      ],
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 36,
+      "action": "set color",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "set color {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "type": "text",
+          "default": "orange"
+        }
+      ],
+      "properties": [],
+      "start": false,
+      "control": false
+    }
+  ],
+  "program": {
+    "chains": [
+      {
+        "x": 77,
+        "y": 73,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 15,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "num",
+                "value": {
+                  "name": "6",
+                  "type": "num",
+                  "format": null,
+                  "children": []
+                },
+                "expressionValue": "0"
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 16,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "num",
+                "value": {
+                  "name": "500",
+                  "type": "num",
+                  "format": null,
+                  "children": []
+                },
+                "expressionValue": "0"
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 22,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 21.96
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 6,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 41,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [
+                      {
+                        "type": "text",
+                        "value": "false"
+                      }
+                    ],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 24,
+            "instanceId": 0,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 38,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [
+                      {
+                        "type": "num",
+                        "value": {
+                          "name": "20",
+                          "type": "num",
+                          "format": null,
+                          "children": []
+                        },
+                        "expressionValue": "0"
+                      },
+                      {
+                        "type": "num",
+                        "value": {
+                          "name": "0",
+                          "type": "num",
+                          "format": null,
+                          "children": []
+                        },
+                        "expressionValue": "0"
+                      },
+                      {
+                        "type": "num",
+                        "value": {
+                          "name": "0",
+                          "type": "num",
+                          "format": null,
+                          "children": []
+                        },
+                        "expressionValue": "0"
+                      }
+                    ],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      },
+      {
+        "x": 66,
+        "y": 486,
+        "blocks": [
+          {
+            "definitionId": 1,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 6,
+            "instanceId": 1,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 3,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 24,
+            "instanceId": 1,
+            "clauses": [
+              {
+                "blocks": [
+                  {
+                    "definitionId": 12,
+                    "instanceId": 0,
+                    "clauses": [],
+                    "params": [],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  },
+                  {
+                    "definitionId": 4,
+                    "instanceId": 0,
+                    "clauses": [
+                      {
+                        "blocks": [
+                          {
+                            "definitionId": 14,
+                            "instanceId": 0,
+                            "clauses": [],
+                            "params": [],
+                            "properties": [],
+                            "propertiesDisplay": "shown",
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "definitionId": 41,
+                            "instanceId": 1,
+                            "clauses": [],
+                            "params": [
+                              {
+                                "type": "text",
+                                "value": "true"
+                              }
+                            ],
+                            "properties": [],
+                            "propertiesDisplay": "shown",
+                            "x": 0,
+                            "y": 0
+                          }
+                        ]
+                      }
+                    ],
+                    "params": [
+                      {
+                        "type": "range",
+                        "value": 0.91
+                      }
+                    ],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  },
+                  {
+                    "definitionId": 4,
+                    "instanceId": 1,
+                    "clauses": [
+                      {
+                        "blocks": [
+                          {
+                            "definitionId": 41,
+                            "instanceId": 2,
+                            "clauses": [],
+                            "params": [
+                              {
+                                "type": "text",
+                                "value": "false"
+                              }
+                            ],
+                            "properties": [],
+                            "propertiesDisplay": "shown",
+                            "x": 0,
+                            "y": 0
+                          }
+                        ]
+                      }
+                    ],
+                    "params": [
+                      {
+                        "type": "range",
+                        "value": 0.2
+                      }
+                    ],
+                    "properties": [],
+                    "propertiesDisplay": "shown"
+                  }
+                ]
+              }
+            ],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 18,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": null,
+  "blockStyles": {
+    "starterBlockStyle": {
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "containerBlockStyle": {
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "commandBlockStyle": {
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    }
+  },
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}

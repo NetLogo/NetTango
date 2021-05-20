@@ -1,1 +1,818 @@
-{"version":6,"height":800,"width":500,"blocks":[{"id":9,"action":"Setup","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to setup2","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":"#bb5555","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":true,"control":false},{"id":0,"action":"Go","isRequired":true,"placement":"starter","type":"nlogo:procedure","format":"to go-blocks","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":1,"note":null,"blockColor":"#bb5555","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":true,"control":false},{"id":11,"action":"add healthy","isRequired":false,"placement":"child","type":"nlogo:command","format":"Create-wells {0} [setxy (random min-pxcor  - random max-pxcor ) (random min-pycor - random max-pycor) set size 3 set color grey]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"numCreated","unit":" people","step":1,"random":false,"default":1,"type":"range","min":1,"max":200}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":1,"action":"move","isRequired":false,"placement":"child","type":"nlogo:command","format":"if random 100 < {0} [ move ] ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"params0","unit":"% of the time","step":1,"random":false,"default":100,"type":"range","min":0,"max":100,"def":"100"}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":16,"action":"draw line","isRequired":false,"placement":"child","type":"nlogo:command","format":"pd","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":18,"action":"stop drawing line","isRequired":false,"placement":"child","type":"nlogo:command","format":"pu","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":4,"action":"chance","isRequired":false,"placement":"child","type":"nlogo:if","format":"if random 100 < {0}","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#8899aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[{"name":"percent","unit":"%","step":0.5,"random":false,"default":1,"type":"range","min":0,"max":100,"def":"1"}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true},{"id":21,"action":"die","isRequired":false,"placement":"child","type":"nlogo:command","format":"die","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":28,"action":"reproduce","isRequired":false,"placement":"child","type":"nlogo:command","format":"hatch-wells {0} [ set size 3 set color grey]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"numCreated","unit":" people","step":1,"random":false,"default":1,"type":"range","min":1,"max":200}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":22,"action":"if contact person","isRequired":false,"placement":"child","type":"nlogo:if","format":"if any? other wells-here [\nset candidate one-of other wells-here with [ who > [who] of myself ] \nask candidate [ set candidate myself ] ]\nif candidate != nobody \n","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#8899aa","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[{"action":null,"open":null,"close":null,"allowedTags":{"type":"unrestricted"}}],"params":[],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":true},{"id":20,"action":"add sick","isRequired":false,"placement":"child","type":"nlogo:command","format":"create-sicks {0}  [ set size 3 set color red     ifelse {0} = 1     [set xcor 1]     [setxy (random min-pxcor  - random max-pxcor ) (random min-pycor - random max-pycor) ]   ]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#669d34","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"numCreated","unit":" sick people","step":1,"random":false,"default":1,"type":"range","min":1,"max":200}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":24,"action":"if sick, infect","isRequired":false,"placement":"child","type":"nlogo:command","format":"ask sicks [  if random 100 < {0} [infect  ] ] ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#669d34","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"recover","unit":"% of the time","step":0.1,"random":false,"default":100,"type":"range","min":0,"max":100}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":8,"action":"infect in a radius","isRequired":false,"placement":"child","type":"nlogo:command","format":"ask sicks [ask wells in-radius {0} [ infect-in-radius ] ]","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#77bb40","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"range","unit":" metere(s)","step":1,"random":false,"default":1,"type":"range","min":1,"max":10}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":25,"action":"if sick, recover","isRequired":false,"placement":"child","type":"nlogo:command","format":"if random 100 < {0} [ recover  ] ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#58b03c","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"recover","unit":"% of the time","step":0.1,"random":false,"default":1,"type":"range","min":0,"max":100}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false},{"id":26,"action":"if sick, die","isRequired":false,"placement":"child","type":"nlogo:command","format":" if random 100 <  {0} and breed = sicks [ die  ] ","isTerminal":false,"closeClauses":null,"closeStarter":null,"limit":0,"note":null,"blockColor":"#58b03c","textColor":"#ffffff","borderColor":"#000000","font":null,"allowedTags":{"type":"unrestricted"},"tags":[],"clauses":[],"params":[{"name":"die","unit":"% of the time","step":0.1,"random":false,"default":0.5,"type":"range","min":0,"max":100}],"properties":[],"fontWeight":400,"fontSize":12,"fontFace":"'Poppins', sans-serif","start":false,"control":false}],"program":{"chains":[{"x":23,"y":277,"blocks":[{"definitionId":9,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown","start":false},{"definitionId":11,"instanceId":0,"clauses":[],"params":[{"type":"range","value":30}],"properties":[],"propertiesDisplay":"shown","start":true},{"definitionId":20,"instanceId":0,"clauses":[],"params":[{"type":"range","value":1}],"properties":[],"propertiesDisplay":"shown","start":true}]},{"x":43,"y":407,"blocks":[{"definitionId":0,"instanceId":0,"clauses":[],"params":[],"properties":[],"propertiesDisplay":"shown","start":false},{"definitionId":1,"instanceId":0,"clauses":[],"params":[{"type":"range","value":100}],"properties":[],"propertiesDisplay":"shown","start":true},{"definitionId":24,"instanceId":0,"clauses":[],"params":[{"type":"range","value":100}],"properties":[],"propertiesDisplay":"shown","start":true}]}]},"chainOpen":null,"chainClose":null,"blockStyles":{"starterBlockStyle":{"blockColor":"#bb5555","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"containerBlockStyle":{"blockColor":"#8899aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""},"commandBlockStyle":{"blockColor":"#9977aa","textColor":"#ffffff","borderColor":"#ffffff","fontWeight":"","fontSize":"","fontFace":""}},"variables":[],"expressions":[{"name":"true","type":"bool","arguments":[],"format":null},{"name":"false","type":"bool","arguments":[],"format":null},{"name":"AND","type":"bool","arguments":["bool","bool"],"format":"({0} and {1})"},{"name":"OR","type":"bool","arguments":["bool","bool"],"format":"({0} or {1})"},{"name":"NOT","type":"bool","arguments":["bool"],"format":"(not {0})"},{"name":">","type":"bool","arguments":["num","num"],"format":null},{"name":">=","type":"bool","arguments":["num","num"],"format":null},{"name":"<","type":"bool","arguments":["num","num"],"format":null},{"name":"<=","type":"bool","arguments":["num","num"],"format":null},{"name":"!=","type":"bool","arguments":["num","num"],"format":null},{"name":"=","type":"bool","arguments":["num","num"],"format":null},{"name":"+","type":"num","arguments":["num","num"],"format":null},{"name":"-","type":"num","arguments":["num","num"],"format":null},{"name":"×","type":"num","arguments":["num","num"],"format":"({0} * {1})"},{"name":"/","type":"num","arguments":["num","num"],"format":null},{"name":"random","type":"num","arguments":["num"],"format":"random-float {0}"}]}
+{
+  "version": 6,
+  "height": 800,
+  "width": 500,
+  "blocks": [
+    {
+      "id": 9,
+      "action": "Setup",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to setup2",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": true,
+      "control": false
+    },
+    {
+      "id": 0,
+      "action": "Go",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to go-blocks",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": true,
+      "control": false
+    },
+    {
+      "id": 11,
+      "action": "add healthy",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "Create-wells {0} [setxy (random min-pxcor  - random max-pxcor ) (random min-pycor - random max-pycor) set size 3 set color grey]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "numCreated",
+          "unit": " people",
+          "step": 1,
+          "random": false,
+          "default": 1,
+          "type": "range",
+          "min": 1,
+          "max": 200
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 1,
+      "action": "move",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "if random 100 < {0} [ move ] ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "params0",
+          "unit": "% of the time",
+          "step": 1,
+          "random": false,
+          "default": 100,
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "def": "100"
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 16,
+      "action": "draw line",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "pd",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 18,
+      "action": "stop drawing line",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "pu",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 4,
+      "action": "chance",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if random 100 < {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [
+        {
+          "name": "percent",
+          "unit": "%",
+          "step": 0.5,
+          "random": false,
+          "default": 1,
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "def": "1"
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 21,
+      "action": "die",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "die",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 28,
+      "action": "reproduce",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "hatch-wells {0} [ set size 3 set color grey]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "numCreated",
+          "unit": " people",
+          "step": 1,
+          "random": false,
+          "default": 1,
+          "type": "range",
+          "min": 1,
+          "max": 200
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 22,
+      "action": "if contact person",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:if",
+      "format": "if any? other wells-here [\nset candidate one-of other wells-here with [ who > [who] of myself ] \nask candidate [ set candidate myself ] ]\nif candidate != nobody \n",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": null,
+          "close": null,
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": true
+    },
+    {
+      "id": 20,
+      "action": "add sick",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "create-sicks {0}  [ set size 3 set color red     ifelse {0} = 1     [set xcor 1]     [setxy (random min-pxcor  - random max-pxcor ) (random min-pycor - random max-pycor) ]   ]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#669d34",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "numCreated",
+          "unit": " sick people",
+          "step": 1,
+          "random": false,
+          "default": 1,
+          "type": "range",
+          "min": 1,
+          "max": 200
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 24,
+      "action": "if sick, infect",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "ask sicks [  if random 100 < {0} [infect  ] ] ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#669d34",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "recover",
+          "unit": "% of the time",
+          "step": 0.1,
+          "random": false,
+          "default": 100,
+          "type": "range",
+          "min": 0,
+          "max": 100
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 8,
+      "action": "infect in a radius",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "ask sicks [ask wells in-radius {0} [ infect-in-radius ] ]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#77bb40",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "range",
+          "unit": " metere(s)",
+          "step": 1,
+          "random": false,
+          "default": 1,
+          "type": "range",
+          "min": 1,
+          "max": 10
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 25,
+      "action": "if sick, recover",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "if random 100 < {0} [ recover  ] ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#58b03c",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "recover",
+          "unit": "% of the time",
+          "step": 0.1,
+          "random": false,
+          "default": 1,
+          "type": "range",
+          "min": 0,
+          "max": 100
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    },
+    {
+      "id": 26,
+      "action": "if sick, die",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": " if random 100 <  {0} and breed = sicks [ die  ] ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#58b03c",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "die",
+          "unit": "% of the time",
+          "step": 0.1,
+          "random": false,
+          "default": 0.5,
+          "type": "range",
+          "min": 0,
+          "max": 100
+        }
+      ],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": false,
+      "control": false
+    }
+  ],
+  "program": {
+    "chains": [
+      {
+        "x": 23,
+        "y": 277,
+        "blocks": [
+          {
+            "definitionId": 9,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown",
+            "start": false
+          },
+          {
+            "definitionId": 11,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 30
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown",
+            "start": true
+          },
+          {
+            "definitionId": 20,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 1
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown",
+            "start": true
+          }
+        ]
+      },
+      {
+        "x": 43,
+        "y": 407,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown",
+            "start": false
+          },
+          {
+            "definitionId": 1,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 100
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown",
+            "start": true
+          },
+          {
+            "definitionId": 24,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "range",
+                "value": 100
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown",
+            "start": true
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": null,
+  "blockStyles": {
+    "starterBlockStyle": {
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "containerBlockStyle": {
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "commandBlockStyle": {
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    }
+  },
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}
