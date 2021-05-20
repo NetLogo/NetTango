@@ -1,0 +1,10 @@
+to slime-actions
+  if chemical > 1
+  [
+    turn-toward-chemical 45
+  ]
+  fd 1
+  left (random 30 - (30 / 2) + 0)
+  set chemical chemical + 2
+end
+

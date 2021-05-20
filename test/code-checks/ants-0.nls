@@ -1,0 +1,21 @@
+to do-setup
+  ask patches [        
+   set nest? (distancexy 0 0) < 5        
+   if nest? [set pcolor violet]
+   set nest-scent 200 - distancexy 0 0 
+  ]
+  create-turtles 125
+  ask patches with [distancexy 20 0 < 5] [          
+     set food one-of [1 2]         
+     set pcolor Blue    
+  ]
+  ask patches with [distancexy -25 30 < 5] [          
+     set food one-of [1 2]         
+     set pcolor Yellow    
+  ]
+  ask patches with [distancexy -20 -20 < 5] [          
+     set food one-of [1 2]         
+     set pcolor Red    
+  ]
+end
+

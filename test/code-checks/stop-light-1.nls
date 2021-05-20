@@ -1,0 +1,28 @@
+to go
+   wait dt
+   display
+   update-plots
+   tick-advance dt
+  
+  ask turtle 0 [fd speed * dt
+    set displacement displacement + speed * dt]
+  if brake?
+  [
+    ask turtle 0 [set speed max list 0 (speed - 3 * dt)]
+    set brake? false
+  ]
+  if gaspedal?
+  [
+    ask turtle 0 [set speed speed + 2 * dt]
+    set gaspedal? false
+  ]
+  if round ticks = 3
+  [
+    ask traffic-light [set pcolor yellow]
+  ]
+  if round ticks = 5
+  [
+    ask traffic-light [set pcolor red]
+  ]
+end
+

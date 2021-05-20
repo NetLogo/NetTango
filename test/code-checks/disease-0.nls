@@ -1,0 +1,41 @@
+to go
+  ask healthies
+  [
+     move 
+  ]
+  ask sicks
+  [
+    infect
+    if random 100 < 0.91
+    [
+      set infected? false 
+      set color green + 1
+      set breed healthies
+      set shape "person"
+      set num-infected num-infected - 1
+      set immunity? "true"
+    ]
+    if random 100 < 0.20
+    [
+      set immunity? "false"
+    ]
+  ]
+  tick
+end
+
+to setup
+  create-sick-people 6
+  create-healthy-people 500
+  set infectiousness 21.96
+  ask healthies
+  [
+    set immunity? "false"
+  ]
+  ask sicks
+  [
+    set mask-strength 20
+    set gloves-strength 0
+    set face-tocuhing 0
+  ]
+end
+

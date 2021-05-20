@@ -12,5 +12,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - run: git submodule deinit --force --all
+      - run: git submodule update --init
       - run: yarn install
       - run: yarn test

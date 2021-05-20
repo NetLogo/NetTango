@@ -1,0 +1,10 @@
+to go-blocks
+  if random 100 < 100 [ move ] 
+  ask sicks [  if random 100 < 100 [infect  ] ] 
+end
+
+to setup2
+  Create-wells 30 [setxy (random min-pxcor  - random max-pxcor ) (random min-pycor - random max-pycor) set size 3 set color grey]
+  create-sicks 1  [ set size 3 set color red     ifelse 1 = 1     [set xcor 1]     [setxy (random min-pxcor  - random max-pxcor ) (random min-pycor - random max-pycor) ]   ]
+end
+

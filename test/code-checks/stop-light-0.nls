@@ -1,0 +1,16 @@
+to setup
+  ca
+  create-turtles 1
+  [set shape "car"]
+  ask patches with [pycor = 0] [set pcolor gray]
+  set traffic-light patch max-pxcor 2
+  ask traffic-light [set pcolor green]
+  set dt 0.1
+  set gaspedal? false
+  set brake? false
+  reset-ticks
+  ask turtle 0 [set heading 90]
+  ask turtle 0 [set speed 5]
+  ask turtle 0 [set xcor 5]
+end
+

@@ -1,0 +1,22 @@
+to go-nettango
+  ask wavers with [not driver? and not edge?]
+  [
+    propagate
+  ]
+  ask buildings
+  [
+    damage
+    shake
+    set age age + 1
+  ]
+end
+
+to setup-nettango
+  set quake-amplitude 14
+  set quake-frequency 80
+end
+
+to quake
+  earthquake 25 4
+end
+

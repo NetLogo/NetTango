@@ -1,0 +1,85 @@
+to go-NetTango
+  ;the procedure that lets you instruct the watermelons
+  ;what to to every minute
+  ask seededs
+  [
+    ; asks the sexual watermelons to reproduce 2% of the time, or whatever you set reproduction probability to.
+    
+    
+               if random 100 < 2
+            [
+              hatch 1
+              [
+                set xcor xcor - 1
+                set ycor ycor - random 3
+                
+                if random 100 < 22 [set color one-of [ red blue yellow magenta ]]
+               
+                if any? other turtles-here with [breed != fungi]
+                [
+                  die
+                ]
+              ]
+            ]
+        
+  ]
+  ask unseededs
+  [
+    ; asks the asexual watermelons to reproduce 2% of the time, or whatever you set reproduction probability to.
+    
+        if random 100 < 2
+        [
+          hatch 1
+          [
+            set xcor xcor - 2
+            set ycor ycor - random 4
+            set color green
+            if any? other turtles-here with [breed != fungi]
+            [
+              die
+            ]
+          ]
+        ]
+        
+    
+  ]
+  ask fungi
+  [
+        if can-move? .007
+        [
+          rt random 3
+          lt random 3
+          fd .007
+        ]
+    infect 1 50
+    set probability-fungi-mutate 0
+  ]
+end
+
+to setup-NetTango
+  ; where you put code you want to happen at the beginng of the simulation
+  
+  create-seededs 8
+    [
+      setxy [pxcor] of one-of patches with [pxcor < 0 ] [pycor] of one-of patches with [pxcor < 0 ]
+      if any? other turtles-here [ setxy random-xcor random-ycor]
+      set color red
+    ]
+  create-unseededs 8
+    [
+      setxy [pxcor] of one-of patches with [pxcor > 0 ] [pycor] of one-of patches with [pxcor > 0 ]
+      if any? other turtles-here
+      [
+        setxy random-xcor random-ycor
+      ]
+      set color green
+    ]
+end
+
+to start-an-infection-NetTango
+  create-some-fungi-button  10 9 0 55 
+  ;ask fungi [ setxy 9 0 set prey-type 55 set colortoinfect 55 
+  ask fungi [if prey-type = 5 [set prey-type one-of [green green red red blue yellow magenta]
+  set colortoinfect one-of [green green red red blue yellow magenta]]]
+end
+

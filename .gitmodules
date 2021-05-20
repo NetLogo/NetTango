@@ -1,0 +1,3 @@
+[submodule "nt-models"]
+	path = nt-models
+	url = https://github.com/NetLogo/nt-models

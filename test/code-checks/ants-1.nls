@@ -1,0 +1,28 @@
+to do-go
+  ask turtles
+  [
+    if color = red
+    [
+      if (chemical >= 0.05) and (chemical < 2) [ 
+        uphill-chemical 
+      ]
+      if food > 0
+      [
+      ]
+    ]
+    if color != red
+    [
+      if not nest?
+      [
+      ]
+      if nest?
+      [
+      ]
+    ]
+    right random 40 
+    left random 40
+    if not can-move? 1 [ rt 180 ]
+    forward 1
+  ]
+end
+

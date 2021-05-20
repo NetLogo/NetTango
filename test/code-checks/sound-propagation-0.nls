@@ -1,0 +1,26 @@
+to go
+  ask turtles
+  [
+    propagate-across-particles-turtles
+  ]
+  ask arrows
+  [
+    set speaker-on? true
+    move-speaker
+  ]
+end
+
+to setup-springs
+  set vibration-amplitude 41
+  set vibration-frequency 3.00
+  set speaker-visible? true
+  set speaker-on? true
+  set particles? true
+  set hearer? true
+  set hearingarea-x 17
+  set hearingarea-y hearingarea-x + 1
+  
+  ;ask patches with [pxcor > hearingarea-x] [ set pcolor blue + 3]
+  ;ask patches with [pxcor > hearingarea-y] [ set pcolor 9.9]
+end
+
