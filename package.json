@@ -4,9 +4,9 @@
   "description": "A blocks-based programming library written in TypeScript",
   "main": "nettango.js",
   "scripts": {
+    "prepack": "tsc; webpack --mode production",
     "test": "tsc; jest",
-    "build": "tsc; webpack --mode development",
-    "package": "tsc; webpack --mode production"
+    "build": "tsc; webpack --mode development"
   },
   "repository": {
     "type": "git",
