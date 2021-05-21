@@ -153,18 +153,36 @@ class VersionManager {
 
   static resetAttribute(attribute: Attribute, value: AttributeValue): AttributeValue {
     switch (attribute.type) {
+
       case "text":
       case "select":
-        return (["text", "select"].includes(value.type) ? value : makeStringDefault(attribute))
+        if (["text", "select"].includes(value.type)) {
+          value.type = attribute.type
+        } else {
+          value = makeStringDefault(attribute)
+        }
+        break
 
       case "int":
       case "range":
-        return (["int", "range"].includes(value.type) ? value : makeNumberDefault(attribute))
+        if (["int", "range"].includes(value.type)) {
+          value.type = attribute.type
+        } else {
+           value = makeNumberDefault(attribute)
+        }
+        break
 
       case "num":
+        (value.type === "num") ? value : makeExpressionDefault(attribute)
+        break
+
       case "bool":
-        return (["num", "bool"].includes(value.type) ? value : makeExpressionDefault(attribute))
+        (value.type === "bool") ? value : makeExpressionDefault(attribute)
+        break
+
     }
+
+    return value
   }
 
 }
