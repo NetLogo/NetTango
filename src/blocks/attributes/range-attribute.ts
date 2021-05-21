@@ -42,25 +42,32 @@ class RangeAttributeUI extends NumAttributeUI {
           </div>
         </div>
         <div class="nt-param-row">
-          <div class="nt-param-value">
-            <input class="nt-param-input" id="nt-param-${this.uniqueId}" type="range" value="${this.ra.value}" min="${this.rangeDef.min}" max="${this.rangeDef.max}" step="${this.rangeDef.step}">
+          <div class="nt-param-value nt-range-value">
+            <input class="nt-param-input nt-range-input" id="nt-param-${this.uniqueId}" type="range" value="${this.na.value}" min="${this.rangeDef.min}" max="${this.rangeDef.max}" step="${this.rangeDef.step}">
+            <input class="nt-param-input nt-range-number" id="nt-param-${this.uniqueId}-direct" type="number" value="${this.na.value}" min="${this.rangeDef.min}" max="${this.rangeDef.max}" step="${this.rangeDef.step}">
           </div>
         </div>
       `)
 
-    const label = document.querySelector(`#nt-param-label-${this.uniqueId}`) as Element
-    const input = document.querySelector(`#nt-param-${this.uniqueId}`) as HTMLInputElement
-    if (input !== null && label !== null) {
-      input.addEventListener("change", (e) => {
-        this.setValue(input.value)
-        backdrop.classList.remove("show")
-        acceptCallback()
-        const formattedValue = NumAttributeUI.numberValue(this.numDef, this.na)
-        this.block.workspace.programChanged(new AttributeChangedEvent(this.block.def.id, this.block.b.instanceId, this.id, this.ra.type, this.isProperty, this.ra.value, formattedValue))
-        e.stopPropagation()
-      })
-      input.addEventListener("input", (e) => { label.innerHTML = input.value; })
+    const label       = document.querySelector(`#nt-param-label-${this.uniqueId}`) as Element
+    const rangeInput  = document.querySelector(`#nt-param-${this.uniqueId}`) as HTMLInputElement
+    const directInput = document.querySelector(`#nt-param-${this.uniqueId}-direct`) as HTMLInputElement
+
+    const changeListener = (input: HTMLInputElement) => (e: Event) => {
+      rangeInput.value  = input.value
+      directInput.value = rangeInput.value
+      this.setValue(rangeInput.value)
+      backdrop.classList.remove("show")
+      acceptCallback()
+      const formattedValue = NumAttributeUI.numberValue(this.numDef, this.na)
+      this.block.workspace.programChanged(new AttributeChangedEvent(this.block.def.id, this.block.b.instanceId, this.id, this.ra.type, this.isProperty, this.ra.value, formattedValue))
+      e.stopPropagation()
     }
+
+    rangeInput.addEventListener("change", changeListener(rangeInput))
+    rangeInput.addEventListener("input", (_) => { label.innerHTML = rangeInput.value; })
+
+    directInput.addEventListener("change", changeListener(directInput))
   }
 }
 

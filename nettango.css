@@ -636,6 +636,20 @@
 .nt-select-option.selected { background-color: rgba(107, 155, 195, 0.5); }
 .nt-select-option:active { background-color: rgba(107, 155, 195, 1.0); color: white; }
 
+.nt-range-value {
+  display: flex;
+  flex-direction: row;
+}
+
+.nt-range-input {
+  flex-grow: 3;
+  margin-right: 10px;
+}
+
+.nt-range-number {
+  flex-shrink: 3;
+  margin-left: 10px;
+}
 
 @keyframes fadeIn {
   from {opacity: 0;}
