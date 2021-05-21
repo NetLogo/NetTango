@@ -72,9 +72,8 @@ class CodeWorkspaceUI {
     this.container.innerHTML = ""
     this.container.classList.add("nt-container")
 
-    this.container.style.minHeight = `${this.height}px`
-    this.container.style.minWidth  = `${this.width}px`
-    this.container.style.maxWidth  = `${this.width}px`
+    this.height = ws.height
+    this.width  = ws.width
 
     this.menu = new BlockMenuUI(this.ws.blocks, this)
 
