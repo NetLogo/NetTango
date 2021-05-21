@@ -2,7 +2,7 @@
 
 import { BlockInstanceUI } from "../block-instance"
 import { ClauseUI } from "../clause"
-import { checkAnyOfTags } from "../tags/concrete-tags"
+import { checkAnyOfTags, checkNoneOfTags } from "../tags/concrete-tags"
 import { checkInheritTags } from "../tags/inherit-tags"
 import { DragInProgress } from "./drag-in-progress"
 import { DragManager } from "./drag-manager"
@@ -45,6 +45,9 @@ function checkClauseAllowedTags(clause: ClauseUI, blocks: BlockInstanceUI[]): bo
 
     case 'any-of':
       return checkAnyOfTags(clause.def.allowedTags.tags, blocks)
+
+    case 'none-of':
+      return checkNoneOfTags(clause.def.allowedTags.tags, blocks)
 
     case 'inherit':
       return checkInheritTags(clause, blocks)

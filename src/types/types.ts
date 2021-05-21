@@ -8,6 +8,7 @@ export type BlockStyle  = z.infer<typeof blockStyleSchema>
 export type InheritTags = z.infer<typeof inheritTagsSchema>
 export type UnrestrictedTags = z.infer<typeof unrestrictedTagsSchema>
 export type AnyOfTags = z.infer<typeof anyOfTagsSchema>
+export type NoneOfTags = z.infer<typeof noneOfTagsSchema>
 export type ConcreteTags = z.infer<typeof concreteTagsSchema>
 export type AllowedTags = z.infer<typeof allowedTagsSchema>
 
@@ -66,9 +67,15 @@ const anyOfTagsSchema = z.object({
 , tags: z.array(z.string()).default([])
 }).passthrough()
 
+const noneOfTagsSchema = z.object({
+  type: z.literal("none-of")
+, tags: z.array(z.string()).default([])
+}).passthrough()
+
 const concreteTagsSchema = z.union([
-    unrestrictedTagsSchema
-  , anyOfTagsSchema
+  unrestrictedTagsSchema
+, anyOfTagsSchema
+, noneOfTagsSchema
 ])
 
 const allowedTagsSchema = z.union([
