@@ -153,7 +153,15 @@ class CodeWorkspaceUI {
     wrapper.append(this.dragImage)
 
     this.backdrop.className = "nt-attribute-backdrop"
-    this.backdrop.addEventListener("click", (e) => this.backdrop.classList.remove("show") )
+    const hideBackdrop = () => this.backdrop.classList.remove("show")
+    this.backdrop.addEventListener("click", hideBackdrop)
+
+    document.addEventListener("keyup", (e) => {
+      if (e.key === "Escape" && this.backdrop.classList.contains("show")) {
+        this.backdrop.classList.remove("show")
+      }
+    })
+
     this.dialog = document.createElement("div")
     this.dialog.className = "nt-attribute-dialog"
     this.dialog.addEventListener("click", (e) => e.stopPropagation() )
