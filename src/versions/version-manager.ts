@@ -143,11 +143,11 @@ class VersionManager {
     })
 
     instance.params = definition.params.map( (a, i) => {
-      return instance.params.length > i ? VersionManager.resetAttribute(a, instance.params[i]) : makeAttributeDefault(a)
+      return i < instance.params.length ? VersionManager.resetAttribute(a, instance.params[i]) : makeAttributeDefault(a)
     })
 
     instance.properties = definition.properties.map( (a, i) => {
-      return instance.properties.length > i ? VersionManager.resetAttribute(a, instance.properties[i]) : makeAttributeDefault(a)
+      return i < instance.properties.length ? VersionManager.resetAttribute(a, instance.properties[i]) : makeAttributeDefault(a)
     })
   }
 
@@ -168,16 +168,16 @@ class VersionManager {
         if (["int", "range"].includes(value.type)) {
           value.type = attribute.type
         } else {
-           value = makeNumberDefault(attribute)
+          value = makeNumberDefault(attribute)
         }
         break
 
       case "num":
-        (value.type === "num") ? value : makeExpressionDefault(attribute)
+        value = (value.type === "num") ? value : makeExpressionDefault(attribute)
         break
 
       case "bool":
-        (value.type === "bool") ? value : makeExpressionDefault(attribute)
+        value = (value.type === "bool") ? value : makeExpressionDefault(attribute)
         break
 
     }
