@@ -6,9 +6,10 @@ import { AttributeTypes } from "./blocks/attributes/attribute"
 import { CodeFormatter } from "./blocks/code-formatter"
 import { CodeWorkspaceUI } from "./blocks/code-workspace"
 import { VersionManager } from "./versions/version-manager"
-import { CodeWorkspace } from "./types/types"
+import { CodeWorkspace, ExpressionDefinition } from "./types/types"
 import { ProgramChangedEvent } from "./blocks/program-changed-event"
 import { ObjectUtils } from "./utils/object-utils"
+import { defaultExpressions } from "./default-expressions"
 
 type FormatAttributeType = (containerId: string, blockId: number, instanceId: number, attributeId: number, value: any, attributeType: AttributeTypes, isProperty: boolean) => string
 
@@ -16,7 +17,8 @@ function restoreWorkspace(containerId: string, workspaceEnc: CodeWorkspace, lang
   if (workspaceEnc.version !== VersionManager.VERSION) {
     throw new Error(`The supported NetTango version is ${VersionManager.VERSION}, but the given definition version was ${workspaceEnc["version"]}.`)
   }
-  const workspace = new CodeWorkspaceUI(containerId, workspaceEnc, language, formatAttribute)
+  const expressions: ExpressionDefinition[] = defaultExpressions.has(language) ? defaultExpressions.get(language)! : []
+  const workspace = new CodeWorkspaceUI(containerId, workspaceEnc, language, expressions, formatAttribute)
   return workspace
 }
 
@@ -32,6 +34,7 @@ class NetTango {
 
   static blockPlacementOptions = BlockPlacement
   static selectQuoteOptions    = QuoteOptions
+  static defaultExpressions    = defaultExpressions
 
   private static readonly workspaces: Map<string, CodeWorkspaceUI> = new Map()
 

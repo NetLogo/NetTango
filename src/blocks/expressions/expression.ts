@@ -204,7 +204,7 @@ class ExpressionUI {
     hmenu.classList.add('nt-pulldown-menu')
 
     // ---------------  expressions ---------------------
-    this._addMenuItems(hmenu, this.builder.expressions)
+    this._addMenuItems(hmenu, this.builder.workspace.expressions)
 
     // ---------------  variables ---------------------
     if (this.builder.variables.length > 0) hmenu.insertAdjacentHTML("beforeend", "<hr>")

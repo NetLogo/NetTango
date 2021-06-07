@@ -11,10 +11,6 @@ class ExpressionBuilder {
   parent?: Element
   root: ExpressionUI
 
-  get expressions(): ExpressionDefinition[] {
-    return this.workspace.ws.expressions
-  }
-
   get variables(): string[] {
     return this.workspace.ws.variables
   }

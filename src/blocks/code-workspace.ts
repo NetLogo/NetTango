@@ -5,7 +5,7 @@ import interact from "interactjs"
 
 import { FormatAttributeType } from "../nettango"
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../nettango-defaults'
-import { Chain, CodeWorkspace } from '../types/types'
+import { Chain, CodeWorkspace, ExpressionDefinition } from '../types/types'
 import { NumUtils } from "../utils/num-utils"
 import { VersionManager } from "../versions/version-manager"
 import { BlockInstanceUI } from "./block-instance"
@@ -25,7 +25,6 @@ class CodeWorkspaceUI {
 
   notifier: null | ((event: ProgramChangedEvent) => void) = null
 
-  /// HTML Canvas ID
   readonly containerId: string
   backdrop: HTMLDivElement = document.createElement("div")
   dialog: HTMLDivElement = document.createElement("div")
@@ -37,9 +36,8 @@ class CodeWorkspaceUI {
   formatter: CodeFormatter
 
   readonly chains: ChainUI[]
-
-  /// block menu
   readonly menu: BlockMenuUI
+  readonly expressions: ExpressionDefinition[]
 
   starterBlockStyle: BlockStyleUI
   containerBlockStyle: BlockStyleUI
@@ -61,10 +59,11 @@ class CodeWorkspaceUI {
     this.container.style.maxWidth = `${this.width}px`
   }
 
-  constructor(containerId: string, ws: CodeWorkspace, language: string, formatAttribute: FormatAttributeType) {
+  constructor(containerId: string, ws: CodeWorkspace, language: string, defaultExpressions: ExpressionDefinition[], formatAttribute: FormatAttributeType) {
     this.ws = ws
     this.containerId = containerId
     this.formatter = new CodeFormatter(this, language, formatAttribute)
+    this.expressions = defaultExpressions.slice().concat(this.ws.expressions)
 
     const maybeContainer = document.querySelector(`#${containerId}`)
     if (maybeContainer === null) throw new Error(`No container element with ID ${this.containerId} found.`)
