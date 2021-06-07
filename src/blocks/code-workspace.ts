@@ -19,8 +19,6 @@ import { BlockChangedEvent, ProgramChangedEvent } from "./program-changed-event"
 
 class CodeWorkspaceUI {
 
-  readonly version = VersionManager.VERSION
-
   readonly ws: CodeWorkspace
 
   notifier: null | ((event: ProgramChangedEvent) => void) = null
