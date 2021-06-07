@@ -7,9 +7,6 @@ import { CodeFormatter } from "../code-formatter"
 import { AttributeChangedEvent } from "../program-changed-event"
 import { AttributeUI } from "./attribute"
 
-//-------------------------------------------------------------------------
-/// Represents a number parameter
-//-------------------------------------------------------------------------
 abstract class NumAttributeUI extends AttributeUI {
 
   readonly numDef: NumAttribute

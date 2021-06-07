@@ -195,23 +195,17 @@ class ExpressionUI {
     parent.append(div)
   }
 
-  //-------------------------------------------------------------
-  // Creates an expression pulldown menu
-  //-------------------------------------------------------------
   openPulldown(expander: Element): void {
     document.querySelectorAll('.nt-pulldown-menu').forEach( (el) => el.remove() )
     const hmenu = document.createElement("div")
     hmenu.classList.add('nt-pulldown-menu')
 
-    // ---------------  expressions ---------------------
     this._addMenuItems(hmenu, this.builder.workspace.expressions)
 
-    // ---------------  variables ---------------------
     if (this.builder.variables.length > 0) hmenu.insertAdjacentHTML("beforeend", "<hr>")
     // TODO: get this working again once variables are implemented
     // _addMenuItems(hmenu, builder.variables)
 
-    // ---------------  clear button ---------------------
     hmenu.insertAdjacentHTML("beforeend", "<hr>")
     const link = document.createElement("a")
     link.href = "#"

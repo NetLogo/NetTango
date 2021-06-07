@@ -6,9 +6,6 @@ import { CodeFormatter } from "../code-formatter"
 import { AttributeChangedEvent } from "../program-changed-event"
 import { NumAttributeUI } from "./num-attribute"
 
-//-------------------------------------------------------------------------
-/// Represents a range of numbers
-//-------------------------------------------------------------------------
 class RangeAttributeUI extends NumAttributeUI {
 
   readonly rangeDef: RangeAttribute

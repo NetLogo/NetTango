@@ -23,19 +23,12 @@ import { BlockDefinition, BlockInstance } from "../types/types"
 import { createAttribute } from "./attributes/attribute-factory"
 import { BlockRules } from "./block-rules"
 
-/**
- * Visual programming block
- */
 class BlockInstanceUI {
 
   readonly def: BlockDefinition
   readonly b: BlockInstance
 
-  /// parameters for this block (optional)
   params: Array<AttributeUI> = []
-
-  /// properties for this block (optional)
-  /// properties are just named attributes that get listed vertically
   properties: Array<AttributeUI> = []
 
   get hasParams(): boolean { return this.params.length > 0 }
@@ -55,10 +48,8 @@ class BlockInstanceUI {
     return BlockRules.canBeStarter(this.def)
   }
 
-  /// link back to the main workspace
   workspace: CodeWorkspaceUI
 
-  // BlockAcceptor acceptor
   dragData: BlockDragData = new NewDragData(this, 0)
   acceptor: BlockAcceptor = new BlockAcceptor(this)
   blockDiv = document.createElement("div")

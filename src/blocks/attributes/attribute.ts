@@ -5,7 +5,6 @@ import { BlockInstanceUI } from "../block-instance"
 
 type AttributeTypes = "bool" | "num" | "int" | "range" | "text" | "select"
 
-/// Represents the paramter or property options for a block
 abstract class AttributeUI {
 
   readonly id: number
@@ -27,7 +26,6 @@ abstract class AttributeUI {
     this.isProperty = isProperty
   }
 
-  // parameters are meant to display inline with just a value
   drawParameter(): HTMLDivElement {
     const paramDiv = document.createElement("div")
     const updateValue = () => { paramDiv.innerText = this.getDisplayValue(); }
@@ -47,7 +45,6 @@ abstract class AttributeUI {
     return paramDiv
   }
 
-  // properties display stand-alone with an identifier
   drawProperty(): HTMLDivElement {
     const propDiv = document.createElement("div")
     propDiv.classList.add("nt-property")

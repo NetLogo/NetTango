@@ -26,10 +26,8 @@ function encodeWorkspace(workspace: CodeWorkspaceUI): CodeWorkspace {
   return ObjectUtils.clone(workspace.ws)
 }
 
-/**
- * NetTango functions can be used to create a blocks-based programming interface
- * associated with an HTML canvas.
- */
+// NetTango functions can be used to create a blocks-based programming interface
+// associated with an HTML element.
 class NetTango {
 
   static blockPlacementOptions = BlockPlacement

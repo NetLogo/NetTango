@@ -17,9 +17,6 @@ function selectOptionDisplay(o: SelectOption): string {
   return (o.display === null || o.display === "") ? o.actual : o.display
 }
 
-//-------------------------------------------------------------------------
-/// Represents a value selected from a list of options
-//-------------------------------------------------------------------------
 class SelectAttributeUI extends AttributeUI {
 
   readonly selectDef: SelectAttribute

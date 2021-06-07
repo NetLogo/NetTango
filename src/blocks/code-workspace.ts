@@ -319,7 +319,6 @@ class CodeWorkspaceUI {
   }
 
   removeEventListeners(): void {
-    // containerDropzone.destroy()
   }
 
 }

@@ -4,9 +4,6 @@ import { IntAttribute, NumberValue } from "../../types/types"
 import { BlockInstanceUI } from "../block-instance"
 import { NumAttributeUI } from "./num-attribute"
 
-//-------------------------------------------------------------------------
-/// Represents an integer parameter
-//-------------------------------------------------------------------------
 class IntAttributeUI extends NumAttributeUI {
 
   constructor(id: number, def: IntAttribute, ia: NumberValue, block: BlockInstanceUI, isProperty: boolean) {

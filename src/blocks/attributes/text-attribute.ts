@@ -6,7 +6,6 @@ import { BlockInstanceUI } from "../block-instance"
 import { AttributeChangedEvent } from "../program-changed-event"
 import { AttributeUI } from "./attribute"
 
-/// Represents the paramter or property options for a block
 class TextAttributeUI extends AttributeUI {
 
   readonly ta: StringValue

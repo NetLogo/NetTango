@@ -7,9 +7,6 @@ import { DragManager } from "./drag-drop/drag-manager"
 import { BlockChangedEvent } from "./program-changed-event"
 import { BlockDefinitionUI } from "./block-definition"
 
-/**
- * Visual programming menu bar
- */
 class BlockMenuUI {
 
   readonly blocks: BlockDefinition[]
@@ -17,7 +14,6 @@ class BlockMenuUI {
 
   readonly slots: BlockDefinitionUI[]
 
-  /// Menu background color
   color = "rgba(0, 0, 0, 0.2)"
 
   menuDiv = document.createElement("div")
