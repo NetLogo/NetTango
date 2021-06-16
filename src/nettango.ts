@@ -10,6 +10,7 @@ import { CodeWorkspace, ExpressionDefinition } from "./types/types"
 import { ProgramChangedEvent } from "./blocks/program-changed-event"
 import { ObjectUtils } from "./utils/object-utils"
 import { defaultExpressions } from "./default-expressions"
+import { BlockStyleUI } from "./blocks/block-style"
 
 type FormatAttributeType = (containerId: string, blockId: number, instanceId: number, attributeId: number, value: any, attributeType: AttributeTypes, isProperty: boolean) => string
 
@@ -33,6 +34,11 @@ class NetTango {
   static blockPlacementOptions = BlockPlacement
   static selectQuoteOptions    = QuoteOptions
   static defaultExpressions    = defaultExpressions
+  static defaultBlockStyles    = {
+    commandBlockStyle:   BlockStyleUI.DEFAULT_COMMAND_STYLE
+  , containerBlockStyle: BlockStyleUI.DEFAULT_CONTAINER_STYLE
+  , starterBlockStyle:   BlockStyleUI.DEFAULT_STARTER_STYLE
+  }
 
   private static readonly workspaces: Map<string, CodeWorkspaceUI> = new Map()
 
