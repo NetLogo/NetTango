@@ -5,11 +5,14 @@ import { ObjectUtils } from "../utils/object-utils"
 
 class BlockStyleUI {
 
-  static readonly DEFAULT_STARTER_COLOR   = "#bb5555"
-  static readonly DEFAULT_CONTAINER_COLOR = "#8899aa"
-  static readonly DEFAULT_COMMAND_COLOR   = "#9977aa"
-  static readonly DEFAULT_TEXT_COLOR      = "#ffffff"
-  static readonly DEFAULT_BORDER_COLOR    = "#ffffff"
+  // Default colors are taken from the "Pale" scheme from https://personal.sron.nl/~pault/#sec:qualitative
+  // to try to have something somewhat friendly to colorblind individuals.
+  // -Jeremy B June 2021
+  static readonly DEFAULT_STARTER_COLOR   = "#ffcccc"
+  static readonly DEFAULT_CONTAINER_COLOR = "#bbccee"
+  static readonly DEFAULT_COMMAND_COLOR   = "#cceeff"
+  static readonly DEFAULT_TEXT_COLOR      = "#000000"
+  static readonly DEFAULT_BORDER_COLOR    = "#3b3b3b"
   static readonly DEFAULT_FONT_FAMILY     = "Poppins, sans-serif"
 
   static readonly DEFAULT_COMMAND_STYLE: BlockStyle = {
