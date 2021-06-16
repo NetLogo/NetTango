@@ -61,7 +61,8 @@ class CodeWorkspaceUI {
     this.ws = ws
     this.containerId = containerId
     this.formatter = new CodeFormatter(this, language, formatAttribute)
-    this.expressions = defaultExpressions.slice().concat(this.ws.expressions)
+    const usableDefaults = defaultExpressions.filter( (de) => !this.ws.expressions.some( (e) => e.name.toLowerCase() === de.name.toLowerCase() ))
+    this.expressions = usableDefaults.concat(this.ws.expressions)
 
     const maybeContainer = document.querySelector(`#${containerId}`)
     if (maybeContainer === null) throw new Error(`No container element with ID ${this.containerId} found.`)
