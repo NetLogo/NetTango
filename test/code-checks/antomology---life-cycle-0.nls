@@ -1,7 +1,10 @@
 to move
 end
 
-to birth-ants
+to starting-ants
+end
+
+to forage-food
 end
 
 to create-more-ants

@@ -33,12 +33,70 @@
       "control": false
     },
     {
+      "id": 6,
+      "action": "setup-ants",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to starting-ants",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#bb3e79",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": true,
+      "control": false
+    },
+    {
+      "id": 11,
+      "action": "forage-food",
+      "isRequired": true,
+      "placement": "starter",
+      "type": "nlogo:procedure",
+      "format": "to forage-food",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#bb3e79",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [],
+      "fontWeight": 400,
+      "fontSize": 12,
+      "fontFace": "'Poppins', sans-serif",
+      "start": true,
+      "control": false
+    },
+    {
       "id": 1,
-      "action": "if ant has no food",
+      "action": "if ant has food",
       "isRequired": false,
       "placement": "child",
       "type": "nlogo:ifelse",
-      "format": "ifelse shape = \"ant\"",
+      "format": "ifelse shape != \"ant\"",
       "isTerminal": false,
       "closeClauses": null,
       "closeStarter": null,
@@ -83,12 +141,12 @@
       "control": true
     },
     {
-      "id": 4,
-      "action": "pickup-food-nearby",
+      "id": 10,
+      "action": "wander",
       "isRequired": false,
       "placement": "child",
       "type": "nlogo:command",
-      "format": "look-for-food {P0}",
+      "format": "wiggle-forward {P0}",
       "isTerminal": false,
       "closeClauses": null,
       "closeStarter": null,
@@ -106,10 +164,10 @@
       "params": [],
       "properties": [
         {
-          "name": "food-distance",
-          "unit": "patches",
+          "name": "wiggle-radius",
+          "unit": "degrees",
           "type": "num",
-          "default": "8"
+          "default": "80"
         }
       ],
       "fontWeight": 400,
@@ -148,18 +206,18 @@
       "control": false
     },
     {
-      "id": 6,
-      "action": "setup-ants",
-      "isRequired": true,
-      "placement": "starter",
-      "type": "nlogo:procedure",
-      "format": "to starting-ants",
+      "id": 4,
+      "action": "pickup-food-nearby",
+      "isRequired": false,
+      "placement": "child",
+      "type": "nlogo:command",
+      "format": "look-for-food",
       "isTerminal": false,
       "closeClauses": null,
       "closeStarter": null,
-      "limit": 1,
+      "limit": 0,
       "note": null,
-      "blockColor": "#bb3e79",
+      "blockColor": "#00abad",
       "textColor": "#ffffff",
       "borderColor": "#000000",
       "font": null,
@@ -173,49 +231,11 @@
       "fontWeight": 400,
       "fontSize": 12,
       "fontFace": "'Poppins', sans-serif",
-      "start": true,
+      "start": false,
       "control": false
     },
     {
-      "id": 7,
-      "action": "ask-queen",
-      "isRequired": false,
-      "placement": "child",
-      "type": "nlogo:if",
-      "format": "ask nests",
-      "isTerminal": false,
-      "closeClauses": null,
-      "closeStarter": null,
-      "limit": 0,
-      "note": null,
-      "blockColor": "#a2c900",
-      "textColor": "#ffffff",
-      "borderColor": "#000000",
-      "font": null,
-      "allowedTags": {
-        "type": "unrestricted"
-      },
-      "tags": [],
-      "clauses": [
-        {
-          "action": null,
-          "open": null,
-          "close": null,
-          "allowedTags": {
-            "type": "unrestricted"
-          }
-        }
-      ],
-      "params": [],
-      "properties": [],
-      "fontWeight": 400,
-      "fontSize": 12,
-      "fontFace": "'Poppins', sans-serif",
-      "start": false,
-      "control": true
-    },
-    {
-      "id": 9,
+      "id": 13,
       "action": "hatch-ants",
       "isRequired": false,
       "placement": "child",
@@ -244,42 +264,6 @@
         }
       ],
       "properties": [],
-      "fontWeight": 400,
-      "fontSize": 12,
-      "fontFace": "'Poppins', sans-serif",
-      "start": false,
-      "control": false
-    },
-    {
-      "id": 10,
-      "action": "wander",
-      "isRequired": false,
-      "placement": "child",
-      "type": "nlogo:command",
-      "format": "wiggle-forward {P0}",
-      "isTerminal": false,
-      "closeClauses": null,
-      "closeStarter": null,
-      "limit": 0,
-      "note": null,
-      "blockColor": "#00abad",
-      "textColor": "#ffffff",
-      "borderColor": "#000000",
-      "font": null,
-      "allowedTags": {
-        "type": "unrestricted"
-      },
-      "tags": [],
-      "clauses": [],
-      "params": [],
-      "properties": [
-        {
-          "name": "wiggle-radius",
-          "unit": "degrees",
-          "type": "num",
-          "default": "80"
-        }
-      ],
       "fontWeight": 400,
       "fontSize": 12,
       "fontFace": "'Poppins', sans-serif",
