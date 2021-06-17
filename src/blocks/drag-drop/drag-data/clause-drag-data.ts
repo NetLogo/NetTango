@@ -39,7 +39,7 @@ class ClauseBlockDrag extends DragInProgress {
       throw new Error("Our drag event referenced a block in a clause for a block that doesn't exist?")
     }
     this.draggingBlocks = parentBlock.clauses[this.dragData.clauseIndex].removeBlocks(this.dragData.blockIndex)
-    this.draw(true)
+    this.draw()
   }
 
   cancel(): void {

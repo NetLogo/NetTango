@@ -33,7 +33,7 @@ class NewBlockDrag extends DragInProgress {
     super(block.workspace, startEvent)
     this.draggingBlocks = [block]
     this.dragData       = dragData
-    this.draw(false)
+    this.draw()
   }
 
   getDraggingBlocks(): BlockInstanceUI[] { return this.draggingBlocks }

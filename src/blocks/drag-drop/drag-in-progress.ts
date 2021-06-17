@@ -30,8 +30,8 @@ abstract class DragInProgress {
   get canBeStarter(): boolean { return ArrayUtils.ifNotNullOrEmpty(this.getDraggingBlocks(), (a) => a[0].canBeStarter, false) }
   get isInsertable(): boolean { return ArrayUtils.ifNotNullOrEmpty(this.getDraggingBlocks(), (a) => a[a.length - 1].isAttachable, false) }
 
-  protected draw(useClones: boolean): void {
-    ChainDraw.draw(DragCap.draw, this.workspace.dragImage, this.getDraggingBlocks(), useClones)
+  protected draw(): void {
+    ChainDraw.draw(DragCap.draw, this.workspace.dragImage, this.getDraggingBlocks())
   }
 
 }

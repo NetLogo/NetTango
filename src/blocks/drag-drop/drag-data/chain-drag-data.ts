@@ -35,7 +35,7 @@ class ChainBlockDrag extends DragInProgress {
     super(block.workspace, startEvent)
     this.dragData = dragData
     this.draggingBlocks = this.workspace.chains[this.dragData.chainIndex].removeBlocks(this.dragData.blockIndex)
-    this.draw(true)
+    this.draw()
   }
 
   cancel(): void {
@@ -63,7 +63,7 @@ class WholeChainDrag extends DragInProgress {
     this.oldChainY = oldChain.c.y
     this.draggingBlocks = oldChain.blocks
     this.workspace.removeChain(dragData.chainIndex)
-    this.draw(true)
+    this.draw()
   }
 
   cancel(): void {

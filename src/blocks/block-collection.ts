@@ -62,8 +62,8 @@ abstract class BlockCollection {
     return removed
   }
 
-  static appendBlock(div: HTMLDivElement, blockDiv: HTMLDivElement, newPosition: string, useClones: boolean = false): void {
-    const appendDiv: HTMLDivElement = blockDiv;//useClones ? (blockDiv.cloneNode(true) as HTMLDivElement) : blockDiv;
+  static appendBlock(div: HTMLDivElement, blockDiv: HTMLDivElement, newPosition: string): void {
+    const appendDiv: HTMLDivElement = blockDiv;
 
     [
       "nt-block-first",
@@ -79,19 +79,19 @@ abstract class BlockCollection {
     div.append(appendDiv)
   }
 
-  static appendBlocks(div: HTMLDivElement, blocks: BlockInstanceUI[], classPrefix: string, useClones: boolean = false): void {
+  static appendBlocks(div: HTMLDivElement, blocks: BlockInstanceUI[], classPrefix: string): void {
     if (blocks.length === 0) {
       return
     }
 
     if (blocks.length === 1) {
-      BlockCollection.appendBlock(div, blocks[0].blockDiv, `${classPrefix}-standalone`, useClones)
+      BlockCollection.appendBlock(div, blocks[0].blockDiv, `${classPrefix}-standalone`)
     } else {
-      BlockCollection.appendBlock(div, blocks[0].blockDiv, `${classPrefix}-first`, useClones)
+      BlockCollection.appendBlock(div, blocks[0].blockDiv, `${classPrefix}-first`)
       for (var i = 1; i < (blocks.length - 1); i++) {
-        BlockCollection.appendBlock(div, blocks[i].blockDiv, `${classPrefix}-middle`, useClones)
+        BlockCollection.appendBlock(div, blocks[i].blockDiv, `${classPrefix}-middle`)
       }
-      BlockCollection.appendBlock(div, blocks[blocks.length - 1].blockDiv, `${classPrefix}-last`, useClones)
+      BlockCollection.appendBlock(div, blocks[blocks.length - 1].blockDiv, `${classPrefix}-last`)
     }
   }
 

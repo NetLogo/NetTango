@@ -66,7 +66,7 @@ class ChainUI extends BlockCollection {
       block.draw(dragData)
     }
 
-    ChainDraw.draw(Cap.draw, this.div, this.blocks, false, this.fragmentDiv)
+    ChainDraw.draw(Cap.draw, this.div, this.blocks, this.fragmentDiv)
 
     this.updatePosition(this.c.x, this.c.y)
 
@@ -95,7 +95,7 @@ class ChainUI extends BlockCollection {
       block.dragData = new ChainDragData(block, this.chainIndex, i, this.blocks.slice(i + 1))
       block.resetOwnedBlocksDragData()
     }
-    ChainDraw.draw(Cap.draw, this.div, this.blocks, false, this.fragmentDiv)
+    ChainDraw.draw(Cap.draw, this.div, this.blocks, this.fragmentDiv)
   }
 
   addBlocks(newBlocks: BlockInstanceUI[]): void {

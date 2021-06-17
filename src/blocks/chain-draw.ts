@@ -10,7 +10,7 @@ import { BlockCollection } from "./block-collection"
 
 class ChainDraw {
 
-  static draw(drawCap: (isTop: boolean, block: BlockInstanceUI) => HTMLDivElement, div: HTMLDivElement, blocks: BlockInstanceUI[], useClones: boolean, fragmentDiv: HTMLDivElement | null = null): void {
+  static draw(drawCap: (isTop: boolean, block: BlockInstanceUI) => HTMLDivElement, div: HTMLDivElement, blocks: BlockInstanceUI[], fragmentDiv: HTMLDivElement | null = null): void {
     div.innerHTML = ""
 
     if (blocks[0].canBeStarter) {
@@ -35,7 +35,7 @@ class ChainDraw {
       div.append(arrow)
     }
 
-    BlockCollection.appendBlocks(div, blocks, "nt-block", useClones)
+    BlockCollection.appendBlocks(div, blocks, "nt-block")
 
     if (blocks[blocks.length - 1].isAttachable) {
       const bottomNotch = Notch.draw(false, blocks[blocks.length - 1])
