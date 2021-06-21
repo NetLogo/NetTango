@@ -135,6 +135,8 @@ class VersionManager {
       chain.blocks = chain.blocks.filter( (b) => getDefById(b.definitionId) !== undefined )
       chain.blocks.forEach(processInstance)
     })
+
+    model.program.chains = model.program.chains.filter( (chain) => chain.blocks.length > 0 )
   }
 
   static resetBlockInstance(definition: BlockDefinition, instance: BlockInstance) {
