@@ -184,7 +184,14 @@ class CodeWorkspaceUI {
 
     const menuDiv = this.menu.draw()
     menuDiv.style.maxHeight = `${this.height}px`
-    wrapper.append(menuDiv)
+    // this wrapper div exists just to set `overflow = hidden;` in the CSS to hide
+    // the tops and bottoms of scroll bars in the menu.  We cannot use that on the
+    // workspace div itself because that could possibly hide bits of the attribute
+    // pop-ups. -Jeremy B June 2021
+    const menuWrapper = document.createElement("div")
+    menuWrapper.classList.add("nt-menu-wrapper")
+    menuWrapper.append(menuDiv)
+    wrapper.append(menuWrapper)
 
     const spaceDropzone = interact(this.spaceDiv).dropzone({
         accept: ".nt-menu-slot, .nt-block, .nt-cap, .nt-notch"
