@@ -26,13 +26,13 @@
   overflow: hidden;
   min-width: min-content;
   padding-left: 0.2em;
+  position: sticky;
+  top: 0;
 }
 
 .nt-menu {
   min-width: min-content;
   padding: 0;
-  position: sticky;
-  top: 0;
   overflow-y: auto;
 }
 
