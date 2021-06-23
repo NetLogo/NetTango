@@ -396,6 +396,9 @@
 
 .nt-block-action {
   grid-column: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nt-menu-slot > span,
