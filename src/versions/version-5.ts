@@ -12,6 +12,41 @@ class Version5 {
     VersionUtils.updateBlocks6(json, Version5.moveChildrenToClauses, Version5.moveChildrenToClauses)
     VersionUtils.updateBlocks6(json, Version5.addBlockPlacements, Version5.addBlockPlacements)
     VersionUtils.updateBlocks6(json, Version5.updateNetLogoColorsAttributes, Version5.updateNetLogoColorsAttributes)
+    VersionUtils.updateBlocks6(json, Version5.updatePreQuotedAttributes, Version5.updatePreQuotedAttributes)
+  }
+
+  static updatePreQuotedAttributes(b: any): void {
+    ArrayUtils.maybeForEach(b, "params", (param) => {
+      if (param["type"] === "select") { Version5.updatePreQuotedAttribute(param) }
+    })
+    ArrayUtils.maybeForEach(b, "properties", (prop) => {
+      if (prop["type"] === "select") { Version5.updatePreQuotedAttribute(prop) }
+    })
+  }
+
+  static updatePreQuotedAttribute(a: any): void {
+    if (!a.hasOwnProperty("values")) {
+      return
+    }
+    if (!Array.isArray(a["values"])) {
+      return
+    }
+
+    const values = a["values"]
+    const arePreQuoted = values.map( (v) => {
+      if (!v.hasOwnProperty("actual") || typeof(v["actual"]) !== "string") {
+        return false
+      }
+      const w = v["actual"].trim()
+      return w.startsWith("\"") && w.endsWith("\"")
+    })
+
+    const needsUpdate = BoolUtils.allAreTrue(arePreQuoted)
+    if (!needsUpdate) {
+      return
+    }
+
+    a["quoteValues"] = "never-quote"
   }
 
   // NetTango is meant to be language-agnostic, and because this is NetLogo-specific,
