@@ -28,7 +28,7 @@ class VersionManager {
   static readonly VERSION = 6
 
   static updateWorkspace(definition: any): CodeWorkspace {
-    const version: number = definition.hasOwnProperty("version") ? definition.version : 0
+    const version: number = definition.hasOwnProperty("version") ? definition.version ?? 0 : 0
 
     if (version > VersionManager.VERSION) {
       throw new Error(`Somehow the given model version (${version}) is greater than the supported NetTango version (${VersionManager.VERSION}).`)
