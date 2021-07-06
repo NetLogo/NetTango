@@ -7,7 +7,6 @@ import { FormatAttributeType } from "../nettango"
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../nettango-defaults'
 import { Chain, CodeWorkspace, ExpressionDefinition } from '../types/types'
 import { NumUtils } from "../utils/num-utils"
-import { VersionManager } from "../versions/version-manager"
 import { BlockInstanceUI } from "./block-instance"
 import { BlockMenuUI } from "./block-menu"
 import { BlockStyleUI } from "./block-style"

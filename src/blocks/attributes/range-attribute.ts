@@ -2,7 +2,6 @@
 
 import { NumberValue, RangeAttribute } from "../../types/types"
 import { BlockInstanceUI } from "../block-instance"
-import { CodeFormatter } from "../code-formatter"
 import { AttributeChangedEvent } from "../program-changed-event"
 import { NumAttributeUI } from "./num-attribute"
 
