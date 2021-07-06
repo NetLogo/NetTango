@@ -6,8 +6,8 @@
     {
       "id": 0,
       "action": "➤➤  At GO",
-      "isRequired": false,
-      "placement": "child",
+      "isRequired": true,
+      "placement": "starter",
       "type": "nlogo:procedure",
       "format": "to define-particle-behavior",
       "isTerminal": false,
@@ -218,7 +218,7 @@
           "unit": "",
           "type": "select",
           "default": "1",
-          "quoteValues": "smart-quote",
+          "quoteValues": "never-quote",
           "values": [
             {
               "actual": "\"straight\"",
@@ -273,7 +273,7 @@
           "unit": "",
           "type": "select",
           "default": "10",
-          "quoteValues": "smart-quote",
+          "quoteValues": "never-quote",
           "values": [
             {
               "actual": "\"🎈 like a balloon\"",

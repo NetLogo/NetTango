@@ -1,0 +1,11 @@
+to define-particle-behavior
+  ask particles
+  [
+    set move-behavior "zig-zag"
+    if particle-is "touching a wall" 
+    [
+      set-particle-behavior "🏈 like a football"
+    ]
+  ]
+end
+
