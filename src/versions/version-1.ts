@@ -12,6 +12,8 @@ class Version1 {
     const blockDefinitionHandler = (b: any) => {
       if (!b.hasOwnProperty("action")) { return }
 
+      Version1.markRequiredBlocks(b)
+
       const id = actionToId.size
       b["id"] = id
       const action: string = b["action"]
@@ -24,6 +26,7 @@ class Version1 {
 
     const blockInstanceHandler = (b: any) => {
       Version1.addIdToBlock(actionToId, blockIdToAttributeIdOffset, b)
+      Version1.markRequiredBlocks(b)
     }
 
     VersionUtils.updateBlocks3(json, blockDefinitionHandler, blockInstanceHandler)
@@ -55,6 +58,13 @@ class Version1 {
       const id = actionToId.get(action)!
       b["id"] = id
       Version1.addIdsToParamsAndProps(blockIdToAttributeIdOffset.get(id)!, b)
+    }
+  }
+
+  static markRequiredBlocks(b: any): void {
+    // even if a block is not required, we mark it so if it's a procedure
+    if (b.hasOwnProperty("type") && b["type"] === "nlogo:procedure" && b["required"] === false) {
+      b["required"] = true
     }
   }
 
