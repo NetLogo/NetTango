@@ -4,7 +4,6 @@ import { AttributeTypes } from "./attributes/attribute"
 import { BlockInstanceUI } from "./block-instance"
 
 abstract class ProgramChangedEvent {
-  abstract toJS(): any
 }
 
 class BlockChangedEvent extends ProgramChangedEvent {
@@ -18,9 +17,6 @@ class BlockChangedEvent extends ProgramChangedEvent {
     this.instanceId = block.b.instanceId
   }
 
-  toJS(): any {
-    return this
-  }
 }
 
 class AttributeChangedEvent extends ProgramChangedEvent {
@@ -44,44 +40,22 @@ class AttributeChangedEvent extends ProgramChangedEvent {
     this.formattedValue = formattedValue
   }
 
-  toJS(): any {
-    return this
-  }
-
 }
 
-class MenuItemClickedEvent extends ProgramChangedEvent {
-  readonly type = "menu-item-clicked"
-  readonly blockId: number
-
-  constructor(blockId: number) {
-    super()
-    this.blockId = blockId
-  }
-
-  toJS(): any {
-    return this
-  }
-
-}
-
-class MenuItemContextMenuEvent extends ProgramChangedEvent {
-  readonly type = "menu-item-context-menu"
+class MenuItemEvent extends ProgramChangedEvent {
+  readonly type: "menu-item-clicked" | "menu-item-context-menu"
   readonly blockId: number
   readonly x: number
   readonly y: number
 
-  constructor(blockId: number, x: number, y: number) {
+  constructor(type: "menu-item-clicked" | "menu-item-context-menu", blockId: number, x: number, y: number) {
     super()
+    this.type = type
     this.blockId = blockId
     this.x = x
     this.y = y
   }
 
-  toJS(): any {
-    return this
-  }
-
 }
 
-export { ProgramChangedEvent, MenuItemClickedEvent, MenuItemContextMenuEvent, AttributeChangedEvent, BlockChangedEvent }
+export { ProgramChangedEvent, MenuItemEvent, AttributeChangedEvent, BlockChangedEvent }

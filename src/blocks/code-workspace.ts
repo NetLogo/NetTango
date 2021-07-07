@@ -94,7 +94,7 @@ class CodeWorkspaceUI {
   programChanged(event: ProgramChangedEvent): void {
     try {
       this._updateWorkspaceForChanges()
-      if (this.notifier !== null) { this.notifier(event.toJS()) }
+      if (this.notifier !== null) { this.notifier(event) }
     } catch (e) {
       console.log("Unable to relay program changed event to Javascript")
       console.log(e)

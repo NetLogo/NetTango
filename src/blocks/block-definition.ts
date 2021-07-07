@@ -5,7 +5,7 @@ import { StringBuffer } from "../utils/string-buffer"
 import { StringUtils } from "../utils/string-utils"
 import { BlockInstanceUI } from "./block-instance"
 import { CodeWorkspaceUI } from "./code-workspace"
-import { MenuItemClickedEvent, MenuItemContextMenuEvent } from "./program-changed-event"
+import { MenuItemEvent } from "./program-changed-event"
 import { DragListener } from "./drag-drop/drag-listener"
 import { DragManager } from "./drag-drop/drag-manager"
 import { NewDragData } from './drag-drop/drag-data/new-drag-data'
@@ -58,7 +58,7 @@ class BlockDefinitionUI {
     dragListener.start = (e: InteractEvent) => this.startDrag(e)
     dragListener.end   = () => this.endDrag()
 
-    this.slotDiv.addEventListener("dblclick", () => this.raiseDoubleClick() )
+    this.slotDiv.addEventListener("dblclick", (e) => this.raiseDoubleClick(e) )
     this.slotDiv.addEventListener("contextmenu", (e) => this.raiseContextMenu(e) )
     this.updateForLimit()
     return this.slotDiv
@@ -111,15 +111,15 @@ class BlockDefinitionUI {
     DragManager.cancel()
   }
 
-  raiseDoubleClick(): void {
-    const event = new MenuItemClickedEvent(this.def.id)
+  raiseDoubleClick(e: MouseEvent): void {
+    const event = new MenuItemEvent("menu-item-clicked", this.def.id, e.pageX, e.pageY)
     this.workspace.programChanged(event)
   }
 
   raiseContextMenu(e: MouseEvent): boolean {
     e.preventDefault()
     e.stopPropagation()
-    const event = new MenuItemContextMenuEvent(this.def.id, e.pageX, e.pageY)
+    const event = new MenuItemEvent("menu-item-context-menu", this.def.id, e.pageX, e.pageY)
     this.workspace.programChanged(event)
     return false
   }
