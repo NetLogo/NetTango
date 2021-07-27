@@ -2,7 +2,7 @@
 
 import fs from "fs"
 import path from "path"
-import { FormatAttributeType, NetTango } from "../src/nettango"
+import { defaultOptions, FormatAttributeType, NetTango } from "../src/nettango"
 
 const MODELS_PATH      = "./nt-models"
 const RESULTS_PATH     = "./dist/test/results"
@@ -45,7 +45,7 @@ function testModel(modelFile: string, modelName: string) {
     const workspace: any      = workspaceDef.defs
 
     document.body.innerHTML = `<div id="${workspaceId}"></div>`
-    NetTango.restore("NetLogo", workspaceId, workspace, formatAttributeAsValue)
+    NetTango.restore("NetLogo", workspaceId, workspace, formatAttributeAsValue, defaultOptions)
 
     const code  = NetTango.exportCode(workspaceId, formatAttributeAsValue)
     const saved = NetTango.save(workspaceId)

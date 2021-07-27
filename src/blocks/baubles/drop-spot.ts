@@ -4,23 +4,25 @@ import interact from "interactjs"
 
 class DropSpot {
 
-  static draw(dropEvent: () => void): HTMLDivElement {
+  static draw(dropEvent: () => void, enableDefinitionChanges: boolean): HTMLDivElement {
     const spot = document.createElement("div")
     spot.classList.add("nt-drop-spot")
 
-    const dropZone = interact(spot).dropzone({
-      accept: ".nt-menu-slot"
-    })
-    dropZone.on("dragenter", () => {
-      spot.classList.add("nt-menu-slot-over")
-    })
-    dropZone.on("dragleave", () => {
-      spot.classList.remove("nt-menu-slot-over")
-    })
-    dropZone.on("drop", () => {
-      spot.classList.remove("nt-menu-slot-over")
-      dropEvent()
-    })
+    if (enableDefinitionChanges) {
+      const dropZone = interact(spot).dropzone({
+        accept: ".nt-menu-slot"
+      })
+      dropZone.on("dragenter", () => {
+        spot.classList.add("nt-menu-slot-over")
+      })
+      dropZone.on("dragleave", () => {
+        spot.classList.remove("nt-menu-slot-over")
+      })
+      dropZone.on("drop", () => {
+        spot.classList.remove("nt-menu-slot-over")
+        dropEvent()
+      })
+    }
 
     return spot
   }

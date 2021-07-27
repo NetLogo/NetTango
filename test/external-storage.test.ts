@@ -2,7 +2,7 @@
 
 import { BlockPlacement } from "../src/blocks/block-placement"
 import { CodeFormatter } from "../src/blocks/code-formatter"
-import { FormatAttributeType, encodeWorkspace, restoreWorkspace } from "../src/nettango"
+import { FormatAttributeType, encodeWorkspace, restoreWorkspace, defaultOptions } from "../src/nettango"
 import { VersionManager } from "../src/versions/version-manager"
 
 test("Unknown properties are maintained in external storage", () => {
@@ -44,7 +44,7 @@ test("Unknown properties are maintained in external storage", () => {
   })
 
   const containerId = "test-space-id"
-  const workspace   = restoreWorkspace(containerId, model, "NetLogo", formatAttribute)
+  const workspace   = restoreWorkspace(containerId, model, "NetLogo", formatAttribute, defaultOptions)
   const prop1       = workspace.chains[0].blocks[0].properties[0]!
   expect(CodeFormatter.getAttributeValue({ def: prop1.def, a: prop1.a })).toBe("9")
 

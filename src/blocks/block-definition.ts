@@ -35,7 +35,7 @@ class BlockDefinitionUI {
     return (this.def.limit <= 0 || free > 0)
   }
 
-  draw(index: number, slotDropNotifier: (i: number) => void): HTMLDivElement {
+  draw(index: number, slotDropNotifier: (i: number) => void, enableDefinitionChanges: boolean): HTMLDivElement {
     this.slotIndex = index
     this.wrapperDiv.classList.add("nt-menu-slot-wrapper")
     this.wrapperDiv.appendChild(this.slotDiv)
@@ -67,19 +67,21 @@ class BlockDefinitionUI {
     this.slotDiv.addEventListener("contextmenu", (e) => this.raiseContextMenu(e) )
     this.updateForLimit()
 
-    const dropZone = interact(this.wrapperDiv).dropzone({
-      accept: ".nt-menu-slot"
-    })
-    dropZone.on("dragenter", () => {
-      this.wrapperDiv.classList.add("nt-menu-slot-over")
-    })
-    dropZone.on("dragleave", () => {
-      this.wrapperDiv.classList.remove("nt-menu-slot-over")
-    })
-    dropZone.on("drop", () => {
-      this.wrapperDiv.classList.remove("nt-menu-slot-over")
-      slotDropNotifier(this.slotIndex + 1)
-    })
+    if (enableDefinitionChanges) {
+      const dropZone = interact(this.wrapperDiv).dropzone({
+        accept: ".nt-menu-slot"
+      })
+      dropZone.on("dragenter", () => {
+        this.wrapperDiv.classList.add("nt-menu-slot-over")
+      })
+      dropZone.on("dragleave", () => {
+        this.wrapperDiv.classList.remove("nt-menu-slot-over")
+      })
+      dropZone.on("drop", () => {
+        this.wrapperDiv.classList.remove("nt-menu-slot-over")
+        slotDropNotifier(this.slotIndex + 1)
+      })
+    }
 
     return this.wrapperDiv
   }

@@ -14,12 +14,20 @@ import { BlockStyleUI } from "./blocks/block-style"
 
 type FormatAttributeType = (containerId: string, blockId: number, instanceId: number, attributeId: number, value: any, attributeType: AttributeTypes, isProperty: boolean) => string
 
-function restoreWorkspace(containerId: string, workspaceEnc: CodeWorkspace, language: string, formatAttribute: FormatAttributeType): CodeWorkspaceUI {
+type NetTangoOptions = {
+  enableDefinitionChanges: boolean
+}
+
+const defaultOptions = Object.freeze({
+  enableDefinitionChanges: true
+})
+
+function restoreWorkspace(containerId: string, workspaceEnc: CodeWorkspace, language: string, formatAttribute: FormatAttributeType, options: NetTangoOptions): CodeWorkspaceUI {
   if (workspaceEnc.version !== VersionManager.VERSION) {
     throw new Error(`The supported NetTango version is ${VersionManager.VERSION}, but the given definition version was ${workspaceEnc["version"]}.`)
   }
   const expressions: ExpressionDefinition[] = defaultExpressions.has(language) ? defaultExpressions.get(language)! : []
-  const workspace = new CodeWorkspaceUI(containerId, workspaceEnc, language, expressions, formatAttribute)
+  const workspace = new CodeWorkspaceUI(containerId, workspaceEnc, language, expressions, formatAttribute, options.enableDefinitionChanges)
   return workspace
 }
 
@@ -85,7 +93,7 @@ class NetTango {
 
   /// Call `restore` to instantiate a workspace associated with an HTML canvas.
   /// TODO: Document JSON specification format--for now see README.md
-  static restore(language: "NetLogo", containerId: string, definition: any, formatAttribute: FormatAttributeType): void {
+  static restore(language: "NetLogo", containerId: string, definition: any, formatAttribute: FormatAttributeType, options: NetTangoOptions): void {
     const ws: CodeWorkspace = VersionManager.updateWorkspace(definition)
 
     try {
@@ -95,7 +103,7 @@ class NetTango {
         oldWs.removeEventListeners()
         notifier = oldWs.notifier
       }
-      const workspace = restoreWorkspace(containerId, ws, language, formatAttribute)
+      const workspace = restoreWorkspace(containerId, ws, language, formatAttribute, options)
       NetTango.workspaces.set(containerId, workspace)
       workspace.draw()
       workspace.notifier = notifier
@@ -115,4 +123,4 @@ if (window !== undefined && window !== null && !window.hasOwnProperty("NetTango"
   w["NetTango"] = NetTango
 }
 
-export { FormatAttributeType, NetTango, encodeWorkspace, restoreWorkspace }
+export { FormatAttributeType, NetTango, NetTangoOptions, encodeWorkspace, restoreWorkspace, defaultOptions }

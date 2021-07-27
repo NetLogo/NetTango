@@ -56,7 +56,14 @@ class CodeWorkspaceUI {
     this.container.style.maxWidth = `${this.width}px`
   }
 
-  constructor(containerId: string, ws: CodeWorkspace, language: string, defaultExpressions: ExpressionDefinition[], formatAttribute: FormatAttributeType) {
+  constructor(
+    containerId: string
+  , ws: CodeWorkspace
+  , language: string
+  , defaultExpressions: ExpressionDefinition[]
+  , formatAttribute: FormatAttributeType
+  , enableDefinitionChanges: boolean
+  ) {
     this.ws = ws
     this.containerId = containerId
     this.formatter = new CodeFormatter(this, language, formatAttribute)
@@ -72,7 +79,7 @@ class CodeWorkspaceUI {
     this.height = ws.height
     this.width  = ws.width
 
-    this.menu = new BlockMenuUI(this.ws.blocks, this)
+    this.menu = new BlockMenuUI(this.ws.blocks, this, enableDefinitionChanges)
 
     if (this.ws.blockStyles === null) {
       this.starterBlockStyle = new BlockStyleUI(BlockStyleUI.DEFAULT_STARTER_STYLE)

@@ -2,7 +2,7 @@
 
 import { AttributeTypes } from "../src/blocks/attributes/attribute"
 import { BlockPlacement } from "../src/blocks/block-placement"
-import { NetTango } from "../src/nettango"
+import { defaultOptions, NetTango } from "../src/nettango"
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../src/nettango-defaults"
 import { ObjectUtils } from "../src/utils/object-utils"
 import { VersionManager } from "../src/versions/version-manager"
@@ -171,7 +171,7 @@ function formatAttributeAsValue(containerId: string, blockId: number, instanceId
 }
 
 test("Smoke test of NetTango restore and save", () => {
-  NetTango.restore("NetLogo", "nt-canvas", {}, formatAttributeForNetTangoExtension)
+  NetTango.restore("NetLogo", "nt-canvas", {}, formatAttributeForNetTangoExtension, defaultOptions)
   const result = NetTango.save("nt-canvas")
   const expected = VersionManager.updateWorkspace({
     "version": 5,
@@ -258,7 +258,7 @@ test("Remove a parameter from a block that is in a chain", () => {
   delete expected.expressions
   delete expected.program.chains[0][1].params
   expected = VersionManager.updateWorkspace(expected)
-  NetTango.restore("NetLogo", "nt-canvas", json, formatAttributeForNetTangoExtension)
+  NetTango.restore("NetLogo", "nt-canvas", json, formatAttributeForNetTangoExtension, defaultOptions)
   var result = NetTango.save("nt-canvas")
   expect(result).toStrictEqual(expected)
   var codeResult = NetTango.exportCode("nt-canvas", null)
@@ -284,7 +284,7 @@ test("NetLogo code exports in proper order with params", () => {
   delete expected.blocks[1].properties[0].value
   expected = VersionManager.updateWorkspace(expected)
 
-  NetTango.restore("NetLogo", testCanavsID, copyJson(NETLOGO_MODEL_1), formatAttributeForNetTangoExtension)
+  NetTango.restore("NetLogo", testCanavsID, copyJson(NETLOGO_MODEL_1), formatAttributeForNetTangoExtension, defaultOptions)
 
   const result = NetTango.save(testCanavsID)
   expect(result).toStrictEqual(expected)
@@ -322,7 +322,7 @@ test("Model with ifelse properly imports and generates code", () => {
   expected.program.chains[0][1].clauses = [{ "children": [copyJson(wiggleInst)]}]
   expected = VersionManager.updateWorkspace(expected)
 
-  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeForNetTangoExtension)
+  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeForNetTangoExtension, defaultOptions)
   var result = NetTango.save("nt-canvas")
   expect(result).toStrictEqual(expected)
 
@@ -363,7 +363,7 @@ test("Unversioned model gets IDs added for version 1", () => {
   expected.program.chains[0][0].properties[0].value = 9
   expected = VersionManager.updateWorkspace(expected)
 
-  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeForNetTangoExtension)
+  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeForNetTangoExtension, defaultOptions)
   const result = NetTango.save("nt-canvas")
 
   expect(result).toStrictEqual(expected)
@@ -395,7 +395,7 @@ test("Duplicate menu block IDs get reset automatically", () => {
   expected.blocks[1].id = 1
   expected = VersionManager.updateWorkspace(expected)
 
-  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeForNetTangoExtension)
+  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeForNetTangoExtension, defaultOptions)
   const result = NetTango.save("nt-canvas")
 
   expect(result).toStrictEqual(expected)
@@ -423,7 +423,7 @@ test("Version 1 gets IDs added for new block", () => {
   expected.blocks[0].properties[0].id = 1
   expected = VersionManager.updateWorkspace(expected)
 
-  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeForNetTangoExtension)
+  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeForNetTangoExtension, defaultOptions)
   const result = NetTango.save("nt-canvas")
 
   expect(result).toStrictEqual(expected)
@@ -508,7 +508,7 @@ test("Version 3 model with select and expression attributes saves correctly", ()
   expected.program.chains[0][1].instanceId = 1
   expected = VersionManager.updateWorkspace(expected)
 
-  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeAsValue)
+  NetTango.restore("NetLogo", "nt-canvas", model, formatAttributeAsValue, defaultOptions)
 
   const code = NetTango.exportCode("nt-canvas", null)
   expect(code).toStrictEqual("to procede show (20 + (5 + (7 / 2)))\n  show (3)\nend\n\n")
@@ -571,7 +571,7 @@ test("Model uses custom clause open and close formats correctly", () => {
   expected = VersionManager.updateWorkspace(expected)
 
   const containerId = "nt-canvas"
-  NetTango.restore("NetLogo", containerId, copyJson(model), formatAttributeAsValue)
+  NetTango.restore("NetLogo", containerId, copyJson(model), formatAttributeAsValue, defaultOptions)
   const result = NetTango.save(containerId)
 
   expect(result).toStrictEqual(expected)

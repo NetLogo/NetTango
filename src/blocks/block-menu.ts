@@ -14,16 +14,17 @@ class BlockMenuUI {
 
   readonly blocks: BlockDefinition[]
   readonly workspace: CodeWorkspaceUI
-
+  readonly enableDefinitionChanges: boolean
   readonly slots: BlockDefinitionUI[]
 
   color = "rgba(0, 0, 0, 0.2)"
 
   menuDiv = document.createElement("div")
 
-  constructor(blocks: BlockDefinition[], workspace: CodeWorkspaceUI) {
+  constructor(blocks: BlockDefinition[], workspace: CodeWorkspaceUI, enableDefinitionChanges: boolean) {
     this.blocks = blocks
     this.workspace = workspace
+    this.enableDefinitionChanges = enableDefinitionChanges
     this.slots = blocks.map( (b, i) => new BlockDefinitionUI(b, workspace, i) )
   }
 
@@ -45,7 +46,7 @@ class BlockMenuUI {
     this.menuDiv.id = `${this.workspace.containerId}-menu`
     this.menuDiv.classList.add("nt-menu")
 
-    const dropSpot = DropSpot.draw(() => DragManager.slotDrop(0))
+    const dropSpot = DropSpot.draw(() => DragManager.slotDrop(0), this.enableDefinitionChanges)
     dropSpot.classList.add("nt-menu-slot-wrapper")
     this.menuDiv.append(dropSpot)
 
@@ -54,7 +55,7 @@ class BlockMenuUI {
     }
 
     this.slots.forEach( (slot, i) => {
-      this.menuDiv.append(slot.draw(i, slotDropNotifier))
+      this.menuDiv.append(slot.draw(i, slotDropNotifier, this.enableDefinitionChanges))
     })
 
     const dropZone = interact(this.menuDiv).dropzone({
