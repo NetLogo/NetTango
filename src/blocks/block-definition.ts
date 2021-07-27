@@ -45,7 +45,7 @@ class BlockDefinitionUI {
     this.slotDiv.classList.add(styleClass)
     this.slotDiv.classList.add(`${styleClass}-color`)
 
-    const codeTip = this.formatCodeTip(this.def)
+    const codeTip = this.formatCodeTip()
     const titleSpan = `<span title="${codeTip}">${this.def.action}</span>`
     this.slotDiv.insertAdjacentHTML("beforeend", titleSpan)
 
@@ -84,7 +84,7 @@ class BlockDefinitionUI {
     return this.wrapperDiv
   }
 
-  formatCodeTip(block: BlockDefinition): string {
+  formatCodeTip(): string {
     const out = new StringBuffer()
     if (this.def.note !== null && StringUtils.isNotNullOrEmpty(this.def.note.trimLeft())) {
       out.writeln(this.def.note)
