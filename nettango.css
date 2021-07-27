@@ -508,6 +508,11 @@
   margin-left: 0.8em;
 }
 
+.nt-menu-slot-wrapper {
+  padding: 0.3em;
+  border-bottom: 2px solid #00000000;
+}
+
 .nt-menu-slot {
   border: 1px solid #000;
   border-radius: 10px;
@@ -516,7 +521,6 @@
   width: min-content;
   height: 2em;
   min-width: 4em;
-  margin: 0.3em;
   line-height: 2em;
   background: white;
   user-select: none;

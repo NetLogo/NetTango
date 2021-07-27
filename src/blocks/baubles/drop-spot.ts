@@ -6,21 +6,21 @@ class DropSpot {
 
   static draw(dropEvent: () => void): HTMLDivElement {
     const spot = document.createElement("div")
-    spot.innerText = "Drop Something Here"
     spot.classList.add("nt-drop-spot")
 
     const dropZone = interact(spot).dropzone({
-      accept:  ".nt-menu-slot"
-    //, checker: (_1, _2, dropped) => this.workspace.checker(dropped)
+      accept: ".nt-menu-slot"
     })
-
     dropZone.on("dragenter", () => {
-      spot.classList.add("nt-menu-drag-over")
+      spot.classList.add("nt-menu-slot-over")
     })
     dropZone.on("dragleave", () => {
-      spot.classList.remove("nt-menu-drag-over")
+      spot.classList.remove("nt-menu-slot-over")
     })
-    dropZone.on("drop", dropEvent)
+    dropZone.on("drop", () => {
+      spot.classList.remove("nt-menu-slot-over")
+      dropEvent()
+    })
 
     return spot
   }

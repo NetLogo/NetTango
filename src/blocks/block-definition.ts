@@ -20,6 +20,7 @@ class BlockDefinitionUI {
   readonly workspace: CodeWorkspaceUI
 
   slotIndex: number
+  wrapperDiv: HTMLDivElement = document.createElement("div")
   slotDiv: HTMLDivElement = document.createElement("div")
   isAtLimit = false
 
@@ -36,7 +37,9 @@ class BlockDefinitionUI {
 
   draw(index: number, slotDropNotifier: (i: number) => void): HTMLDivElement {
     this.slotIndex = index
-    this.slotDiv = document.createElement("div")
+    this.wrapperDiv.classList.add("nt-menu-slot-wrapper")
+    this.wrapperDiv.appendChild(this.slotDiv)
+
     this.slotDiv.classList.add("nt-menu-slot")
     const styleClass = BlockInstanceUI.getStyleClass(this.def, this.workspace.containerId)
     this.slotDiv.classList.add(styleClass)
@@ -64,19 +67,18 @@ class BlockDefinitionUI {
     this.slotDiv.addEventListener("contextmenu", (e) => this.raiseContextMenu(e) )
     this.updateForLimit()
 
-    const dropZone = interact(this.slotDiv).dropzone({
-      accept:  ".nt-menu-slot"
+    const dropZone = interact(this.wrapperDiv).dropzone({
+      accept: ".nt-menu-slot"
     })
-
     dropZone.on("dragenter", () => {
-      this.slotDiv.classList.add("nt-menu-slot-over")
+      this.wrapperDiv.classList.add("nt-menu-slot-over")
     })
     dropZone.on("dragleave", () => {
-      this.slotDiv.classList.remove("nt-menu-slot-over")
+      this.wrapperDiv.classList.remove("nt-menu-slot-over")
     })
     dropZone.on("drop", () => slotDropNotifier(this.slotIndex + 1))
 
-    return this.slotDiv
+    return this.wrapperDiv
   }
 
   formatCodeTip(block: BlockDefinition): string {
