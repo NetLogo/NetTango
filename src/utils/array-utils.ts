@@ -24,6 +24,13 @@ class ArrayUtils {
     return process(a)
   }
 
+  static swap(arr: any[], from: number, to: number): void {
+    const item = arr[from]
+    const realTo = to > from ? (to - 1) : to
+    arr.splice(from, 1)
+    arr.splice(realTo, 0, item)
+  }
+
 }
 
 export { ArrayUtils }

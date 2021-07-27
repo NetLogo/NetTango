@@ -25,6 +25,7 @@ abstract class DragInProgress {
 
   cancel() {}
   drop() {}
+  slotDrop(dropIndex: number) {}
 
   get canBeChild(): boolean   { return ArrayUtils.ifNotNullOrEmpty(this.getDraggingBlocks(), (a) => a[0].canBeChild, false) }
   get canBeStarter(): boolean { return ArrayUtils.ifNotNullOrEmpty(this.getDraggingBlocks(), (a) => a[0].canBeStarter, false) }

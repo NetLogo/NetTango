@@ -51,6 +51,18 @@ class DragManager {
     blockHandler(blocks, drag.dragStartOffset)
   }
 
+  static slotDrop(dropIndex: number) {
+    if (DragManager.currentDrag === null) {
+      return
+    }
+
+    const drag = DragManager.currentDrag
+    drag.workspace.disableDropZones()
+
+    DragManager.currentDrag = null
+    drag.slotDrop(dropIndex)
+  }
+
   static isValidDrop(containerId: string, dragHandler: (dragState: DragInProgress) => boolean = () => { return true }): boolean {
     if (DragManager.currentDrag === null) {
       return false

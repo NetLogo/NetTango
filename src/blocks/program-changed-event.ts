@@ -55,7 +55,16 @@ class MenuItemEvent extends ProgramChangedEvent {
     this.x = x
     this.y = y
   }
-
 }
 
-export { ProgramChangedEvent, MenuItemEvent, AttributeChangedEvent, BlockChangedEvent }
+class BlockDefinitionEvent extends ProgramChangedEvent {
+  readonly type: "block-definition-moved" = "block-definition-moved"
+  readonly blockId: number
+
+  constructor(blockId: number) {
+    super()
+    this.blockId = blockId
+  }
+}
+
+export { ProgramChangedEvent, MenuItemEvent, AttributeChangedEvent, BlockChangedEvent, BlockDefinitionEvent }

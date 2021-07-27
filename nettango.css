@@ -524,6 +524,10 @@
   touch-action: none;
 }
 
+.nt-menu-slot-over {
+  border-bottom-color: cyan !important;
+}
+
 .nt-menu-slot-at-limit {
   opacity: 0.25;
 }

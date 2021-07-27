@@ -50,6 +50,13 @@ class NewBlockDrag extends DragInProgress {
     slot.slotDiv.classList.remove("nt-block-dragging")
   }
 
+  slotDrop(dropIndex: number): void {
+    super.slotDrop(dropIndex)
+    const slot = this.workspace.menu.slots[this.dragData.slotIndex]
+    slot.slotDiv.classList.remove("nt-block-dragging")
+    this.workspace.menu.moveSlot(this.dragData.slotIndex, dropIndex)
+  }
+
 }
 
 export { NewDragData }

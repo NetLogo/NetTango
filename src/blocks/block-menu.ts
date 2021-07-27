@@ -4,8 +4,11 @@ import interact from "interactjs"
 import { BlockDefinition } from "../types/types"
 import { CodeWorkspaceUI } from "./code-workspace"
 import { DragManager } from "./drag-drop/drag-manager"
-import { BlockChangedEvent } from "./program-changed-event"
+import { BlockChangedEvent, BlockDefinitionEvent } from "./program-changed-event"
 import { BlockDefinitionUI } from "./block-definition"
+import { DropSpot } from "./baubles/drop-spot"
+import { ArrayUtils } from "../utils/array-utils"
+import { DomUtils } from "../utils/dom-utils"
 
 class BlockMenuUI {
 
@@ -42,10 +45,16 @@ class BlockMenuUI {
     this.menuDiv.id = `${this.workspace.containerId}-menu`
     this.menuDiv.classList.add("nt-menu")
 
-    for (var i = 0; i < this.slots.length; i++) {
-      const slot = this.slots[i]
-      this.menuDiv.append(slot.draw(i))
+    this.menuDiv.append(DropSpot.draw(() => DragManager.slotDrop(0)))
+
+    const slotDropNotifier = (j: number) => {
+      this.slots.forEach( (slot) => slot.slotDiv.classList.remove('nt-menu-slot-over') )
+      DragManager.slotDrop(j)
     }
+
+    this.slots.forEach( (slot, i) => {
+      this.menuDiv.append(slot.draw(i, slotDropNotifier))
+    })
 
     const dropZone = interact(this.menuDiv).dropzone({
       accept:  ".nt-menu-slot, .nt-block, .nt-cap, .nt-notch"
@@ -65,6 +74,20 @@ class BlockMenuUI {
     this.updateLimits()
 
     return this.menuDiv
+  }
+
+  moveSlot(from: number, to: number): void {
+    const block = this.blocks[from]
+    if (this.slots[from].slotIndex !== from) {
+      throw new Error(`Slot index incorrect for: ${from}`)
+    }
+    ArrayUtils.swap(this.blocks, from, to)
+    ArrayUtils.swap(this.slots, from, to)
+    this.slots.forEach( (slot, i) => slot.slotIndex = i )
+    // The +1's are to skip the top-drop element.
+    DomUtils.swapChildren(this.menuDiv, from + 1, to + 1)
+    const event = new BlockDefinitionEvent(block.id)
+    this.workspace.programChanged(event)
   }
 
   updateLimits(): void {

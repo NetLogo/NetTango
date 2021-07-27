@@ -1,6 +1,8 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
+import interact from "interactjs"
 import type { InteractEvent } from '@interactjs/core/InteractEvent'
+
 import { StringBuffer } from "../utils/string-buffer"
 import { StringUtils } from "../utils/string-utils"
 import { BlockInstanceUI } from "./block-instance"
@@ -32,7 +34,7 @@ class BlockDefinitionUI {
     return (this.def.limit <= 0 || free > 0)
   }
 
-  draw(index: number): HTMLDivElement {
+  draw(index: number, slotDropNotifier: (i: number) => void): HTMLDivElement {
     this.slotIndex = index
     this.slotDiv = document.createElement("div")
     this.slotDiv.classList.add("nt-menu-slot")
@@ -61,6 +63,19 @@ class BlockDefinitionUI {
     this.slotDiv.addEventListener("dblclick", (e) => this.raiseDoubleClick(e) )
     this.slotDiv.addEventListener("contextmenu", (e) => this.raiseContextMenu(e) )
     this.updateForLimit()
+
+    const dropZone = interact(this.slotDiv).dropzone({
+      accept:  ".nt-menu-slot"
+    })
+
+    dropZone.on("dragenter", () => {
+      this.slotDiv.classList.add("nt-menu-slot-over")
+    })
+    dropZone.on("dragleave", () => {
+      this.slotDiv.classList.remove("nt-menu-slot-over")
+    })
+    dropZone.on("drop", () => slotDropNotifier(this.slotIndex + 1))
+
     return this.slotDiv
   }
 
