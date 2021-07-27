@@ -4,7 +4,7 @@ import interact from "interactjs"
 import { BlockDefinition } from "../types/types"
 import { CodeWorkspaceUI } from "./code-workspace"
 import { DragManager } from "./drag-drop/drag-manager"
-import { BlockChangedEvent, BlockDefinitionEvent } from "./program-changed-event"
+import { BlockInstanceEvent, BlockDefinitionEvent } from "./program-changed-event"
 import { BlockDefinitionUI } from "./block-definition"
 import { DropSpot } from "./baubles/drop-spot"
 import { ArrayUtils } from "../utils/array-utils"
@@ -50,7 +50,6 @@ class BlockMenuUI {
     this.menuDiv.append(dropSpot)
 
     const slotDropNotifier = (j: number) => {
-      this.slots.forEach( (slot) => slot.wrapperDiv.classList.remove('nt-menu-slot-over') )
       DragManager.slotDrop(j)
     }
 
@@ -102,7 +101,7 @@ class BlockMenuUI {
     DragManager.drop( (oldBlocks) => {
       this.menuDiv.classList.remove("nt-menu-drag-over")
       const changedBlock = oldBlocks[0]
-      this.workspace.programChanged(new BlockChangedEvent(changedBlock))
+      this.workspace.programChanged(new BlockInstanceEvent(changedBlock))
     })
   }
 

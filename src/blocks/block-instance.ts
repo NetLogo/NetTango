@@ -15,7 +15,7 @@ import { BlockAcceptor } from "./drag-drop/block-acceptor"
 import { BlockDragData } from "./drag-drop/drag-data/block-drag-data"
 import { ChainDragData } from "./drag-drop/drag-data/chain-drag-data"
 import { NewDragData } from "./drag-drop/drag-data/new-drag-data"
-import { BlockChangedEvent } from "./program-changed-event"
+import { BlockInstanceEvent } from "./program-changed-event"
 import { DragManager } from "./drag-drop/drag-manager"
 import { ClauseDragData } from "./drag-drop/drag-data/clause-drag-data"
 import { DragListener } from "./drag-drop/drag-listener"
@@ -141,7 +141,7 @@ class BlockInstanceUI {
       this.propertiesToggle = new Toggle(this.b.propertiesDisplay !== "hidden", (isOn) => {
         this.b.propertiesDisplay = isOn ? "shown" : "hidden"
         propertiesDiv.classList.toggle("nt-block-properties-hidden")
-        this.workspace.programChanged(new BlockChangedEvent(this))
+        this.workspace.programChanged(new BlockInstanceEvent(this))
       })
       if (this.b.propertiesDisplay === "hidden") {
         propertiesDiv.classList.add("nt-block-properties-hidden")
@@ -252,7 +252,7 @@ class BlockInstanceUI {
       }
 
       const changedBlock = newBlocks[0]
-      this.workspace.programChanged(new BlockChangedEvent(changedBlock))
+      this.workspace.programChanged(new BlockInstanceEvent(changedBlock))
     })
   }
 

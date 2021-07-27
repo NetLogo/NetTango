@@ -10,7 +10,7 @@ import { ChainAcceptor } from "./drag-drop/chain-acceptor"
 import { ChainDragData } from "./drag-drop/drag-data/chain-drag-data"
 import { DragListener } from "./drag-drop/drag-listener"
 import { DragManager } from "./drag-drop/drag-manager"
-import { BlockChangedEvent } from "./program-changed-event"
+import { BlockInstanceEvent } from "./program-changed-event"
 import { Chain } from "../types/types"
 import { Cap } from "./baubles/cap"
 import { ChainDraw } from "./chain-draw"
@@ -140,7 +140,7 @@ class ChainUI extends BlockCollection {
       const dropY = ((event as any).dragEvent.page.y as number) - offset.y - dragStartOffset.y
       this.c.y = this.c.y - ChainUI.FRAGMENT_HEIGHT + Math.floor(dropY)
       this.insertBlocks(0, newBlocks)
-      this.workspace.programChanged(new BlockChangedEvent(newFirst))
+      this.workspace.programChanged(new BlockInstanceEvent(newFirst))
     })
   }
 

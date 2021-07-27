@@ -14,7 +14,7 @@ import { ChainUI } from "./chain"
 import { CodeFormatter } from "./code-formatter"
 import { DragListener } from "./drag-drop/drag-listener"
 import { DragManager } from "./drag-drop/drag-manager"
-import { BlockChangedEvent, ProgramChangedEvent } from "./program-changed-event"
+import { BlockInstanceEvent, ProgramChangedEvent } from "./program-changed-event"
 
 class CodeWorkspaceUI {
 
@@ -236,7 +236,7 @@ class CodeWorkspaceUI {
       this.createChain(blocks, Math.max(dropX, 0), Math.max(dropY, 0))
 
       const changedBlock = blocks[0]
-      this.programChanged(new BlockChangedEvent(changedBlock))
+      this.programChanged(new BlockInstanceEvent(changedBlock))
     })
   }
 
@@ -244,7 +244,7 @@ class CodeWorkspaceUI {
     DragManager.drop( (oldBlocks) => {
       this.menu.menuDiv.classList.remove("nt-menu-drag-over")
       const changedBlock = oldBlocks[0]
-      this.programChanged(new BlockChangedEvent(changedBlock))
+      this.programChanged(new BlockInstanceEvent(changedBlock))
     })
   }
 

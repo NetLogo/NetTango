@@ -76,7 +76,10 @@ class BlockDefinitionUI {
     dropZone.on("dragleave", () => {
       this.wrapperDiv.classList.remove("nt-menu-slot-over")
     })
-    dropZone.on("drop", () => slotDropNotifier(this.slotIndex + 1))
+    dropZone.on("drop", () => {
+      this.wrapperDiv.classList.remove("nt-menu-slot-over")
+      slotDropNotifier(this.slotIndex + 1)
+    })
 
     return this.wrapperDiv
   }

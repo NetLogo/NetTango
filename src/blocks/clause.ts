@@ -11,7 +11,7 @@ import { ClauseAcceptor } from "./drag-drop/clause-acceptor"
 import { ActiveDragData } from "./drag-drop/drag-data/active-drag-data"
 import { ClauseDragData } from "./drag-drop/drag-data/clause-drag-data"
 import { DragManager } from "./drag-drop/drag-manager"
-import { BlockChangedEvent } from "./program-changed-event"
+import { BlockInstanceEvent } from "./program-changed-event"
 import { Clause, ClauseInstance } from "../types/types"
 import { BlockRules } from "./block-rules"
 
@@ -203,7 +203,7 @@ class ClauseUI extends BlockCollection {
       this.div.classList.remove("nt-clause-empty")
 
       const changedBlock = newBlocks[0]
-      this.owner.workspace.programChanged(new BlockChangedEvent(changedBlock))
+      this.owner.workspace.programChanged(new BlockInstanceEvent(changedBlock))
     })
   }
 

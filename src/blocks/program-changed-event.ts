@@ -6,8 +6,8 @@ import { BlockInstanceUI } from "./block-instance"
 abstract class ProgramChangedEvent {
 }
 
-class BlockChangedEvent extends ProgramChangedEvent {
-  readonly type = "block-changed"
+class BlockInstanceEvent extends ProgramChangedEvent {
+  readonly type = "block-instance-changed"
   readonly blockId: number
   readonly instanceId: number | null
 
@@ -67,4 +67,10 @@ class BlockDefinitionEvent extends ProgramChangedEvent {
   }
 }
 
-export { ProgramChangedEvent, MenuItemEvent, AttributeChangedEvent, BlockChangedEvent, BlockDefinitionEvent }
+export {
+  ProgramChangedEvent
+, MenuItemEvent
+, AttributeChangedEvent
+, BlockInstanceEvent
+, BlockDefinitionEvent
+}
