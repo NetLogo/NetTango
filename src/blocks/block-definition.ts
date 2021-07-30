@@ -70,6 +70,7 @@ class BlockDefinitionUI {
     if (enableDefinitionChanges) {
       const dropZone = interact(this.wrapperDiv).dropzone({
         accept: ".nt-menu-slot"
+      , checker: (_1, _2, dropped) => this.workspace.checker(dropped)
       })
       dropZone.on("dragenter", () => {
         this.wrapperDiv.classList.add("nt-menu-slot-over")

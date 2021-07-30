@@ -4,13 +4,14 @@ import interact from "interactjs"
 
 class DropSpot {
 
-  static draw(dropEvent: () => void, enableDefinitionChanges: boolean): HTMLDivElement {
+  static draw(dropEvent: () => void, enableDefinitionChanges: boolean, checker: (dropped: boolean) => boolean): HTMLDivElement {
     const spot = document.createElement("div")
     spot.classList.add("nt-drop-spot")
 
     if (enableDefinitionChanges) {
       const dropZone = interact(spot).dropzone({
         accept: ".nt-menu-slot"
+      , checker: (_1, _2, dropped) => checker(dropped)
       })
       dropZone.on("dragenter", () => {
         spot.classList.add("nt-menu-slot-over")
