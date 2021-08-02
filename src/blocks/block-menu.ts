@@ -12,6 +12,8 @@ import { DomUtils } from "../utils/dom-utils"
 
 class BlockMenuUI {
 
+  private static readonly menuScrolls: Map<string, number> = new Map()
+
   readonly blocks: BlockDefinition[]
   readonly workspace: CodeWorkspaceUI
   readonly enableDefinitionChanges: boolean
@@ -43,6 +45,14 @@ class BlockMenuUI {
 
   draw(): HTMLDivElement {
     this.menuDiv = document.createElement("div")
+    // this silliness and `resetScroll()` are a workaround to not get the menu scroll
+    // to reset when working in the builder and adding, removing, and chaning blocks
+    // that result in a total reload of all DIVs at the moment.  -Jeremy B August 2021
+    this.menuDiv.addEventListener("scroll", (ev: Event) => {
+      BlockMenuUI.menuScrolls.set(this.workspace.containerId, this.menuDiv.scrollTop)
+    })
+    this.menuDiv.className = ""
+
     this.menuDiv.id = `${this.workspace.containerId}-menu`
     this.menuDiv.classList.add("nt-menu")
 
@@ -77,6 +87,12 @@ class BlockMenuUI {
     this.updateLimits()
 
     return this.menuDiv
+  }
+
+  resetScroll(): void {
+    if (BlockMenuUI.menuScrolls.has(this.workspace.containerId)) {
+      this.menuDiv.scrollTop = BlockMenuUI.menuScrolls.get(this.workspace.containerId)!
+    }
   }
 
   moveSlot(from: number, to: number): void {

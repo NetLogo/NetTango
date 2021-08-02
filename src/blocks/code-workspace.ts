@@ -198,6 +198,7 @@ class CodeWorkspaceUI {
     menuWrapper.classList.add("nt-menu-wrapper")
     menuWrapper.append(menuDiv)
     wrapper.append(menuWrapper)
+    this.menu.resetScroll()
 
     const spaceDropzone = interact(this.spaceDiv).dropzone({
         accept: ".nt-menu-slot, .nt-block, .nt-cap, .nt-notch"
