@@ -46,7 +46,8 @@ class BlockMenuUI {
     this.menuDiv.id = `${this.workspace.containerId}-menu`
     this.menuDiv.classList.add("nt-menu")
 
-    const dropSpot = DropSpot.draw(() => DragManager.slotDrop(0), this.enableDefinitionChanges, (d) => this.workspace.checker(d) )
+    const checker = (d: boolean) => d && DragManager.isInSameWorkspace(this.workspace.containerId)
+    const dropSpot = DropSpot.draw( () => DragManager.slotDrop(0), this.enableDefinitionChanges, checker)
     dropSpot.classList.add("nt-menu-slot-wrapper")
     this.menuDiv.append(dropSpot)
 

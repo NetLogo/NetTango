@@ -8,10 +8,12 @@ import { BlockDragData } from "./block-drag-data"
 
 class NewDragData extends BlockDragData {
   slotIndex: number
+  isAvailable: boolean
 
-  constructor(block: BlockInstanceUI, index: number) {
+  constructor(block: BlockInstanceUI, index: number, isAvailable: boolean) {
     super(block)
     this.slotIndex   = index
+    this.isAvailable = isAvailable
   }
 
   isLastInCollection(): boolean {
@@ -37,6 +39,10 @@ class NewBlockDrag extends DragInProgress {
   }
 
   getDraggingBlocks(): BlockInstanceUI[] { return this.draggingBlocks }
+
+  isWorkspaceDroppable(): boolean {
+    return this.dragData.isAvailable
+  }
 
   cancel(): void {
     super.cancel()

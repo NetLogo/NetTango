@@ -22,7 +22,6 @@ class BlockDefinitionUI {
   slotIndex: number
   wrapperDiv: HTMLDivElement = document.createElement("div")
   slotDiv: HTMLDivElement = document.createElement("div")
-  isAtLimit = false
 
   constructor(def: BlockDefinition, workspace: CodeWorkspaceUI, slotIndex: number) {
     this.def = def
@@ -59,7 +58,8 @@ class BlockDefinitionUI {
       this.slotDiv.style.lineHeight = lineHeight
     }
 
-    const dragListener = new DragListener(this.workspace.dragImage, this.slotDiv, "nt-block-dragging", "nt-menu-slot-at-limit")
+    const cancelClass = enableDefinitionChanges ? null : "nt-menu-slot-at-limit"
+    const dragListener = new DragListener(this.workspace.dragImage, this.slotDiv, "nt-block-dragging", cancelClass)
     dragListener.start = (e: InteractEvent) => this.startDrag(e)
     dragListener.end   = () => this.endDrag()
 
@@ -70,7 +70,7 @@ class BlockDefinitionUI {
     if (enableDefinitionChanges) {
       const dropZone = interact(this.wrapperDiv).dropzone({
         accept: ".nt-menu-slot"
-      , checker: (_1, _2, dropped) => this.workspace.checker(dropped)
+      , checker: (_1, _2, dropped) => dropped && DragManager.isInSameWorkspace(this.workspace.containerId)
       })
       dropZone.on("dragenter", () => {
         this.wrapperDiv.classList.add("nt-menu-slot-over")
@@ -125,7 +125,7 @@ class BlockDefinitionUI {
 
   startDrag(event: InteractEvent): void {
     const newInstance = new BlockInstanceUI(this.def, this.makeInstance(), this.workspace)
-    const dragData = new NewDragData(newInstance, this.slotIndex)
+    const dragData = new NewDragData(newInstance, this.slotIndex, this.isAvailable())
     newInstance.draw(dragData)
     DragManager.start(newInstance, dragData, event)
   }

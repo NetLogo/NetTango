@@ -63,12 +63,22 @@ class DragManager {
     drag.slotDrop(dropIndex)
   }
 
+  static isInSameWorkspace(containerId: string): boolean {
+    if (DragManager.currentDrag === null) {
+      return false
+    }
+
+    return containerId === DragManager.currentDrag.workspace.containerId
+  }
+
   static isValidDrop(containerId: string, dragHandler: (dragState: DragInProgress) => boolean = () => { return true }): boolean {
     if (DragManager.currentDrag === null) {
       return false
     }
 
-    return containerId === DragManager.currentDrag.workspace.containerId && dragHandler(DragManager.currentDrag)
+    return DragManager.isInSameWorkspace(containerId) &&
+      DragManager.currentDrag.isWorkspaceDroppable() &&
+      dragHandler(DragManager.currentDrag)
   }
 
 }

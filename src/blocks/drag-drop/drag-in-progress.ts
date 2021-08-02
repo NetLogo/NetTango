@@ -26,6 +26,9 @@ abstract class DragInProgress {
   cancel() {}
   drop() {}
   slotDrop(dropIndex: number) {}
+  isWorkspaceDroppable(): boolean {
+    return true
+  }
 
   get canBeChild(): boolean   { return ArrayUtils.ifNotNullOrEmpty(this.getDraggingBlocks(), (a) => a[0].canBeChild, false) }
   get canBeStarter(): boolean { return ArrayUtils.ifNotNullOrEmpty(this.getDraggingBlocks(), (a) => a[0].canBeStarter, false) }
