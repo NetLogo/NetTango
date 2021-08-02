@@ -34,7 +34,12 @@ class ChainBlockDrag extends DragInProgress {
   constructor(block: BlockInstanceUI, dragData: ChainDragData, startEvent: InteractEvent) {
     super(block.workspace, startEvent)
     this.dragData = dragData
-    this.draggingBlocks = this.workspace.chains[this.dragData.chainIndex].removeBlocks(this.dragData.blockIndex)
+    const chain = this.workspace.chains[this.dragData.chainIndex]
+    this.draggingBlocks = chain.removeBlocks(this.dragData.blockIndex)
+    if (startEvent.shiftKey) {
+      const trailingBlocks = this.draggingBlocks.splice(1)
+      chain.insertBlocks(this.dragData.blockIndex, trailingBlocks)
+    }
     this.draw()
   }
 

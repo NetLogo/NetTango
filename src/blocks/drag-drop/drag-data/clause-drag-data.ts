@@ -38,7 +38,12 @@ class ClauseBlockDrag extends DragInProgress {
     if (parentBlock === null) {
       throw new Error("Our drag event referenced a block in a clause for a block that doesn't exist?")
     }
-    this.draggingBlocks = parentBlock.clauses[this.dragData.clauseIndex].removeBlocks(this.dragData.blockIndex)
+    const clause = parentBlock.clauses[this.dragData.clauseIndex]
+    this.draggingBlocks = clause.removeBlocks(this.dragData.blockIndex)
+    if (startEvent.shiftKey) {
+      const trailingBlocks = this.draggingBlocks.splice(1)
+      clause.insertBlocks(this.dragData.blockIndex, trailingBlocks)
+    }
     this.draw()
   }
 
