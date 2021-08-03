@@ -236,7 +236,7 @@ class CodeWorkspaceUI {
 
   drop(event: InteractEvent): void {
     DragManager.drop( (blocks, dragStartOffset) => {
-      const offset = DragListener.getOffsetToRoot(this.chainsDiv)
+      const offset = DragListener.getOffset(this.chainsDiv)
       // The casts here are necessary I believe because the type defs are wrong, `dragEvent` does exist on the
       // `InteractEvent` when a drop occurs. -Jeremy B January 2020
       const dropX = ((event as any).dragEvent.page.x as number) - offset.x - dragStartOffset.x

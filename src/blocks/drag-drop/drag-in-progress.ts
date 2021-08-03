@@ -17,7 +17,7 @@ abstract class DragInProgress {
 
   constructor(workspace: CodeWorkspaceUI, startEvent: InteractEvent) {
     this.workspace       = workspace
-    const offset         = DragListener.getOffsetToRoot(startEvent.target as HTMLElement)
+    const offset         = DragListener.getOffset(startEvent.target as HTMLElement)
     this.dragStartOffset = { x: startEvent.pageX - offset.x, y: startEvent.pageY - offset.y }
   }
 

@@ -29,14 +29,14 @@ class DragListener {
   }
 
   private startEx(e: InteractEvent): void {
-    const offset = DragListener.getOffsetToRoot(this.sourceElement)
+    const offset = this.sourceElement.getBoundingClientRect()
 
     this.dragImage.style.left = "0px"
     this.dragImage.style.top  = "0px"
-    const zeroTopLeft = DragListener.getOffsetToRoot(this.dragImage)
+    const zeroTopLeft = this.dragImage.getBoundingClientRect()
 
-    this.dragImage.style.left = `${offset.x - zeroTopLeft.x}px`
-    this.dragImage.style.top  = `${offset.y - zeroTopLeft.y}px`
+    this.dragImage.style.left = `${offset.left - zeroTopLeft.left}px`
+    this.dragImage.style.top  = `${offset.top  - zeroTopLeft.top }px`
     this.dragImage.style.visibility = "visible"
 
     if (this.draggingClass !== null) {
@@ -72,13 +72,12 @@ class DragListener {
     return options
   }
 
-  static getOffsetToRoot(element: HTMLElement): Point {
-    const offset = { x: element.offsetLeft - element.scrollLeft, y: element.offsetTop - element.scrollTop }
-    if (element.offsetParent === null) {
-      return offset
+  static getOffset(element: HTMLElement) {
+    const rect = element.getBoundingClientRect()
+    return {
+      x: (window.scrollX + rect.left)
+    , y: (window.scrollY + rect.top)
     }
-    const parentOffset = DragListener.getOffsetToRoot(element.offsetParent as HTMLElement)
-    return { x: offset.x + parentOffset.x, y: offset.y + parentOffset.y }
   }
 
 }
