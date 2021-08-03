@@ -182,6 +182,28 @@ class BlockInstanceUI {
     return this.blockDiv
   }
 
+  drawStub(dragData: BlockDragData): void {
+    this.dragData = dragData
+
+    this.blockDiv = document.createElement("div")
+    this.blockDiv.classList.add("nt-block")
+    const styleClass = this.getStyleClass()
+    this.blockDiv.classList.add(styleClass)
+
+    BlockRules.applyStyleOverrides(this.def, this.blockDiv)
+
+    const headerDiv = document.createElement("div")
+    headerDiv.classList.add(`${styleClass}-color`)
+    BlockRules.maybeSetColorOverride(this.def.blockColor, headerDiv)
+    headerDiv.classList.add("nt-block-header")
+    this.blockDiv.append(headerDiv)
+
+    this.actionDiv = document.createElement("div")
+    this.updateActionText()
+    this.actionDiv.classList.add("nt-block-action")
+    headerDiv.append(this.actionDiv)
+  }
+
   static wireDragEvents(block: BlockInstanceUI, div: HTMLDivElement): void {
     const dragListener = new DragListener(block.workspace.dragImage, div)
     dragListener.start = (e: InteractEvent) => block.startDrag(e)

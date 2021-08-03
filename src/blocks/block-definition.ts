@@ -126,7 +126,11 @@ class BlockDefinitionUI {
   startDrag(event: InteractEvent): void {
     const newInstance = new BlockInstanceUI(this.def, this.makeInstance(), this.workspace)
     const dragData = new NewDragData(newInstance, this.slotIndex, this.isAvailable())
-    newInstance.draw(dragData)
+    if (this.isAvailable()) {
+      newInstance.draw(dragData)
+    } else {
+      newInstance.drawStub(dragData)
+    }
     DragManager.start(newInstance, dragData, event)
   }
 
