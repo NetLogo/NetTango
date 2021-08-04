@@ -43,10 +43,7 @@ class BlockDefinitionUI {
     const styleClass = BlockInstanceUI.getStyleClass(this.def, this.workspace.containerId)
     this.slotDiv.classList.add(styleClass)
     this.slotDiv.classList.add(`${styleClass}-color`)
-
-    const codeTip = this.formatCodeTip()
-    const titleSpan = `<span title="${codeTip}">${this.def.action}</span>`
-    this.slotDiv.insertAdjacentHTML("beforeend", titleSpan)
+    this.slotDiv.innerText = this.def.action
 
     if (this.def.blockColor  !== null) { this.slotDiv.style.backgroundColor = this.def.blockColor }
     if (this.def.borderColor !== null) { this.slotDiv.style.borderColor     = this.def.borderColor }

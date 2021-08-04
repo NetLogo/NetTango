@@ -121,7 +121,7 @@ class BlockInstanceUI {
     this.blockDiv.append(headerDiv)
 
     this.actionDiv = document.createElement("div")
-    this.updateActionText()
+    this.actionDiv.innerText = this.def.action
     this.actionDiv.classList.add("nt-block-action")
     headerDiv.append(this.actionDiv)
 
@@ -199,7 +199,7 @@ class BlockInstanceUI {
     this.blockDiv.append(headerDiv)
 
     this.actionDiv = document.createElement("div")
-    this.updateActionText()
+    this.actionDiv.innerText = this.def.action
     this.actionDiv.classList.add("nt-block-action")
     headerDiv.append(this.actionDiv)
   }
@@ -220,11 +220,6 @@ class BlockInstanceUI {
     dropzone.on("dragleave", () => {
       block.blockDiv.classList.remove("nt-drag-over")
     })
-  }
-
-  updateActionText(): void {
-    const codeTip = this.formatCodeTip()
-    this.actionDiv.insertAdjacentHTML("beforeend", `<span title="${codeTip}">${this.def.action}</span>`)
   }
 
   formatCodeTip(): string {
@@ -299,19 +294,6 @@ class BlockInstanceUI {
   resetOwnedBlocksDragData(): void {
     for (var clause of this.clauses) {
       clause.resetOwned()
-    }
-  }
-
-  resetBlockActionText(): void {
-    this.actionDiv.innerHTML = ""
-    this.updateActionText()
-    if (this.propertiesToggle !== null) {
-      this.actionDiv.append(this.propertiesToggle.div)
-    }
-    for (var clause of this.clauses) {
-      for (var block of clause.blocks) {
-        block.resetBlockActionText()
-      }
     }
   }
 

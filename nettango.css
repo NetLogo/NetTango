@@ -401,12 +401,6 @@
   justify-content: space-between;
 }
 
-.nt-menu-slot > span,
-.nt-block-action > span {
-  text-decoration: dashed underline;
-  text-decoration-color: #fff8;
-}
-
 .nt-block-params {
   grid-column: 2;
   display: flex;

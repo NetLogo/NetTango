@@ -303,7 +303,6 @@ class CodeWorkspaceUI {
 
   _updateWorkspaceForChanges(): void {
     this.updateWorkspaceHeight()
-    this.resetBlockActionText()
     this.menu.updateLimits()
   }
 
@@ -321,14 +320,6 @@ class CodeWorkspaceUI {
     const newHeight = `${this.currentHeight}px`
     this.spaceDiv.style.minHeight = newHeight
     this.menu.menuDiv.style.maxHeight = newHeight
-  }
-
-  resetBlockActionText(): void {
-    for (var chain of this.chains) {
-      for (var block of chain.blocks) {
-        block.resetBlockActionText()
-      }
-    }
   }
 
   removeEventListeners(): void {
