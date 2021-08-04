@@ -3,8 +3,8 @@
 import { IntAttribute, NumAttribute, NumberValue, RangeAttribute } from "../../types/types"
 import { NumUtils } from "../../utils/num-utils"
 import { BlockInstanceUI } from "../block-instance"
-import { CodeFormatter } from "../code-formatter"
-import { AttributeChangedEvent } from "../program-changed-event"
+import { EventRouter } from "../../event-router"
+import { AttributeChangedEvent } from "../../events"
 import { AttributeUI } from "./attribute"
 
 abstract class NumAttributeUI extends AttributeUI {
@@ -54,7 +54,18 @@ abstract class NumAttributeUI extends AttributeUI {
         backdrop.classList.remove("show")
         acceptCallback()
         const formattedValue = NumAttributeUI.numberValue(this.numDef, this.na)
-        this.block.workspace.programChanged(new AttributeChangedEvent(this.block.def.id, this.block.b.instanceId, this.id, this.a.type, this.isProperty, this.na.value, formattedValue))
+        const event: AttributeChangedEvent = {
+          type: "attribute-changed"
+        , containerId: this.block.containerId
+        , blockId: this.block.def.id
+        , instanceId: this.block.b.instanceId
+        , attributeId: this.id
+        , attributeType: this.na.type
+        , isProperty: this.isProperty
+        , value: this.na.value
+        , formattedValue: formattedValue
+        }
+        EventRouter.fireEvent(event)
       })
     )
 

@@ -2,7 +2,8 @@
 
 import { SelectAttribute, SelectOption, StringValue } from "../../types/types"
 import { BlockInstanceUI } from "../block-instance"
-import { AttributeChangedEvent } from "../program-changed-event"
+import { EventRouter } from "../../event-router"
+import { AttributeChangedEvent } from "../../events"
 import { AttributeUI } from "./attribute"
 
 type QuoteOptionTypes = "smart-quote" | "always-quote" | "never-quote"
@@ -58,7 +59,18 @@ class SelectAttributeUI extends AttributeUI {
         backdrop.classList.remove("show")
         acceptCallback()
         const formattedValue = SelectAttributeUI.shouldQuote(this.selectDef, this.sa) ? `"${this.sa.value}"` : this.sa.value
-        this.block.workspace.programChanged(new AttributeChangedEvent(this.block.def.id, this.block.b.instanceId, this.id, this.sa.type, this.isProperty, this.sa.value, formattedValue))
+        const event: AttributeChangedEvent = {
+          type: "attribute-changed"
+        , containerId: this.block.containerId
+        , blockId: this.block.def.id
+        , instanceId: this.block.b.instanceId
+        , attributeId: this.id
+        , attributeType: this.sa.type
+        , isProperty: this.isProperty
+        , value: this.sa.value
+        , formattedValue: formattedValue
+        }
+        EventRouter.fireEvent(event)
         e.stopPropagation()
       }
     }

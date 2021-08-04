@@ -15,13 +15,14 @@ import { BlockAcceptor } from "./drag-drop/block-acceptor"
 import { BlockDragData } from "./drag-drop/drag-data/block-drag-data"
 import { ChainDragData } from "./drag-drop/drag-data/chain-drag-data"
 import { NewDragData } from "./drag-drop/drag-data/new-drag-data"
-import { BlockInstanceEvent } from "./program-changed-event"
+import { createBlockInstanceEvent } from "./program-changed-event"
 import { DragManager } from "./drag-drop/drag-manager"
 import { ClauseDragData } from "./drag-drop/drag-data/clause-drag-data"
 import { DragListener } from "./drag-drop/drag-listener"
 import { BlockDefinition, BlockInstance } from "../types/types"
 import { createAttribute } from "./attributes/attribute-factory"
 import { BlockRules } from "./block-rules"
+import { EventRouter } from "../event-router"
 
 class BlockInstanceUI {
 
@@ -48,7 +49,8 @@ class BlockInstanceUI {
     return BlockRules.canBeStarter(this.def)
   }
 
-  workspace: CodeWorkspaceUI
+  readonly containerId: string
+  readonly workspace: CodeWorkspaceUI
 
   dragData: BlockDragData = new NewDragData(this, 0, false)
   acceptor: BlockAcceptor = new BlockAcceptor(this)
@@ -59,6 +61,7 @@ class BlockInstanceUI {
   constructor(def: BlockDefinition, b: BlockInstance, workspace: CodeWorkspaceUI) {
     this.def = def
     this.b = b
+    this.containerId = workspace.containerId
     this.workspace = workspace
 
     this.clauses = b.clauses.map( (c, i) => new ClauseUI(def.clauses[i], c, this, i) )
@@ -98,7 +101,7 @@ class BlockInstanceUI {
   }
 
   getStyleClass(): string {
-    return BlockInstanceUI.getStyleClass(this.def, this.workspace.containerId)
+    return BlockInstanceUI.getStyleClass(this.def, this.containerId)
   }
 
   draw(dragData: BlockDragData): HTMLDivElement {
@@ -141,7 +144,7 @@ class BlockInstanceUI {
       this.propertiesToggle = new Toggle(this.b.propertiesDisplay !== "hidden", (isOn) => {
         this.b.propertiesDisplay = isOn ? "shown" : "hidden"
         propertiesDiv.classList.toggle("nt-block-properties-hidden")
-        this.workspace.programChanged(new BlockInstanceEvent(this))
+        EventRouter.fireEvent(createBlockInstanceEvent(this))
       })
       if (this.b.propertiesDisplay === "hidden") {
         propertiesDiv.classList.add("nt-block-properties-hidden")
@@ -269,12 +272,12 @@ class BlockInstanceUI {
       }
 
       const changedBlock = newBlocks[0]
-      this.workspace.programChanged(new BlockInstanceEvent(changedBlock))
+      EventRouter.fireEvent(createBlockInstanceEvent(changedBlock))
     })
   }
 
   enableDropZones(): void {
-    if (DragManager.isValidDrop(this.workspace.containerId, (dragState) => BlockAcceptor.isLandingSpot(this, dragState))) {
+    if (DragManager.isValidDrop(this.containerId, (dragState) => BlockAcceptor.isLandingSpot(this, dragState))) {
       this.blockDiv.classList.add("nt-allowed-drop")
     }
 

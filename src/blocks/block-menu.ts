@@ -4,17 +4,20 @@ import interact from "interactjs"
 import { BlockDefinition } from "../types/types"
 import { CodeWorkspaceUI } from "./code-workspace"
 import { DragManager } from "./drag-drop/drag-manager"
-import { BlockInstanceEvent, BlockDefinitionEvent } from "./program-changed-event"
+import { createBlockInstanceEvent } from "./program-changed-event"
 import { BlockDefinitionUI } from "./block-definition"
 import { DropSpot } from "./baubles/drop-spot"
 import { ArrayUtils } from "../utils/array-utils"
 import { DomUtils } from "../utils/dom-utils"
+import { EventRouter } from "../event-router"
+import { BlockDefinitionEvent } from "../events"
 
 class BlockMenuUI {
 
   private static readonly menuScrolls: Map<string, number> = new Map()
 
   readonly blocks: BlockDefinition[]
+  readonly containerId: string
   readonly workspace: CodeWorkspaceUI
   readonly enableDefinitionChanges: boolean
   readonly slots: BlockDefinitionUI[]
@@ -25,6 +28,7 @@ class BlockMenuUI {
 
   constructor(blocks: BlockDefinition[], workspace: CodeWorkspaceUI, enableDefinitionChanges: boolean) {
     this.blocks = blocks
+    this.containerId = workspace.containerId
     this.workspace = workspace
     this.enableDefinitionChanges = enableDefinitionChanges
     this.slots = blocks.map( (b, i) => new BlockDefinitionUI(b, workspace, i) )
@@ -49,14 +53,14 @@ class BlockMenuUI {
     // to reset when working in the builder and adding, removing, and chaning blocks
     // that result in a total reload of all DIVs at the moment.  -Jeremy B August 2021
     this.menuDiv.addEventListener("scroll", (ev: Event) => {
-      BlockMenuUI.menuScrolls.set(this.workspace.containerId, this.menuDiv.scrollTop)
+      BlockMenuUI.menuScrolls.set(this.containerId, this.menuDiv.scrollTop)
     })
     this.menuDiv.className = ""
 
-    this.menuDiv.id = `${this.workspace.containerId}-menu`
+    this.menuDiv.id = `${this.containerId}-menu`
     this.menuDiv.classList.add("nt-menu")
 
-    const checker = (d: boolean) => d && DragManager.isInSameWorkspace(this.workspace.containerId)
+    const checker = (d: boolean) => d && DragManager.isInSameWorkspace(this.containerId)
     const dropSpot = DropSpot.draw( () => DragManager.slotDrop(0), this.enableDefinitionChanges, checker)
     dropSpot.classList.add("nt-menu-slot-wrapper")
     this.menuDiv.append(dropSpot)
@@ -90,8 +94,8 @@ class BlockMenuUI {
   }
 
   resetScroll(): void {
-    if (BlockMenuUI.menuScrolls.has(this.workspace.containerId)) {
-      this.menuDiv.scrollTop = BlockMenuUI.menuScrolls.get(this.workspace.containerId)!
+    if (BlockMenuUI.menuScrolls.has(this.containerId)) {
+      this.menuDiv.scrollTop = BlockMenuUI.menuScrolls.get(this.containerId)!
     }
   }
 
@@ -105,8 +109,12 @@ class BlockMenuUI {
     this.slots.forEach( (slot, i) => slot.slotIndex = i )
     // The +1's are to skip the top-drop element.
     DomUtils.swapChildren(this.menuDiv, from + 1, to + 1)
-    const event = new BlockDefinitionEvent(block.id)
-    this.workspace.programChanged(event)
+    const event: BlockDefinitionEvent = {
+      type: "block-definition-moved"
+    , containerId: this.containerId
+    , blockId: block.id
+    }
+    EventRouter.fireEvent(event)
   }
 
   updateLimits(): void {
@@ -119,7 +127,7 @@ class BlockMenuUI {
     DragManager.drop( (oldBlocks) => {
       this.menuDiv.classList.remove("nt-menu-drag-over")
       const changedBlock = oldBlocks[0]
-      this.workspace.programChanged(new BlockInstanceEvent(changedBlock))
+      EventRouter.fireEvent(createBlockInstanceEvent(changedBlock))
     })
   }
 

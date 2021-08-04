@@ -21,7 +21,7 @@ class BlockAcceptor {
     if (!dropped || this.block.dragData instanceof NewDragData) {
       return dropped
     }
-    return DragManager.isValidDrop(this.block.workspace.containerId, (dragState) => {
+    return DragManager.isValidDrop(this.block.containerId, (dragState) => {
       return BlockAcceptor.isLandingSpot(this.block, dragState)
     })
   }

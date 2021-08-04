@@ -3,8 +3,6 @@
 import { Attribute, AttributeValue } from "../../types/types"
 import { BlockInstanceUI } from "../block-instance"
 
-type AttributeTypes = "bool" | "num" | "int" | "range" | "text" | "select"
-
 abstract class AttributeUI {
 
   readonly id: number
@@ -13,7 +11,7 @@ abstract class AttributeUI {
   readonly block: BlockInstanceUI
   readonly isProperty: boolean
 
-  get uniqueId(): string { return `${this.block.workspace.containerId}-${this.block.def.id}-${this.id}` }
+  get uniqueId(): string { return `${this.block.containerId}-${this.block.def.id}-${this.id}` }
 
   get displayUnit(): string { return this.def.unit === null ? "" : this.def.unit }
   getDisplayValue(): string { return `${this.a.value}${this.displayUnit}` }
@@ -59,4 +57,4 @@ abstract class AttributeUI {
   abstract showParameterDialog(x: number, y: number, acceptCallback: () => void): void
 }
 
-export { AttributeUI, AttributeTypes }
+export { AttributeUI }

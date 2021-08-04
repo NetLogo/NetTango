@@ -3,7 +3,8 @@
 import { StringValue, TextAttribute } from "../../types/types"
 import { StringUtils } from "../../utils/string-utils"
 import { BlockInstanceUI } from "../block-instance"
-import { AttributeChangedEvent } from "../program-changed-event"
+import { EventRouter } from "../../event-router"
+import { AttributeChangedEvent } from "../../events"
 import { AttributeUI } from "./attribute"
 
 class TextAttributeUI extends AttributeUI {
@@ -44,7 +45,18 @@ class TextAttributeUI extends AttributeUI {
         backdrop.classList.remove("show")
         acceptCallback()
         const formattedValue = this.ta.value
-        this.block.workspace.programChanged(new AttributeChangedEvent(this.block.def.id, this.block.b.instanceId, this.id, this.ta.type, this.isProperty, this.ta.value, formattedValue))
+        const event: AttributeChangedEvent = {
+          type: "attribute-changed"
+        , containerId: this.block.containerId
+        , blockId: this.block.def.id
+        , instanceId: this.block.b.instanceId
+        , attributeId: this.id
+        , attributeType: this.ta.type
+        , isProperty: this.isProperty
+        , value: this.ta.value
+        , formattedValue: formattedValue
+        }
+        EventRouter.fireEvent(event)
       })
     )
 

@@ -2,15 +2,16 @@
 
 import { QuoteOptions } from "./blocks/attributes/select-attribute"
 import { BlockPlacement } from "./blocks/block-placement"
-import { AttributeTypes } from "./blocks/attributes/attribute"
+import { AttributeTypes } from "./attribute-types"
 import { CodeFormatter } from "./blocks/code-formatter"
 import { CodeWorkspaceUI } from "./blocks/code-workspace"
 import { VersionManager } from "./versions/version-manager"
 import { CodeWorkspace, ExpressionDefinition } from "./types/types"
-import { ProgramChangedEvent } from "./blocks/program-changed-event"
+import { ProgramChangedEvent } from "./events"
 import { ObjectUtils } from "./utils/object-utils"
 import { defaultExpressions } from "./default-expressions"
 import { BlockStyleUI } from "./blocks/block-style"
+import { EventRouter } from "./event-router"
 
 type FormatAttributeType = (containerId: string, blockId: number, instanceId: number, attributeId: number, value: any, attributeType: AttributeTypes, isProperty: boolean) => string
 
@@ -50,15 +51,18 @@ class NetTango {
 
   private static readonly workspaces: Map<string, CodeWorkspaceUI> = new Map()
 
-  /// Add a callback function to receive programChanged events from the
-  /// workspace. Callback functions should take one parameter, which is
-  /// the canvasId for the workspace (as a String).
-  static onProgramChanged(containerId: string, callback: (containerId: string, event: ProgramChangedEvent) => void): void {
+  static addEventListener(containerId: string, listener: (event: ProgramChangedEvent) => void): void {
     if (!NetTango.workspaces.has(containerId)) {
       throw new Error("Cannot find workspace for given container ID.")
     }
-    const notifier = (event: ProgramChangedEvent) => callback(containerId, event)
-    NetTango.workspaces.get(containerId)!.notifier = notifier
+    const externalEventTypes: ProgramChangedEvent['type'][] = [
+      "block-instance-changed"
+    , "attribute-changed"
+    , "menu-item-clicked"
+    , "menu-item-context-menu"
+    , "block-definition-moved"
+    ]
+    EventRouter.addListener("external-listener", containerId, externalEventTypes, listener)
   }
 
   /// Exports the code for a workspace in a given target language.
@@ -97,16 +101,9 @@ class NetTango {
     const ws: CodeWorkspace = VersionManager.updateWorkspace(definition)
 
     try {
-      var notifier = null
-      if (NetTango.workspaces.has(containerId)) {
-        const oldWs = NetTango.workspaces.get(containerId)!
-        oldWs.removeEventListeners()
-        notifier = oldWs.notifier
-      }
       const workspace = restoreWorkspace(containerId, ws, language, formatAttribute, options)
       NetTango.workspaces.set(containerId, workspace)
       workspace.draw()
-      workspace.notifier = notifier
     } catch (e) {
       console.log(e)
       throw new Error("There was an error initializing the workspace with the given NetTango model JSON.")

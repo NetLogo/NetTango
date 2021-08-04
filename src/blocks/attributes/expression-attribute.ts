@@ -3,10 +3,9 @@
 import { ExpressionAttribute, Expression, ExpressionValue } from "../../types/types"
 import { StringUtils } from "../../utils/string-utils"
 import { BlockInstanceUI } from "../block-instance"
-import { CodeFormatter } from "../code-formatter"
-import { ExpressionUI } from "../expressions/expression"
+import { EventRouter } from "../../event-router"
 import { ExpressionBuilder } from "../expressions/expression-builder"
-import { AttributeChangedEvent } from "../program-changed-event"
+import { AttributeChangedEvent } from "../../events"
 import { AttributeUI } from "./attribute"
 
 //-------------------------------------------------------------------------
@@ -59,7 +58,18 @@ class ExpressionAttributeUI extends AttributeUI {
         backdrop.classList.remove("show")
         acceptCallback()
         const value = ExpressionAttributeUI.expressionValue(this.ea)
-        this.block.workspace.programChanged(new AttributeChangedEvent(this.block.def.id, this.block.b.instanceId, this.id, this.ea.type, this.isProperty, value, value))
+        const event: AttributeChangedEvent = {
+          type: "attribute-changed"
+        , containerId: this.block.containerId
+        , blockId: this.block.def.id
+        , instanceId: this.block.b.instanceId
+        , attributeId: this.id
+        , attributeType: this.ea.type
+        , isProperty: this.isProperty
+        , value: value
+        , formattedValue: value
+        }
+        EventRouter.fireEvent(event)
         return false
       })
     )

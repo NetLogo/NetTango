@@ -25,7 +25,7 @@ import {
 
 import { BlockStyleUI } from "../blocks/block-style"
 import { ObjectUtils } from "../utils/object-utils"
-import { AttributeTypes } from "../blocks/attributes/attribute"
+import { AttributeTypes } from "../attribute-types"
 
 const UNRESTRICTED_TAGS: UnrestrictedTags = Object.freeze({ type: "unrestricted" })
 

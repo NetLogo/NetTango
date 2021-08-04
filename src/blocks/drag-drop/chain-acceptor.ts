@@ -17,7 +17,7 @@ class ChainAcceptor {
     if (!dropped) {
       return dropped
     }
-    return DragManager.isValidDrop(this.chain.workspace.containerId, (dragState) => {
+    return DragManager.isValidDrop(this.chain.containerId, (dragState) => {
       return ChainAcceptor.isLandingSpot(this.chain, dragState)
     })
   }

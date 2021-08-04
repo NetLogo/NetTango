@@ -19,7 +19,7 @@ class ClauseAcceptor {
     if (!dropped) {
       return dropped
     }
-    return DragManager.isValidDrop(this.clause.owner.workspace.containerId, (dragState) => {
+    return DragManager.isValidDrop(this.clause.containerId, (dragState) => {
       return ClauseAcceptor.isLandingSpot(this.clause, dragState)
     })
   }

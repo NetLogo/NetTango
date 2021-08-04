@@ -63,9 +63,9 @@ class DragListener {
   private makeOptions(): DraggableOptions {
     const options: DraggableOptions = {
       listeners: {
-          "start": (e) => this.startEx(e)
-        , "move":  (e) => this.moveEx(e)
-        , "end":   (e) => this.endEx(e)
+        "start": (e) => this.startEx(e)
+      , "move":  (e) => this.moveEx(e)
+      , "end":   (e) => this.endEx(e)
       }
     }
     if (this.cancelClass !== null) { options.ignoreFrom = `.${this.cancelClass}` }

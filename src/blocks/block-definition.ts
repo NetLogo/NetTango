@@ -7,16 +7,18 @@ import { StringBuffer } from "../utils/string-buffer"
 import { StringUtils } from "../utils/string-utils"
 import { BlockInstanceUI } from "./block-instance"
 import { CodeWorkspaceUI } from "./code-workspace"
-import { MenuItemEvent } from "./program-changed-event"
+import { MenuItemEvent } from "../events"
 import { DragListener } from "./drag-drop/drag-listener"
 import { DragManager } from "./drag-drop/drag-manager"
 import { NewDragData } from './drag-drop/drag-data/new-drag-data'
 import { BlockDefinition, BlockInstance } from '../types/types'
 import { makeAttributeDefault } from './attributes/attribute-factory'
+import { EventRouter } from "../event-router"
 
 class BlockDefinitionUI {
 
   readonly def: BlockDefinition
+  readonly containerId: string
   readonly workspace: CodeWorkspaceUI
 
   slotIndex: number
@@ -25,6 +27,7 @@ class BlockDefinitionUI {
 
   constructor(def: BlockDefinition, workspace: CodeWorkspaceUI, slotIndex: number) {
     this.def = def
+    this.containerId = workspace.containerId
     this.workspace = workspace
     this.slotIndex = slotIndex
   }
@@ -40,7 +43,7 @@ class BlockDefinitionUI {
     this.wrapperDiv.appendChild(this.slotDiv)
 
     this.slotDiv.classList.add("nt-menu-slot")
-    const styleClass = BlockInstanceUI.getStyleClass(this.def, this.workspace.containerId)
+    const styleClass = BlockInstanceUI.getStyleClass(this.def, this.containerId)
     this.slotDiv.classList.add(styleClass)
     this.slotDiv.classList.add(`${styleClass}-color`)
     this.slotDiv.innerText = this.def.action
@@ -67,7 +70,7 @@ class BlockDefinitionUI {
     if (enableDefinitionChanges) {
       const dropZone = interact(this.wrapperDiv).dropzone({
         accept: ".nt-menu-slot"
-      , checker: (_1, _2, dropped) => dropped && DragManager.isInSameWorkspace(this.workspace.containerId)
+      , checker: (_1, _2, dropped) => dropped && DragManager.isInSameWorkspace(this.containerId)
       })
       dropZone.on("dragenter", () => {
         this.wrapperDiv.classList.add("nt-menu-slot-over")
@@ -136,15 +139,27 @@ class BlockDefinitionUI {
   }
 
   raiseDoubleClick(e: MouseEvent): void {
-    const event = new MenuItemEvent("menu-item-clicked", this.def.id, e.pageX, e.pageY)
-    this.workspace.programChanged(event)
+    const event: MenuItemEvent = {
+      type: "menu-item-clicked"
+    , containerId: this.containerId
+    , blockId: this.def.id
+    , x: e.pageX
+    , y: e.pageY
+    }
+    EventRouter.fireEvent(event)
   }
 
   raiseContextMenu(e: MouseEvent): boolean {
     e.preventDefault()
     e.stopPropagation()
-    const event = new MenuItemEvent("menu-item-context-menu", this.def.id, e.pageX, e.pageY)
-    this.workspace.programChanged(event)
+    const event: MenuItemEvent = {
+      type: "menu-item-context-menu"
+    , containerId: this.containerId
+    , blockId: this.def.id
+    , x: e.pageX
+    , y: e.pageY
+    }
+    EventRouter.fireEvent(event)
     return false
   }
 

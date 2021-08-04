@@ -2,7 +2,8 @@
 
 import { NumberValue, RangeAttribute } from "../../types/types"
 import { BlockInstanceUI } from "../block-instance"
-import { AttributeChangedEvent } from "../program-changed-event"
+import { EventRouter } from "../../event-router"
+import { AttributeChangedEvent } from "../../events"
 import { NumAttributeUI } from "./num-attribute"
 
 class RangeAttributeUI extends NumAttributeUI {
@@ -56,7 +57,18 @@ class RangeAttributeUI extends NumAttributeUI {
       backdrop.classList.remove("show")
       acceptCallback()
       const formattedValue = NumAttributeUI.numberValue(this.numDef, this.na)
-      this.block.workspace.programChanged(new AttributeChangedEvent(this.block.def.id, this.block.b.instanceId, this.id, this.ra.type, this.isProperty, this.ra.value, formattedValue))
+      const event: AttributeChangedEvent = {
+        type: "attribute-changed"
+      , containerId: this.block.containerId
+      , blockId: this.block.def.id
+      , instanceId: this.block.b.instanceId
+      , attributeId: this.id
+      , attributeType: this.na.type
+      , isProperty: this.isProperty
+      , value: this.na.value
+      , formattedValue: formattedValue
+      }
+      EventRouter.fireEvent(event)
       e.stopPropagation()
     }
 

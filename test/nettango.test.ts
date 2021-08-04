@@ -1,6 +1,6 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
-import { AttributeTypes } from "../src/blocks/attributes/attribute"
+import { AttributeTypes } from "../src/attribute-types"
 import { BlockPlacement } from "../src/blocks/block-placement"
 import { defaultOptions, NetTango } from "../src/nettango"
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from "../src/nettango-defaults"

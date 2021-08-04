@@ -9,6 +9,7 @@ abstract class BlockCollection {
 
   readonly bs: BlockInstance[]
   readonly blocks: BlockInstanceUI[]
+  readonly containerId: string
 
   div: HTMLDivElement = document.createElement("div")
 
@@ -18,6 +19,7 @@ abstract class BlockCollection {
       const def = workspace.menu.getBlockById(b.definitionId)
       return new BlockInstanceUI(def, b, workspace)
     })
+    this.containerId = workspace.containerId
   }
 
   abstract redrawBlocks(): void

@@ -14,13 +14,12 @@ import { ChainUI } from "./chain"
 import { CodeFormatter } from "./code-formatter"
 import { DragListener } from "./drag-drop/drag-listener"
 import { DragManager } from "./drag-drop/drag-manager"
-import { BlockInstanceEvent, ProgramChangedEvent } from "./program-changed-event"
+import { EventRouter } from '../event-router'
+import { createBlockInstanceEvent } from "./program-changed-event"
 
 class CodeWorkspaceUI {
 
   readonly ws: CodeWorkspace
-
-  notifier: null | ((event: ProgramChangedEvent) => void) = null
 
   readonly containerId: string
   backdrop: HTMLDivElement = document.createElement("div")
@@ -92,20 +91,17 @@ class CodeWorkspaceUI {
     }
 
     this.chains = this.ws.program.chains.map( (c, i) => new ChainUI(c, this, i) )
+
+    EventRouter.addListener(
+      "workspace-change-listener"
+    , containerId
+    , ["block-instance-changed"]
+    , () => this.updateWorkspaceForChanges()
+    )
   }
 
   unload(): void {
     this.chains.splice(0)
-  }
-
-  programChanged(event: ProgramChangedEvent): void {
-    try {
-      this._updateWorkspaceForChanges()
-      if (this.notifier !== null) { this.notifier(event) }
-    } catch (e) {
-      console.log("Unable to relay program changed event to Javascript")
-      console.log(e)
-    }
   }
 
   exportCode(formatAttributeOverride: FormatAttributeType | null = null): string {
@@ -244,7 +240,7 @@ class CodeWorkspaceUI {
       this.createChain(blocks, Math.max(dropX, 0), Math.max(dropY, 0))
 
       const changedBlock = blocks[0]
-      this.programChanged(new BlockInstanceEvent(changedBlock))
+      EventRouter.fireEvent(createBlockInstanceEvent(changedBlock))
     })
   }
 
@@ -252,7 +248,7 @@ class CodeWorkspaceUI {
     DragManager.drop( (oldBlocks) => {
       this.menu.menuDiv.classList.remove("nt-menu-drag-over")
       const changedBlock = oldBlocks[0]
-      this.programChanged(new BlockInstanceEvent(changedBlock))
+      EventRouter.fireEvent(createBlockInstanceEvent(changedBlock))
     })
   }
 
@@ -301,7 +297,7 @@ class CodeWorkspaceUI {
     }
   }
 
-  _updateWorkspaceForChanges(): void {
+  updateWorkspaceForChanges(): void {
     this.updateWorkspaceHeight()
     this.menu.updateLimits()
   }
@@ -320,9 +316,6 @@ class CodeWorkspaceUI {
     const newHeight = `${this.currentHeight}px`
     this.spaceDiv.style.minHeight = newHeight
     this.menu.menuDiv.style.maxHeight = newHeight
-  }
-
-  removeEventListeners(): void {
   }
 
 }

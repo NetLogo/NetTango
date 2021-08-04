@@ -11,9 +11,10 @@ import { ClauseAcceptor } from "./drag-drop/clause-acceptor"
 import { ActiveDragData } from "./drag-drop/drag-data/active-drag-data"
 import { ClauseDragData } from "./drag-drop/drag-data/clause-drag-data"
 import { DragManager } from "./drag-drop/drag-manager"
-import { BlockInstanceEvent } from "./program-changed-event"
+import { createBlockInstanceEvent } from "./program-changed-event"
 import { Clause, ClauseInstance } from "../types/types"
 import { BlockRules } from "./block-rules"
+import { EventRouter } from "../event-router"
 
 class ClauseUI extends BlockCollection {
 
@@ -179,7 +180,7 @@ class ClauseUI extends BlockCollection {
   }
 
   enableDropZones(): void {
-    if (DragManager.isValidDrop(this.owner.workspace.containerId, (dragState) => ClauseAcceptor.isLandingSpot(this, dragState))) {
+    if (DragManager.isValidDrop(this.containerId, (dragState) => ClauseAcceptor.isLandingSpot(this, dragState))) {
       this.div.classList.add("nt-allowed-drop")
     }
 
@@ -203,7 +204,7 @@ class ClauseUI extends BlockCollection {
       this.div.classList.remove("nt-clause-empty")
 
       const changedBlock = newBlocks[0]
-      this.owner.workspace.programChanged(new BlockInstanceEvent(changedBlock))
+      EventRouter.fireEvent(createBlockInstanceEvent(changedBlock))
     })
   }
 
