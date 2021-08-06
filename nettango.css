@@ -530,6 +530,37 @@
   opacity: 0.25;
 }
 
+.nt-info-dialog {
+  visibility: hidden;
+  border-radius: 10px;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  max-width: 500px;
+  max-height: 1000px;
+  overflow: hidden;
+  color: #555;
+  line-height: 120%;
+  position: absolute;
+  z-index: 10;
+}
+
+.nt-info-dialog.show {
+  visibility: visible;
+}
+
+.nt-info-dialog-code {
+  max-width: 500px;
+  max-height: 1000px;
+  overflow: auto;
+}
+
+.nt-info-dialog-header {
+  font-family: Poppins, sans-serif;
+  font-size: medium;
+  margin: 0;
+}
+
 /* Backdrop for the parameter popup menu */
 .nt-attribute-backdrop {
   visibility: hidden;
@@ -540,16 +571,16 @@
 /* Toggle this class - hide and show the popup */
 .nt-attribute-backdrop.show {
   visibility: visible;
-  animation: fadeIn 0.25s;
+  animation: fadeIn 0.1s;
 }
 
 .nt-attribute-dialog {
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: white;
   border: 2px solid rgba(0, 0, 0, 0.4);
   margin-left: auto;
   margin-right: auto;
-  padding: 30px;
+  padding: 20px;
   max-width: 400px;
   color: #555;
   line-height: 120%;

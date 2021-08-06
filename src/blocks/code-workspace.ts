@@ -16,6 +16,7 @@ import { DragListener } from "./drag-drop/drag-listener"
 import { DragManager } from "./drag-drop/drag-manager"
 import { EventRouter } from '../event-router'
 import { createBlockInstanceEvent } from "./program-changed-event"
+import InfoDialog from './info-dialog'
 
 class CodeWorkspaceUI {
 
@@ -155,12 +156,23 @@ class CodeWorkspaceUI {
     this.backdrop.className = "nt-attribute-backdrop"
     const hideBackdrop = () => this.backdrop.classList.remove("show")
     this.backdrop.addEventListener("click", hideBackdrop)
+    this.backdrop.addEventListener("contextmenu", hideBackdrop)
 
     document.addEventListener("keyup", (e) => {
       if (e.key === "Escape" && this.backdrop.classList.contains("show")) {
         this.backdrop.classList.remove("show")
       }
     })
+
+    const codeTipDialog = new InfoDialog()
+    document.body.append(codeTipDialog.div)
+
+    EventRouter.addListener(
+      "workspace-instance-listener"
+    , this.containerId
+    , ["block-instance-menu"]
+    , (e) => { if (e.type === "block-instance-menu") { codeTipDialog.show(e) } }
+    )
 
     this.dialog = document.createElement("div")
     this.dialog.className = "nt-attribute-dialog"

@@ -21,7 +21,6 @@ class ChainUI extends BlockCollection {
   static readonly FRAGMENT_HEIGHT = 40
 
   readonly c: Chain
-  readonly workspace: CodeWorkspaceUI
 
   chainIndex: number
 
@@ -32,7 +31,6 @@ class ChainUI extends BlockCollection {
   constructor(c: Chain, workspace: CodeWorkspaceUI, chainIndex: number) {
     super(c.blocks, workspace)
     this.c = c
-    this.workspace = workspace
     this.chainIndex = chainIndex
   }
 

@@ -23,6 +23,7 @@ import { BlockDefinition, BlockInstance } from "../types/types"
 import { createAttribute } from "./attributes/attribute-factory"
 import { BlockRules } from "./block-rules"
 import { EventRouter } from "../event-router"
+import { BlockInstanceMenuEvent } from "../events"
 
 class BlockInstanceUI {
 
@@ -123,6 +124,23 @@ class BlockInstanceUI {
     headerDiv.classList.add("nt-block-header")
     this.blockDiv.append(headerDiv)
 
+    const fireBlockInstanceEvent = (ev: MouseEvent) => {
+      ev.stopPropagation()
+      ev.preventDefault()
+      const headerRect = headerDiv.getBoundingClientRect()
+      const event: BlockInstanceMenuEvent = {
+        type:        "block-instance-menu"
+      , containerId: this.containerId
+      , action:      this.def.action
+      , codeTip:     this.formatCodeTip()
+      , x:           ev.pageX
+      , y:           ev.pageY
+      }
+      EventRouter.fireEvent(event)
+      return false
+    }
+    headerDiv.addEventListener("contextmenu", fireBlockInstanceEvent)
+
     this.actionDiv = document.createElement("div")
     this.actionDiv.innerText = this.def.action
     this.actionDiv.classList.add("nt-block-action")
@@ -161,10 +179,12 @@ class BlockInstanceUI {
 
     if (this.hasClauses) {
       const firstClauseDiv = this.clauses[0].draw(this, headerDiv)
+      firstClauseDiv.addEventListener("contextmenu", fireBlockInstanceEvent)
       this.blockDiv.append(firstClauseDiv)
 
       for (var clause of this.clauses.slice(1)) {
         const clauseDiv = clause.draw(this, null)
+        clauseDiv.addEventListener("contextmenu", fireBlockInstanceEvent)
         this.blockDiv.append(clauseDiv)
       }
 
@@ -172,6 +192,7 @@ class BlockInstanceUI {
       clauseFooter.classList.add("nt-clause-footer")
       clauseFooter.classList.add(`${styleClass}-color`)
       BlockRules.maybeSetColorOverride(this.def.blockColor, clauseFooter)
+      clauseFooter.addEventListener("contextmenu", fireBlockInstanceEvent)
       this.blockDiv.append(clauseFooter)
     }
 
@@ -231,7 +252,7 @@ class BlockInstanceUI {
       out.writeln(this.def.note)
       out.writeln()
     }
-    if (this.dragData instanceof ChainDragData) {
+    if (this.dragData instanceof ChainDragData && this.dragData.blockIndex === 0) {
       const chain = this.workspace.chains[this.dragData.chainIndex]
       const chainBlocks = chain.blocks.map( (block) => { return { def: block.def, b: block.b }} )
       this.workspace.formatter.formatChainBlocks(out, chainBlocks, this.workspace.ws.chainOpen, this.workspace.ws.chainClose)
