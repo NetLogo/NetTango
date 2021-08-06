@@ -124,22 +124,8 @@ class BlockInstanceUI {
     headerDiv.classList.add("nt-block-header")
     this.blockDiv.append(headerDiv)
 
-    const fireBlockInstanceEvent = (ev: MouseEvent) => {
-      ev.stopPropagation()
-      ev.preventDefault()
-      const headerRect = headerDiv.getBoundingClientRect()
-      const event: BlockInstanceMenuEvent = {
-        type:        "block-instance-menu"
-      , containerId: this.containerId
-      , action:      this.def.action
-      , codeTip:     this.formatCodeTip()
-      , x:           ev.pageX
-      , y:           ev.pageY
-      }
-      EventRouter.fireEvent(event)
-      return false
-    }
-    headerDiv.addEventListener("contextmenu", fireBlockInstanceEvent)
+    const fireEvent = (ev: MouseEvent) => this.fireBlockInstanceEvent(ev)
+    headerDiv.addEventListener("contextmenu", fireEvent)
 
     this.actionDiv = document.createElement("div")
     this.actionDiv.innerText = this.def.action
@@ -179,12 +165,12 @@ class BlockInstanceUI {
 
     if (this.hasClauses) {
       const firstClauseDiv = this.clauses[0].draw(this, headerDiv)
-      firstClauseDiv.addEventListener("contextmenu", fireBlockInstanceEvent)
+      firstClauseDiv.addEventListener("contextmenu", fireEvent)
       this.blockDiv.append(firstClauseDiv)
 
       for (var clause of this.clauses.slice(1)) {
         const clauseDiv = clause.draw(this, null)
-        clauseDiv.addEventListener("contextmenu", fireBlockInstanceEvent)
+        clauseDiv.addEventListener("contextmenu", fireEvent)
         this.blockDiv.append(clauseDiv)
       }
 
@@ -192,7 +178,7 @@ class BlockInstanceUI {
       clauseFooter.classList.add("nt-clause-footer")
       clauseFooter.classList.add(`${styleClass}-color`)
       BlockRules.maybeSetColorOverride(this.def.blockColor, clauseFooter)
-      clauseFooter.addEventListener("contextmenu", fireBlockInstanceEvent)
+      clauseFooter.addEventListener("contextmenu", fireEvent)
       this.blockDiv.append(clauseFooter)
     }
 
@@ -266,6 +252,21 @@ class BlockInstanceUI {
     const value = out.toString().trim()
     const escapedValue = StringUtils.escapeHtml(value)
     return escapedValue
+  }
+
+  fireBlockInstanceEvent(ev: MouseEvent) {
+    ev.stopPropagation()
+    ev.preventDefault()
+    const event: BlockInstanceMenuEvent = {
+      type:        "block-instance-menu"
+    , containerId: this.containerId
+    , action:      this.def.action
+    , codeTip:     this.formatCodeTip()
+    , x:           ev.pageX
+    , y:           ev.pageY
+    }
+    EventRouter.fireEvent(event)
+    return false
   }
 
   startDrag(event: InteractEvent): void {

@@ -18,6 +18,7 @@ class ChainDraw {
       div.classList.remove("nt-chain-fragment")
 
       const topCap = drawCap(true, blocks[0])
+      topCap.addEventListener("contextmenu", (ev) => blocks[0].fireBlockInstanceEvent(ev))
       div.append(topCap)
 
     } else {
@@ -29,6 +30,7 @@ class ChainDraw {
       }
 
       const topNotch = Notch.draw(true, blocks[0])
+      topNotch.addEventListener("contextmenu", (ev) => blocks[0].fireBlockInstanceEvent(ev))
       div.append(topNotch)
 
       const arrow = Arrow.draw()
@@ -39,9 +41,11 @@ class ChainDraw {
 
     if (blocks[blocks.length - 1].isAttachable) {
       const bottomNotch = Notch.draw(false, blocks[blocks.length - 1])
+      bottomNotch.addEventListener("contextmenu", (ev) => blocks[blocks.length - 1].fireBlockInstanceEvent(ev))
       div.append(bottomNotch)
     } else {
       const bottomCap = drawCap(false, blocks[blocks.length - 1])
+      bottomCap.addEventListener("contextmenu", (ev) => blocks[blocks.length - 1].fireBlockInstanceEvent(ev))
       div.append(bottomCap)
     }
   }
