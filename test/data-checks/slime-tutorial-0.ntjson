@@ -244,6 +244,20 @@
       "control": false
     }
   ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "tagGroups": []
+  },
   "program": {
     "chains": [
       {

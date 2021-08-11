@@ -131,12 +131,33 @@ class VersionManager {
       })
     }
 
+    const groupTags = model.menuConfig.tagGroups.map( (tg) => tg.tag )
+    model.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(model.blocks, groupTags, model.menuConfig.mainGroup.order)
+    model.menuConfig.tagGroups.forEach( (tg) => tg.order = VersionManager.fixupTagGroupOrder(model.blocks, tg.tag, tg.order) )
+
     model.program.chains.forEach( (chain) => {
       chain.blocks = chain.blocks.filter( (b) => getDefById(b.definitionId) !== undefined )
       chain.blocks.forEach(processInstance)
     })
 
     model.program.chains = model.program.chains.filter( (chain) => chain.blocks.length > 0 )
+  }
+
+  static fixupGroupOrder(blocks: BlockDefinition[], sorting: number[], blockFilter: (b: BlockDefinition) => boolean): number[] {
+    const groupBlockIds = blocks.filter(blockFilter).map( (b) => b.id )
+    const filtered      = sorting.filter( (id) => groupBlockIds.includes(id) )
+    const missing       = groupBlockIds.filter( (id) => !filtered.includes(id) )
+    return filtered.concat(missing)
+  }
+
+  static fixupMainGroupOrder(blocks: BlockDefinition[], groupTags: string[], sorting: number[]): number[] {
+    const blockFilter = (b: BlockDefinition) => !groupTags.some( (gt) => b.tags.includes(gt) )
+    return VersionManager.fixupGroupOrder(blocks, sorting, blockFilter)
+  }
+
+  static fixupTagGroupOrder(blocks: BlockDefinition[], tag: string, sorting: number[]): number[] {
+    const blockFilter = (b: BlockDefinition) => b.tags.includes(tag)
+    return VersionManager.fixupGroupOrder(blocks, sorting, blockFilter)
   }
 
   static resetBlockInstance(definition: BlockDefinition, instance: BlockInstance) {

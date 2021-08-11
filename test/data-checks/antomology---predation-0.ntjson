@@ -454,6 +454,27 @@
       "control": true
     }
   ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        1,
+        16,
+        12,
+        17,
+        13,
+        11,
+        5,
+        19,
+        9,
+        10,
+        15,
+        6
+      ]
+    },
+    "tagGroups": []
+  },
   "program": {
     "chains": []
   },

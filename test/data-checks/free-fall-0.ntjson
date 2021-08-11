@@ -140,6 +140,18 @@
       "fontFace": "'Poppins', sans-serif"
     }
   ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "tagGroups": []
+  },
   "program": {
     "chains": []
   },

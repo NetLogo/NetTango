@@ -206,6 +206,20 @@
       "control": false
     }
   ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        7,
+        1,
+        6,
+        5,
+        9
+      ]
+    },
+    "tagGroups": []
+  },
   "program": {
     "chains": []
   },

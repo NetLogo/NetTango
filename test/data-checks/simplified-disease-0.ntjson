@@ -558,6 +558,29 @@
       "control": false
     }
   ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        9,
+        0,
+        11,
+        1,
+        16,
+        18,
+        4,
+        21,
+        28,
+        22,
+        20,
+        24,
+        8,
+        25,
+        26
+      ]
+    },
+    "tagGroups": []
+  },
   "program": {
     "chains": [
       {

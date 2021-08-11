@@ -1,7 +1,7 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import interact from "interactjs"
-import { BlockDefinition } from "../types/types"
+import { BlockDefinition, Grouping, MenuConfig } from "../types/types"
 import { CodeWorkspaceUI } from "./code-workspace"
 import { DragManager } from "./drag-drop/drag-manager"
 import { createBlockInstanceEvent } from "./program-changed-event"
@@ -17,6 +17,7 @@ class BlockMenuUI {
   private static readonly menuScrolls: Map<string, number> = new Map()
 
   readonly blocks: BlockDefinition[]
+  readonly menuConfig: MenuConfig
   readonly containerId: string
   readonly workspace: CodeWorkspaceUI
   readonly enableDefinitionChanges: boolean
@@ -26,8 +27,9 @@ class BlockMenuUI {
 
   menuDiv = document.createElement("div")
 
-  constructor(blocks: BlockDefinition[], workspace: CodeWorkspaceUI, enableDefinitionChanges: boolean) {
+  constructor(blocks: BlockDefinition[], menuConfig: MenuConfig, workspace: CodeWorkspaceUI, enableDefinitionChanges: boolean) {
     this.blocks = blocks
+    this.menuConfig = menuConfig
     this.containerId = workspace.containerId
     this.workspace = workspace
     this.enableDefinitionChanges = enableDefinitionChanges

@@ -187,6 +187,19 @@
       "control": true
     }
   ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "tagGroups": []
+  },
   "program": {
     "chains": []
   },

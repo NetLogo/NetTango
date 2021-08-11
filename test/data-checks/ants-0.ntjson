@@ -190,6 +190,18 @@
       "control": false
     }
   ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        2,
+        4,
+        3
+      ]
+    },
+    "tagGroups": []
+  },
   "program": {
     "chains": [
       {

@@ -33,6 +33,7 @@ test("Version1 - block gets id added", () => {
   const expected = newWorkspace()
   const blockDef = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
   expected.blocks.push(blockDef)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
 
   const result = VersionManager.updateWorkspace(model)
 
@@ -50,6 +51,7 @@ test("Version1 - chain block gets id added", () => {
   const expected = newWorkspace()
   const blockDef = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
   expected.blocks.push(blockDef)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
   const blockInst = ObjectUtils.clone(newBlockInstance(), { definitionId: 0, instanceId: 0 })
   expected.program.chains.push({
     x: 0, y: 0, blocks: [blockInst]
@@ -75,6 +77,7 @@ test("Version1 - chain block with children gets id added", () => {
   expected.blocks.push(blockDef1)
   const blockDef2 = ObjectUtils.clone(newBlockDefinition(), { id: 1, action: "forward 10" })
   expected.blocks.push(blockDef2)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
   const blockInst1 = ObjectUtils.clone(newBlockInstance(), { definitionId: 0, instanceId: 0 })
   const clauseInst1: ClauseInstance = ObjectUtils.clone(newClauseInstance())
   blockInst1.clauses.push(clauseInst1)
@@ -106,6 +109,7 @@ test("Version1 - chain block with clauses gets id added", () => {
   expected.blocks.push(blockDef1)
   const blockDef2 = ObjectUtils.clone(newBlockDefinition(), { id: 1, action: "forward 10" })
   expected.blocks.push(blockDef2)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
   const blockInst1 = ObjectUtils.clone(newBlockInstance(), { definitionId: 0, instanceId: 0 })
   const clauseInst1: ClauseInstance = newClauseInstance()
   blockInst1.clauses.push(clauseInst1)
@@ -138,6 +142,7 @@ test("Version1 - block, parameter, and property get ids added", () => {
   const prop1: IntAttribute = ObjectUtils.clone(newAttribute("int") as IntAttribute, { default: 9 })
   blockDef1.properties.push(prop1)
   expected.blocks.push(blockDef1)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
 
   const result = VersionManager.updateWorkspace(model)
   expect(result).toStrictEqual(expected)
@@ -166,6 +171,7 @@ test("Version1 - chain block, parameter, and property get ids added", () => {
   const prop1: IntAttribute = ObjectUtils.clone(newAttribute("int") as IntAttribute, { default: 9 })
   blockDef1.properties.push(prop1)
   expected.blocks.push(blockDef1)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
   const blockInst1 = ObjectUtils.clone(newBlockInstance(), { definitionId: 0, instanceId: 0 })
   const paramVal1: NumberValue = ObjectUtils.clone(newAttributeValue("int") as NumberValue, { value: 10 })
   blockInst1.params.push(paramVal1)
@@ -204,6 +210,7 @@ test("Version2 - select parameter converts to objects", () => {
   })
   blockDef1.params.push(param1)
   expected.blocks.push(blockDef1)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
   const blockInst1 = ObjectUtils.clone(newBlockInstance(), { definitionId: 0, instanceId: 0 })
   const paramInst1: StringValue = ObjectUtils.clone(newAttributeValue("select") as StringValue, { value: "apples" })
   blockInst1.params.push(paramInst1)
@@ -227,6 +234,7 @@ test("Version4 - chain gets x and y coordinates from first block", () => {
   const expected = newWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "act1" })
   expected.blocks.push(blockDef1)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
   const blockInst1 = ObjectUtils.clone(newBlockInstance(), { definitionId: 0, instanceId: 0 })
   const blockInst2 = ObjectUtils.clone(newBlockInstance(), { definitionId: 0, instanceId: 1 })
   expected.program.chains.push({
@@ -259,6 +267,7 @@ test("Version5 - select with unquoted values gets `never-quote` set", () => {
   })
   blockDef1.params.push(param1)
   expected.blocks.push(blockDef1)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
 
   const result = VersionManager.updateWorkspace(model)
   expect(result).toStrictEqual(expected)
@@ -319,6 +328,7 @@ test("Version6 - expression attributes get proper values reset", () => {
   })
   blockDef1.params.push(param1)
   expected.blocks.push(blockDef1)
+  expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
   const blockInst1 = ObjectUtils.clone(newBlockInstance(), { definitionId: 0, instanceId: 0 })
   const expr1: Expression = ObjectUtils.clone(newExpression("num"), { name: "10" })
   const paramInst1: ExpressionValue = ObjectUtils.clone(newAttributeValue("num") as ExpressionValue, { value: expr1 })
@@ -343,4 +353,69 @@ test("Version6 - expression attributes get proper values reset", () => {
   const result = VersionManager.updateWorkspace(model)
   expect(result).toStrictEqual(expected)
 
+})
+
+test("Version6 - group orders are properly reset", () => {
+  // we need to add/remove block defs, both within a tag and without, maybe with an extra for "just a normal order change"
+
+  const model = {
+    version: 6
+  , blocks: [{
+      id: 0
+    , action: "main-1"
+    , tags: []
+    }, {
+      id: 1
+    , action: "main-2"
+    , tags: []
+    }, {
+      action: "main-4-new"
+    , tags: ["orange"]
+    }, {
+      id: 4
+    , action: "group-1"
+    , tags: ["apple"]
+    }, {
+      action: "group-2-new"
+    , tags: ["apple", "orange"]
+    }, {
+      id: 7
+    , action: "group-3"
+    , tags: ["apple"]
+    }]
+  , menuConfig: {
+      mainGroup: { order: [0, 1, 2] }
+    , tagGroups: [{ tag: "apple", order: [7, 5, 4] }, { tag: "pear", order: [] }]
+    }
+  }
+
+  const expected = newWorkspace()
+  const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "main-1" })
+  expected.blocks.push(blockDef1)
+  const blockDef2 = ObjectUtils.clone(newBlockDefinition(), { id: 1, action: "main-2" })
+  expected.blocks.push(blockDef2)
+  const blockDef3 = ObjectUtils.clone(newBlockDefinition(), { id: 8, action: "main-4-new", tags: ["orange"] })
+  expected.blocks.push(blockDef3)
+  const blockDef4 = ObjectUtils.clone(newBlockDefinition(), { id: 4, action: "group-1", tags: ["apple"] })
+  expected.blocks.push(blockDef4)
+  const blockDef5 = ObjectUtils.clone(newBlockDefinition(), { id: 9, action: "group-2-new", tags: ["apple", "orange"] })
+  expected.blocks.push(blockDef5)
+  const blockDef6 = ObjectUtils.clone(newBlockDefinition(), { id: 7, action: "group-3", tags: ["apple"] })
+  expected.blocks.push(blockDef6)
+
+  expected.menuConfig.mainGroup.order = [0, 1, 8]
+  expected.menuConfig.tagGroups.push({
+    isCollapsed: false
+  , tag: "apple"
+  , order: [7, 4, 9]
+  })
+  expected.menuConfig.tagGroups.push({
+    isCollapsed: false
+  , tag: "pear"
+  , order: []
+  })
+
+  const result = VersionManager.updateWorkspace(model)
+
+  expect(result).toStrictEqual(expected)
 })

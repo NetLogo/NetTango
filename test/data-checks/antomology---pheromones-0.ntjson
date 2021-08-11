@@ -307,6 +307,23 @@
       "control": false
     }
   ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        1,
+        12,
+        15,
+        11,
+        5,
+        14,
+        9,
+        10
+      ]
+    },
+    "tagGroups": []
+  },
   "program": {
     "chains": []
   },

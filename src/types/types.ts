@@ -23,7 +23,10 @@ export type ExpressionAttribute = z.infer<typeof expressionAttributeSchema>
 export type Attribute = z.infer<typeof attributeSchema>
 
 export type BlockDefinition = z.infer<typeof blockDefinitionSchema>
+export type MenuConfig = z.infer<typeof menuConfigSchema>
 export type Clause = z.infer<typeof clauseSchema>
+export type Grouping = z.infer<typeof groupingSchema>
+export type TagGrouping = z.infer<typeof tagGroupingSchema>
 
 export type Chain = z.infer<typeof chainSchema>
 export type BlockInstance = z.infer<typeof blockInstanceSchema>
@@ -235,11 +238,26 @@ const expressionDefinitionSchema = z.object({
 , format: z.string().nullable().default(null)
 }).passthrough()
 
+const groupingSchema = z.object({
+  isCollapsed: z.boolean().default(false)
+, order: z.array(z.number()).default([])
+})
+
+const tagGroupingSchema = groupingSchema.extend({
+  tag: z.string()
+})
+
+const menuConfigSchema = z.object({
+  mainGroup: groupingSchema.default({ isCollapsed: false, order: [] })
+, tagGroups: z.array(tagGroupingSchema).default([])
+})
+
 export const codeWorkspaceSchema = z.object({
   version: z.literal(6)
 , height: z.number().default(DEFAULT_HEIGHT)
 , width: z.number().default(DEFAULT_WIDTH)
 , blocks: z.array(blockDefinitionSchema).default([])
+, menuConfig: menuConfigSchema.default({})
 , program: z.object({ chains: z.array(chainSchema) }).default({ chains: [] })
 , chainOpen: z.string().nullable().default(null)
 , chainClose: z.string().nullable().default(null)
