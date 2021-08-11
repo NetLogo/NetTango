@@ -29,6 +29,9 @@ abstract class DragInProgress {
   isWorkspaceDroppable(): boolean {
     return true
   }
+  isGroupDroppable(groupIndex: "main" | number): boolean {
+    return false
+  }
 
   get canBeChild(): boolean   { return ArrayUtils.ifNotNullOrEmpty(this.getDraggingBlocks(), (a) => a[0].canBeChild, false) }
   get canBeStarter(): boolean { return ArrayUtils.ifNotNullOrEmpty(this.getDraggingBlocks(), (a) => a[0].canBeStarter, false) }

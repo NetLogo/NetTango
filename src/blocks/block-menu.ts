@@ -1,16 +1,13 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import interact from "interactjs"
-import { BlockDefinition, Grouping, MenuConfig } from "../types/types"
+import { BlockDefinition, MenuConfig } from "../types/types"
 import { CodeWorkspaceUI } from "./code-workspace"
 import { DragManager } from "./drag-drop/drag-manager"
 import { createBlockInstanceEvent } from "./program-changed-event"
 import { BlockDefinitionUI } from "./block-definition"
-import { DropSpot } from "./baubles/drop-spot"
-import { ArrayUtils } from "../utils/array-utils"
-import { DomUtils } from "../utils/dom-utils"
 import { EventRouter } from "../event-router"
-import { BlockDefinitionEvent } from "../events"
+import { BlockMenuGroupUI } from "./block-menu-group"
 
 class BlockMenuUI {
 
@@ -21,7 +18,9 @@ class BlockMenuUI {
   readonly containerId: string
   readonly workspace: CodeWorkspaceUI
   readonly enableDefinitionChanges: boolean
-  readonly slots: BlockDefinitionUI[]
+
+  readonly mainGroup: BlockMenuGroupUI
+  readonly tagGroups: BlockMenuGroupUI[]
 
   color = "rgba(0, 0, 0, 0.2)"
 
@@ -33,12 +32,17 @@ class BlockMenuUI {
     this.containerId = workspace.containerId
     this.workspace = workspace
     this.enableDefinitionChanges = enableDefinitionChanges
-    this.slots = blocks.map( (b, i) => new BlockDefinitionUI(b, workspace, i) )
+
+    this.mainGroup = BlockMenuGroupUI.createMain(this.workspace, this.containerId, this.enableDefinitionChanges, "Blocks", this.menuConfig.mainGroup, this.blocks)
+    this.tagGroups = this.menuConfig.tagGroups.map( (group, index) =>
+      BlockMenuGroupUI.createTag(this.workspace, this.containerId, this.enableDefinitionChanges, index, group, this.blocks)
+    )
+
   }
 
   getBlockById(id: number): BlockDefinition {
-    var matches = this.slots.filter( (s) => {
-      return s.def.id === id
+    var matches = this.blocks.filter( (def) => {
+      return def.id === id
     })
     if (matches.length === 0) {
       throw new Error(`No block found for ID# ${id}`)
@@ -46,7 +50,7 @@ class BlockMenuUI {
     if (matches.length > 1) {
       throw new Error(`Multiple blocks found with ID# ${id}`)
     }
-    return matches[0].def
+    return matches[0]
   }
 
   draw(): HTMLDivElement {
@@ -62,17 +66,12 @@ class BlockMenuUI {
     this.menuDiv.id = `${this.containerId}-menu`
     this.menuDiv.classList.add("nt-menu")
 
-    const checker = (d: boolean) => d && DragManager.isInSameWorkspace(this.containerId)
-    const dropSpot = DropSpot.draw( () => DragManager.slotDrop(0), this.enableDefinitionChanges, checker)
-    dropSpot.classList.add("nt-menu-slot-wrapper")
-    this.menuDiv.append(dropSpot)
+    this.menuDiv.append(this.mainGroup.draw())
+    this.tagGroups.forEach( (group) => this.menuDiv.append(group.draw()) )
 
-    const slotDropNotifier = (j: number) => {
-      DragManager.slotDrop(j)
-    }
-
-    this.slots.forEach( (slot, i) => {
-      this.menuDiv.append(slot.draw(i, slotDropNotifier, this.enableDefinitionChanges))
+    this.menuConfig.tagGroups.forEach( (group, index) => {
+      const groupUI = BlockMenuGroupUI.createTag(this.workspace, this.containerId, this.enableDefinitionChanges, index, group, this.blocks)
+      this.menuDiv.append(groupUI.draw())
     })
 
     const dropZone = interact(this.menuDiv).dropzone({
@@ -101,27 +100,16 @@ class BlockMenuUI {
     }
   }
 
-  moveSlot(from: number, to: number): void {
-    const block = this.blocks[from]
-    if (this.slots[from].slotIndex !== from) {
-      throw new Error(`Slot index incorrect for: ${from}`)
-    }
-    ArrayUtils.swap(this.blocks, from, to)
-    ArrayUtils.swap(this.slots, from, to)
-    this.slots.forEach( (slot, i) => slot.slotIndex = i )
-    // The +1's are to skip the top-drop element.
-    DomUtils.swapChildren(this.menuDiv, from + 1, to + 1)
-    const event: BlockDefinitionEvent = {
-      type: "block-definition-moved"
-    , containerId: this.containerId
-    , blockId: block.id
-    }
-    EventRouter.fireEvent(event)
+  updateLimits(): void {
+    this.mainGroup.updateLimits()
+    this.tagGroups.forEach( (group) => group.updateLimits() )
   }
 
-  updateLimits(): void {
-    for (var slot of this.slots) {
-      slot.updateForLimit()
+  getSlot(groupIndex: "main" | number, slotIndex: number): BlockDefinitionUI {
+    if (groupIndex === "main") {
+      return this.mainGroup.blocks[slotIndex]
+    } else {
+      return this.tagGroups[groupIndex].blocks[slotIndex]
     }
   }
 
@@ -131,6 +119,14 @@ class BlockMenuUI {
       const changedBlock = oldBlocks[0]
       EventRouter.fireEvent(createBlockInstanceEvent(changedBlock))
     })
+  }
+
+  moveSlot(groupIndex: "main" | number, from: number, to: number) {
+    if (groupIndex === "main") {
+      this.mainGroup.moveSlot(from, to)
+    } else {
+      this.tagGroups[groupIndex].moveSlot(from, to)
+    }
   }
 
 }

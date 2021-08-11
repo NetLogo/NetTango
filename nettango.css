@@ -41,6 +41,14 @@
   background: #555;
 }
 
+.nt-drop-spot {
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 0.5em;
+  border-bottom: 2px solid #00000000;
+}
+
 .nt-chain {
   margin: 0;
   width: fit-content;

@@ -51,7 +51,7 @@ class DragManager {
     blockHandler(blocks, drag.dragStartOffset)
   }
 
-  static slotDrop(dropIndex: number) {
+  static slotDrop(groupIndex: "main" | number, dropIndex: number) {
     if (DragManager.currentDrag === null) {
       return
     }
@@ -69,6 +69,14 @@ class DragManager {
     }
 
     return containerId === DragManager.currentDrag.workspace.containerId
+  }
+
+  static isInSameGroup(groupIndex: "main" | number): boolean {
+    if (DragManager.currentDrag === null) {
+      return false
+    }
+
+    return DragManager.currentDrag.isGroupDroppable(groupIndex)
   }
 
   static isValidDrop(containerId: string, dragHandler: (dragState: DragInProgress) => boolean = () => { return true }): boolean {

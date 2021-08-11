@@ -53,7 +53,7 @@ class BlockInstanceUI {
   readonly containerId: string
   readonly workspace: CodeWorkspaceUI
 
-  dragData: BlockDragData = new NewDragData(this, 0, false)
+  dragData: BlockDragData = new NewDragData(this, "main", 0, false)
   acceptor: BlockAcceptor = new BlockAcceptor(this)
   blockDiv = document.createElement("div")
   actionDiv = document.createElement("div")

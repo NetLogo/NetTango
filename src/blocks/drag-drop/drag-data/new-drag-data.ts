@@ -7,12 +7,14 @@ import { DragInProgress } from '../drag-in-progress';
 import { BlockDragData } from "./block-drag-data"
 
 class NewDragData extends BlockDragData {
+  groupIndex: "main" | number
   slotIndex: number
   isAvailable: boolean
 
-  constructor(block: BlockInstanceUI, index: number, isAvailable: boolean) {
+  constructor(block: BlockInstanceUI, groupIndex: "main" | number, slotIndex: number, isAvailable: boolean) {
     super(block)
-    this.slotIndex   = index
+    this.groupIndex  = groupIndex
+    this.slotIndex   = slotIndex
     this.isAvailable = isAvailable
   }
 
@@ -44,23 +46,27 @@ class NewBlockDrag extends DragInProgress {
     return this.dragData.isAvailable
   }
 
+  isGroupDroppable(groupIndex: "main" | number): boolean {
+    return this.dragData.groupIndex === groupIndex
+  }
+
   cancel(): void {
     super.cancel()
-    const slot = this.workspace.menu.slots[this.dragData.slotIndex]
+    const slot = this.workspace.menu.getSlot(this.dragData.groupIndex, this.dragData.slotIndex)
     slot.slotDiv.classList.remove("nt-block-dragging")
   }
 
   drop(): void {
     super.drop()
-    const slot = this.workspace.menu.slots[this.dragData.slotIndex]
+    const slot = this.workspace.menu.getSlot(this.dragData.groupIndex, this.dragData.slotIndex)
     slot.slotDiv.classList.remove("nt-block-dragging")
   }
 
   slotDrop(dropIndex: number): void {
     super.slotDrop(dropIndex)
-    const slot = this.workspace.menu.slots[this.dragData.slotIndex]
+    const slot = this.workspace.menu.getSlot(this.dragData.groupIndex, this.dragData.slotIndex)
     slot.slotDiv.classList.remove("nt-block-dragging")
-    this.workspace.menu.moveSlot(this.dragData.slotIndex, dropIndex)
+    this.workspace.menu.moveSlot(this.dragData.groupIndex, this.dragData.slotIndex, dropIndex)
   }
 
 }

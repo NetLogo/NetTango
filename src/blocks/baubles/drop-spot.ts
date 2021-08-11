@@ -4,8 +4,9 @@ import interact from "interactjs"
 
 class DropSpot {
 
-  static draw(dropEvent: () => void, enableDefinitionChanges: boolean, checker: (dropped: boolean) => boolean): HTMLDivElement {
+  static draw(text: string, dropEvent: () => void, enableDefinitionChanges: boolean, checker: (dropped: boolean) => boolean): HTMLDivElement {
     const spot = document.createElement("div")
+    spot.innerText = text
     spot.classList.add("nt-drop-spot")
 
     if (enableDefinitionChanges) {

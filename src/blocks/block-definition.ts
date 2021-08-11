@@ -21,14 +21,16 @@ class BlockDefinitionUI {
   readonly containerId: string
   readonly workspace: CodeWorkspaceUI
 
+  groupIndex: "main" | number
   slotIndex: number
   wrapperDiv: HTMLDivElement = document.createElement("div")
   slotDiv: HTMLDivElement = document.createElement("div")
 
-  constructor(def: BlockDefinition, workspace: CodeWorkspaceUI, slotIndex: number) {
+  constructor(def: BlockDefinition, workspace: CodeWorkspaceUI, groupIndex: "main" | number, slotIndex: number) {
     this.def = def
     this.containerId = workspace.containerId
     this.workspace = workspace
+    this.groupIndex = groupIndex
     this.slotIndex = slotIndex
   }
 
@@ -70,7 +72,7 @@ class BlockDefinitionUI {
     if (enableDefinitionChanges) {
       const dropZone = interact(this.wrapperDiv).dropzone({
         accept: ".nt-menu-slot"
-      , checker: (_1, _2, dropped) => dropped && DragManager.isInSameWorkspace(this.containerId)
+      , checker: (_1, _2, dropped) => dropped && DragManager.isInSameWorkspace(this.containerId) && DragManager.isInSameGroup(this.groupIndex)
       })
       dropZone.on("dragenter", () => {
         this.wrapperDiv.classList.add("nt-menu-slot-over")
@@ -125,7 +127,7 @@ class BlockDefinitionUI {
 
   startDrag(event: InteractEvent): void {
     const newInstance = new BlockInstanceUI(this.def, this.makeInstance(), this.workspace)
-    const dragData = new NewDragData(newInstance, this.slotIndex, this.isAvailable())
+    const dragData = new NewDragData(newInstance, this.groupIndex, this.slotIndex, this.isAvailable())
     if (this.isAvailable()) {
       newInstance.draw(dragData)
     } else {

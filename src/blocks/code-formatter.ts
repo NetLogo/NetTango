@@ -84,12 +84,12 @@ class CodeFormatter  {
       this.formatAttribute = formatAttributeOverride
     }
 
-    const shouldIncludeInExtra = (slot: BlockDefinitionUI) =>
-      includeRequired && slot.def.isRequired && BlockRules.canBeStarter(slot.def) && this.workspace.getBlockCount(slot.def.id) === 0
+    const shouldIncludeInExtra = (def: BlockDefinition) =>
+      includeRequired && def.isRequired && BlockRules.canBeStarter(def) && this.workspace.getBlockCount(def.id) === 0
 
-    const extraChains = this.workspace.menu.slots
+    const extraChains = this.workspace.menu.blocks
       .filter(shouldIncludeInExtra)
-      .map( (slot) => [{ def: slot.def, b: slot.makeInstance() }] )
+      .map( (def) => [{ def: def, b: BlockDefinitionUI.makeInstance(def, this.workspace.getBlockCount(def.id)) }] )
 
     // TODO: What to do with required blocks that cannot be starters?
 
