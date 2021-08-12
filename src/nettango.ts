@@ -52,9 +52,7 @@ class NetTango {
   private static readonly workspaces: Map<string, CodeWorkspaceUI> = new Map()
 
   static addEventListener(containerId: string, listener: (event: ProgramChangedEvent) => void): void {
-    if (!NetTango.workspaces.has(containerId)) {
-      throw new Error("Cannot find workspace for given container ID.")
-    }
+    NetTango.errorIfNoWorkspace(containerId)
     const externalEventTypes: ProgramChangedEvent['type'][] = [
       "block-instance-changed"
     , "attribute-changed"
@@ -68,17 +66,12 @@ class NetTango {
   /// Exports the code for a workspace in a given target language.
   /// The only language supported now is "NetLogo".
   static exportCode(containerId: string, formatAttribute: FormatAttributeType | null): string {
-    if (!NetTango.workspaces.has(containerId)) {
-      throw new Error("Cannot find workspace for given container ID.")
-    }
-    return NetTango.workspaces.get(containerId)!.exportCode(formatAttribute)
+    const workspace = NetTango.getWorkspace(containerId)
+    return workspace.exportCode(formatAttribute)
   }
 
   static formatAttributeValue(containerId: string, definitionId: number, instanceId: number, attributeId: number, isProperty: boolean): string {
-    if (!NetTango.workspaces.has(containerId)) {
-      throw new Error(`Unknown container ID: ${containerId}`)
-    }
-    const workspace = NetTango.workspaces.get(containerId)!
+    const workspace = NetTango.getWorkspace(containerId)
     const block     = workspace.getBlockInstance(definitionId, instanceId)
     const attribute = isProperty ? block.properties[attributeId] : block.params[attributeId]
     return CodeFormatter.formatAttributeValue({ def: attribute.def, a: attribute.a })
@@ -87,11 +80,8 @@ class NetTango {
   /// Exports the current state of the workspace as a JSON object to be
   /// restored at a later point.
   static save(containerId: string): any {
-    if (!NetTango.workspaces.has(containerId)) {
-      throw new Error(`Unknown container ID: ${containerId}`)
-    }
-
-    const definition = encodeWorkspace(NetTango.workspaces.get(containerId)!)
+    const workspace  = NetTango.getWorkspace(containerId)
+    const definition = encodeWorkspace(workspace)
     return definition
   }
 
@@ -111,7 +101,20 @@ class NetTango {
 
   }
 
-  static hasWorkspace(containerId: string): boolean { return NetTango.workspaces.has(containerId) }
+  static hasWorkspace(containerId: string): boolean {
+    return NetTango.workspaces.has(containerId)
+  }
+
+  static errorIfNoWorkspace(containerId: string): void {
+    if (!NetTango.hasWorkspace(containerId)) {
+      throw new Error(`Unknown container ID: ${containerId}`)
+    }
+  }
+
+  static getWorkspace(containerId: string): CodeWorkspaceUI {
+    NetTango.errorIfNoWorkspace(containerId)
+    return NetTango.workspaces.get(containerId)!
+  }
 
 }
 
