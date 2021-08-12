@@ -239,12 +239,13 @@ const expressionDefinitionSchema = z.object({
 }).passthrough()
 
 const groupingSchema = z.object({
-  isCollapsed: z.boolean().default(false)
+  header: z.string().optional()
+, isCollapsed: z.boolean().default(false)
 , order: z.array(z.number()).default([])
 })
 
 const tagGroupingSchema = groupingSchema.extend({
-  tag: z.string()
+  tags: z.array(z.string())
 })
 
 const menuConfigSchema = z.object({

@@ -385,7 +385,7 @@ test("Version6 - group orders are properly reset", () => {
     }]
   , menuConfig: {
       mainGroup: { order: [0, 1, 2] }
-    , tagGroups: [{ tag: "apple", order: [7, 5, 4] }, { tag: "pear", order: [] }]
+    , tagGroups: [{ tags: ["apple"], order: [7, 5, 4] }, { tags: ["pear"], order: [] }]
     }
   }
 
@@ -406,12 +406,12 @@ test("Version6 - group orders are properly reset", () => {
   expected.menuConfig.mainGroup.order = [0, 1, 8]
   expected.menuConfig.tagGroups.push({
     isCollapsed: false
-  , tag: "apple"
+  , tags: ["apple"]
   , order: [7, 4, 9]
   })
   expected.menuConfig.tagGroups.push({
     isCollapsed: false
-  , tag: "pear"
+  , tags: ["pear"]
   , order: []
   })
 

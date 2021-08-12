@@ -131,9 +131,9 @@ class VersionManager {
       })
     }
 
-    const groupTags = model.menuConfig.tagGroups.map( (tg) => tg.tag )
+    const groupTags = model.menuConfig.tagGroups.flatMap( (tg) => tg.tags )
     model.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(model.blocks, groupTags, model.menuConfig.mainGroup.order)
-    model.menuConfig.tagGroups.forEach( (tg) => tg.order = VersionManager.fixupTagGroupOrder(model.blocks, tg.tag, tg.order) )
+    model.menuConfig.tagGroups.forEach( (tg) => tg.order = VersionManager.fixupTagGroupOrder(model.blocks, tg.tags, tg.order) )
 
     model.program.chains.forEach( (chain) => {
       chain.blocks = chain.blocks.filter( (b) => getDefById(b.definitionId) !== undefined )
@@ -155,8 +155,8 @@ class VersionManager {
     return VersionManager.fixupGroupOrder(blocks, sorting, blockFilter)
   }
 
-  static fixupTagGroupOrder(blocks: BlockDefinition[], tag: string, sorting: number[]): number[] {
-    const blockFilter = (b: BlockDefinition) => b.tags.includes(tag)
+  static fixupTagGroupOrder(blocks: BlockDefinition[], tags: string[], sorting: number[]): number[] {
+    const blockFilter = (b: BlockDefinition) => b.tags.some( (t) => tags.includes(t) )
     return VersionManager.fixupGroupOrder(blocks, sorting, blockFilter)
   }
 

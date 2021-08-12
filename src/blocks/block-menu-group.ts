@@ -36,12 +36,14 @@ class BlockMenuGroupUI {
     })
   }
 
-  static createMain(workspace: CodeWorkspaceUI, containerId: string, enableDefinitionChanges: boolean, header: string, group: Grouping, defs: BlockDefinition[]) {
+  static createMain(workspace: CodeWorkspaceUI, containerId: string, enableDefinitionChanges: boolean, group: Grouping, defs: BlockDefinition[]) {
+    const header = group.header ?? "blocks"
     return new BlockMenuGroupUI(workspace, containerId, enableDefinitionChanges, "main", header, group, defs)
   }
 
   static createTag(workspace: CodeWorkspaceUI, containerId: string, enableDefinitionChanges: boolean, groupIndex: number, group: TagGrouping, defs: BlockDefinition[]) {
-    return new BlockMenuGroupUI(workspace, containerId, enableDefinitionChanges, groupIndex, group.tag, group, defs)
+    const header = group.header ?? ((group.tags.length > 0) ? group.tags[0] : "empty")
+    return new BlockMenuGroupUI(workspace, containerId, enableDefinitionChanges, groupIndex, header, group, defs)
   }
 
   draw(): HTMLDivElement {

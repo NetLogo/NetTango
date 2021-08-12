@@ -33,7 +33,7 @@ class BlockMenuUI {
     this.workspace = workspace
     this.enableDefinitionChanges = enableDefinitionChanges
 
-    this.mainGroup = BlockMenuGroupUI.createMain(this.workspace, this.containerId, this.enableDefinitionChanges, "Blocks", this.menuConfig.mainGroup, this.blocks)
+    this.mainGroup = BlockMenuGroupUI.createMain(this.workspace, this.containerId, this.enableDefinitionChanges, this.menuConfig.mainGroup, this.blocks)
     this.tagGroups = this.menuConfig.tagGroups.map( (group, index) =>
       BlockMenuGroupUI.createTag(this.workspace, this.containerId, this.enableDefinitionChanges, index, group, this.blocks)
     )
