@@ -47,6 +47,7 @@
   font-weight: bold;
   padding-top: 0.5em;
   border-bottom: 2px solid #00000000;
+  user-select: none;
 }
 
 .nt-chain {
