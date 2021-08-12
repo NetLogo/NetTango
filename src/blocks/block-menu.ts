@@ -69,11 +69,6 @@ class BlockMenuUI {
     this.menuDiv.append(this.mainGroup.draw())
     this.tagGroups.forEach( (group) => this.menuDiv.append(group.draw()) )
 
-    this.menuConfig.tagGroups.forEach( (group, index) => {
-      const groupUI = BlockMenuGroupUI.createTag(this.workspace, this.containerId, this.enableDefinitionChanges, index, group, this.blocks)
-      this.menuDiv.append(groupUI.draw())
-    })
-
     const dropZone = interact(this.menuDiv).dropzone({
       accept:  ".nt-menu-slot, .nt-block, .nt-cap, .nt-notch"
     , checker: (_1, _2, dropped) => this.workspace.checker(dropped)
