@@ -50,8 +50,29 @@ class BlockMenuGroupUI {
     this.groupDiv.classList.add("nt-menu-group")
 
     const checker = (d: boolean) => d && DragManager.isInSameWorkspace(this.containerId) && DragManager.isInSameGroup(this.groupIndex)
-    const dropSpot = DropSpot.draw(this.header, () => DragManager.slotDrop(this.groupIndex, 0), this.enableDefinitionChanges, checker)
-    this.groupDiv.append(dropSpot)
+
+    const headerDiv = document.createElement("div")
+    headerDiv.innerText = this.header
+    headerDiv.classList.add("nt-drop-spot")
+
+    if (this.enableDefinitionChanges) {
+      const dropZone = interact(headerDiv).dropzone({
+        accept: ".nt-menu-slot"
+      , checker: (_1, _2, dropped) => checker(dropped)
+      })
+      dropZone.on("dragenter", () => {
+        headerDiv.classList.add("nt-menu-slot-over")
+      })
+      dropZone.on("dragleave", () => {
+        headerDiv.classList.remove("nt-menu-slot-over")
+      })
+      dropZone.on("drop", () => {
+        headerDiv.classList.remove("nt-menu-slot-over")
+        DragManager.slotDrop(this.groupIndex, 0)
+      })
+    }
+
+    this.groupDiv.append(headerDiv)
 
     const slotDropNotifier = (j: number) => {
       DragManager.slotDrop(this.groupIndex, j)
