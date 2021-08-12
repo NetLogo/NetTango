@@ -43,6 +43,7 @@
 
 .nt-drop-spot {
   text-align: center;
+  white-space: nowrap;
   font-size: 12px;
   font-weight: bold;
   padding-top: 0.5em;
@@ -537,6 +538,10 @@
 
 .nt-menu-slot-at-limit {
   opacity: 0.25;
+}
+
+.nt-group-blocks-hidden {
+  display: none;
 }
 
 .nt-info-dialog {

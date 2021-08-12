@@ -21,6 +21,13 @@ type AttributeChangedEvent = {
   readonly formattedValue: string
 }
 
+type MenuGroupCollapseEvent = {
+  readonly type:        "menu-group-collapse-toggled"
+  readonly containerId: string
+  readonly groupIndex:  "main" | number
+  readonly isCollapsed: boolean
+}
+
 type MenuItemEvent = {
   readonly type:        "menu-item-clicked" | "menu-item-context-menu"
   readonly containerId: string
@@ -48,6 +55,7 @@ type BlockInstanceMenuEvent = {
 
 type ProgramChangedEvent =
     MenuItemEvent
+  | MenuGroupCollapseEvent
   | AttributeChangedEvent
   | BlockInstanceEvent
   | BlockDefinitionEvent
@@ -56,6 +64,7 @@ type ProgramChangedEvent =
 export {
   ProgramChangedEvent
 , MenuItemEvent
+, MenuGroupCollapseEvent
 , AttributeChangedEvent
 , BlockInstanceEvent
 , BlockDefinitionEvent

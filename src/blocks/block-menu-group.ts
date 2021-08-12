@@ -1,16 +1,15 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import interact from "interactjs"
-import { BlockDefinition, Grouping, MenuConfig, TagGrouping } from "../types/types"
+import { BlockDefinition, Grouping, TagGrouping } from "../types/types"
 import { CodeWorkspaceUI } from "./code-workspace"
 import { DragManager } from "./drag-drop/drag-manager"
-import { createBlockInstanceEvent } from "./program-changed-event"
 import { BlockDefinitionUI } from "./block-definition"
-import { DropSpot } from "./baubles/drop-spot"
 import { ArrayUtils } from "../utils/array-utils"
 import { DomUtils } from "../utils/dom-utils"
 import { EventRouter } from "../event-router"
-import { BlockDefinitionEvent } from "../events"
+import { BlockDefinitionEvent, MenuGroupCollapseEvent } from "../events"
+import { Toggle } from "./baubles/toggle"
 
 class BlockMenuGroupUI {
   readonly containerId: string
@@ -21,6 +20,7 @@ class BlockMenuGroupUI {
   readonly blocks: BlockDefinitionUI[]
 
   readonly groupDiv: HTMLDivElement = document.createElement("div")
+  readonly blocksDiv: HTMLDivElement = document.createElement("div")
 
   private constructor(workspace: CodeWorkspaceUI, containerId: string, enableDefinitionChanges: boolean, groupIndex: "main" | number, header: string, group: Grouping, defs: BlockDefinition[]) {
     this.containerId             = containerId
@@ -54,6 +54,23 @@ class BlockMenuGroupUI {
     const headerDiv = document.createElement("div")
     headerDiv.innerText = this.header
     headerDiv.classList.add("nt-drop-spot")
+    this.groupDiv.append(headerDiv)
+
+    const blocksToggle = new Toggle(!this.group.isCollapsed, (isOn) => {
+      this.group.isCollapsed = !isOn
+      this.blocksDiv.classList.toggle("nt-group-blocks-hidden")
+      const collapseEvent: MenuGroupCollapseEvent = {
+        type:        "menu-group-collapse-toggled"
+      , containerId: this.containerId
+      , groupIndex:  this.groupIndex
+      , isCollapsed: this.group.isCollapsed
+      }
+      EventRouter.fireEvent(collapseEvent)
+    })
+    if (this.group.isCollapsed) {
+      this.blocksDiv.classList.add("nt-group-blocks-hidden")
+    }
+    headerDiv.append(blocksToggle.div)
 
     if (this.enableDefinitionChanges) {
       const dropZone = interact(headerDiv).dropzone({
@@ -72,15 +89,14 @@ class BlockMenuGroupUI {
       })
     }
 
-    this.groupDiv.append(headerDiv)
-
     const slotDropNotifier = (j: number) => {
       DragManager.slotDrop(this.groupIndex, j)
     }
 
     this.blocks.forEach( (slot, i) => {
-      this.groupDiv.append(slot.draw(i, slotDropNotifier, this.enableDefinitionChanges))
+      this.blocksDiv.append(slot.draw(i, slotDropNotifier, this.enableDefinitionChanges))
     })
+    this.groupDiv.append(this.blocksDiv)
 
     return this.groupDiv
   }
@@ -98,8 +114,7 @@ class BlockMenuGroupUI {
     ArrayUtils.swap(this.group.order, from, to)
     ArrayUtils.swap(this.blocks, from, to)
     this.blocks.forEach( (slot, i) => slot.slotIndex = i )
-    // The +1's are to skip the top-drop element.
-    DomUtils.swapChildren(this.groupDiv, from + 1, to + 1)
+    DomUtils.swapChildren(this.blocksDiv, from, to)
     const event: BlockDefinitionEvent = {
       type:        "block-definition-moved"
     , containerId: this.containerId
