@@ -24,6 +24,8 @@ type AttributeChangedEvent = {
 type MenuItemEvent = {
   readonly type:        "menu-item-clicked" | "menu-item-context-menu"
   readonly containerId: string
+  readonly groupIndex:  "main" | number
+  readonly slotIndex:   number
   readonly blockId:     number
   readonly x:           number
   readonly y:           number

@@ -144,9 +144,11 @@ class BlockDefinitionUI {
     const event: MenuItemEvent = {
       type: "menu-item-clicked"
     , containerId: this.containerId
-    , blockId: this.def.id
-    , x: e.pageX
-    , y: e.pageY
+    , groupIndex:  this.groupIndex
+    , slotIndex:   this.slotIndex
+    , blockId:     this.def.id
+    , x:           e.pageX
+    , y:           e.pageY
     }
     EventRouter.fireEvent(event)
   }
@@ -157,9 +159,11 @@ class BlockDefinitionUI {
     const event: MenuItemEvent = {
       type: "menu-item-context-menu"
     , containerId: this.containerId
-    , blockId: this.def.id
-    , x: e.pageX
-    , y: e.pageY
+    , groupIndex:  this.groupIndex
+    , slotIndex:   this.slotIndex
+    , blockId:     this.def.id
+    , x:           e.pageX
+    , y:           e.pageY
     }
     EventRouter.fireEvent(event)
     return false

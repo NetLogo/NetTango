@@ -116,6 +116,11 @@ class NetTango {
     return NetTango.workspaces.get(containerId)!
   }
 
+  static moveBlock(containerId: string, groupIndex: "main" | number, from: number, to: number) {
+    const workspace = NetTango.getWorkspace(containerId)
+    workspace.menu.moveSlot(groupIndex, from, to)
+  }
+
 }
 
 if (window !== undefined && window !== null && !window.hasOwnProperty("NetTango")) {
