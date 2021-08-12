@@ -63,6 +63,11 @@ class BlockMenuGroupUI {
   }
 
   moveSlot(from: number, to: number): void {
+    const max = (this.blocks.length - 1)
+    to = to < 0 ? 0 : (to > max ? max : to)
+    if (from === to) {
+      return
+    }
     const block = this.blocks[from].def
     if (this.blocks[from].slotIndex !== from) {
       throw new Error(`Slot index incorrect for: ${from}`)
@@ -73,9 +78,9 @@ class BlockMenuGroupUI {
     // The +1's are to skip the top-drop element.
     DomUtils.swapChildren(this.groupDiv, from + 1, to + 1)
     const event: BlockDefinitionEvent = {
-      type: "block-definition-moved"
+      type:        "block-definition-moved"
     , containerId: this.containerId
-    , blockId: block.id
+    , blockId:     block.id
     }
     EventRouter.fireEvent(event)
   }
