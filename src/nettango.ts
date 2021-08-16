@@ -59,6 +59,8 @@ class NetTango {
     , "menu-item-clicked"
     , "menu-item-context-menu"
     , "block-definition-moved"
+    , "menu-group-clicked"
+    , "menu-group-context-menu"
     , "menu-group-collapse-toggled"
     ]
     EventRouter.addListener("external-listener", containerId, externalEventTypes, listener)

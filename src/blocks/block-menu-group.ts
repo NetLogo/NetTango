@@ -8,7 +8,7 @@ import { BlockDefinitionUI } from "./block-definition"
 import { ArrayUtils } from "../utils/array-utils"
 import { DomUtils } from "../utils/dom-utils"
 import { EventRouter } from "../event-router"
-import { BlockDefinitionEvent, MenuGroupCollapseEvent } from "../events"
+import { BlockDefinitionEvent, MenuGroupCollapseEvent, MenuGroupEvent } from "../events"
 import { Toggle } from "./baubles/toggle"
 
 class BlockMenuGroupUI {
@@ -55,6 +55,9 @@ class BlockMenuGroupUI {
     headerDiv.innerText = this.header
     headerDiv.classList.add("nt-drop-spot")
     this.groupDiv.append(headerDiv)
+
+    headerDiv.addEventListener("contextmenu", (e) => this.fireGroupEvent(e, "menu-group-context-menu") )
+    headerDiv.addEventListener("dblclick", (e) => this.fireGroupEvent(e, "menu-group-clicked") )
 
     const blocksToggle = new Toggle(!this.group.isCollapsed, (isOn) => {
       this.group.isCollapsed = !isOn
@@ -125,6 +128,17 @@ class BlockMenuGroupUI {
 
   updateLimits(): void {
     this.blocks.forEach( (block) => block.updateForLimit() )
+  }
+
+  fireGroupEvent(ev: MouseEvent, type: "menu-group-clicked" | "menu-group-context-menu"): void {
+    const groupEvent: MenuGroupEvent = {
+      type:        type
+    , containerId: this.containerId
+    , groupIndex:  this.groupIndex
+    , x:           ev.pageX
+    , y:           ev.pageY
+    }
+    EventRouter.fireEvent(groupEvent)
   }
 
 }

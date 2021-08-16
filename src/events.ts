@@ -28,6 +28,14 @@ type MenuGroupCollapseEvent = {
   readonly isCollapsed: boolean
 }
 
+type MenuGroupEvent = {
+  readonly type:        "menu-group-clicked" | "menu-group-context-menu"
+  readonly containerId: string
+  readonly groupIndex:  "main" | number
+  readonly x:           number
+  readonly y:           number
+}
+
 type MenuItemEvent = {
   readonly type:        "menu-item-clicked" | "menu-item-context-menu"
   readonly containerId: string
@@ -55,6 +63,7 @@ type BlockInstanceMenuEvent = {
 
 type ProgramChangedEvent =
     MenuItemEvent
+  | MenuGroupEvent
   | MenuGroupCollapseEvent
   | AttributeChangedEvent
   | BlockInstanceEvent
@@ -64,6 +73,7 @@ type ProgramChangedEvent =
 export {
   ProgramChangedEvent
 , MenuItemEvent
+, MenuGroupEvent
 , MenuGroupCollapseEvent
 , AttributeChangedEvent
 , BlockInstanceEvent
