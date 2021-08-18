@@ -130,7 +130,9 @@ class BlockMenuGroupUI {
     this.blocks.forEach( (block) => block.updateForLimit() )
   }
 
-  fireGroupEvent(ev: MouseEvent, type: "menu-group-clicked" | "menu-group-context-menu"): void {
+  fireGroupEvent(ev: MouseEvent, type: "menu-group-clicked" | "menu-group-context-menu"): false {
+    ev.preventDefault()
+    ev.stopPropagation()
     const groupEvent: MenuGroupEvent = {
       type:        type
     , containerId: this.containerId
@@ -139,6 +141,7 @@ class BlockMenuGroupUI {
     , y:           ev.pageY
     }
     EventRouter.fireEvent(groupEvent)
+    return false
   }
 
 }
