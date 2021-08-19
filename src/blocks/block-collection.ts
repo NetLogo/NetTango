@@ -13,11 +13,11 @@ abstract class BlockCollection {
 
   div: HTMLDivElement = document.createElement("div")
 
-  constructor(bs: BlockInstance[], workspace: CodeWorkspaceUI) {
+  constructor(bs: BlockInstance[], workspace: CodeWorkspaceUI, enableCodeTip: boolean) {
     this.bs = bs
     this.blocks = bs.map( (b) => {
       const def = workspace.menu.getBlockById(b.definitionId)
-      return new BlockInstanceUI(def, b, workspace)
+      return new BlockInstanceUI(def, b, workspace, enableCodeTip)
     })
     this.containerId = workspace.containerId
   }

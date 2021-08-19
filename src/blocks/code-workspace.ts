@@ -17,10 +17,12 @@ import { DragManager } from "./drag-drop/drag-manager"
 import { EventRouter } from '../event-router'
 import { createBlockInstanceEvent } from "./program-changed-event"
 import InfoDialog from './info-dialog'
+import NetTangoOptions from '../options'
 
 class CodeWorkspaceUI {
 
   readonly ws: CodeWorkspace
+  readonly options: NetTangoOptions
 
   readonly containerId: string
   backdrop: HTMLDivElement = document.createElement("div")
@@ -62,9 +64,10 @@ class CodeWorkspaceUI {
   , language: string
   , defaultExpressions: ExpressionDefinition[]
   , formatAttribute: FormatAttributeType
-  , enableDefinitionChanges: boolean
+  , options: NetTangoOptions
   ) {
     this.ws = ws
+    this.options = options
     this.containerId = containerId
     this.formatter = new CodeFormatter(this, language, formatAttribute)
     const usableDefaults = defaultExpressions.filter( (de) => !this.ws.expressions.some( (e) => e.name.toLowerCase() === de.name.toLowerCase() ))
@@ -79,7 +82,7 @@ class CodeWorkspaceUI {
     this.height = ws.height
     this.width  = ws.width
 
-    this.menu = new BlockMenuUI(this.ws.blocks, this.ws.menuConfig, this, enableDefinitionChanges)
+    this.menu = new BlockMenuUI(this.ws.blocks, this.ws.menuConfig, this, options.enableDefinitionChanges)
 
     if (this.ws.blockStyles === null) {
       this.starterBlockStyle = new BlockStyleUI(BlockStyleUI.DEFAULT_STARTER_STYLE)
@@ -91,7 +94,7 @@ class CodeWorkspaceUI {
       this.commandBlockStyle = new BlockStyleUI(this.ws.blockStyles.commandBlockStyle)
     }
 
-    this.chains = this.ws.program.chains.map( (c, i) => new ChainUI(c, this, i) )
+    this.chains = this.ws.program.chains.map( (c, i) => new ChainUI(c, this, i, options.enableCodeTips) )
 
     EventRouter.addListener(
       "workspace-change-listener"
@@ -267,7 +270,7 @@ class CodeWorkspaceUI {
   createChain(newBlocks: BlockInstanceUI[], x: number, y: number): void {
     const newChainIndex = this.chains.length
     const c: Chain = { x, y, blocks: [] }
-    const newChain = new ChainUI(c, this, newChainIndex)
+    const newChain = new ChainUI(c, this, newChainIndex, this.options.enableCodeTips)
     this.ws.program.chains.push(c)
     this.chains.push(newChain)
     const chainDiv = newChain.draw(newChainIndex)

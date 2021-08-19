@@ -12,15 +12,13 @@ import { ObjectUtils } from "./utils/object-utils"
 import { defaultExpressions } from "./default-expressions"
 import { BlockStyleUI } from "./blocks/block-style"
 import { EventRouter } from "./event-router"
+import NetTangoOptions from "./options"
 
 type FormatAttributeType = (containerId: string, blockId: number, instanceId: number, attributeId: number, value: any, attributeType: AttributeTypes, isProperty: boolean) => string
 
-type NetTangoOptions = {
-  enableDefinitionChanges: boolean
-}
-
 const defaultOptions = Object.freeze({
   enableDefinitionChanges: true
+, enableCodeTips:          true
 })
 
 function restoreWorkspace(containerId: string, workspaceEnc: CodeWorkspace, language: string, formatAttribute: FormatAttributeType, options: NetTangoOptions): CodeWorkspaceUI {
@@ -28,7 +26,7 @@ function restoreWorkspace(containerId: string, workspaceEnc: CodeWorkspace, lang
     throw new Error(`The supported NetTango version is ${VersionManager.VERSION}, but the given definition version was ${workspaceEnc["version"]}.`)
   }
   const expressions: ExpressionDefinition[] = defaultExpressions.has(language) ? defaultExpressions.get(language)! : []
-  const workspace = new CodeWorkspaceUI(containerId, workspaceEnc, language, expressions, formatAttribute, options.enableDefinitionChanges)
+  const workspace = new CodeWorkspaceUI(containerId, workspaceEnc, language, expressions, formatAttribute, options)
   return workspace
 }
 
@@ -131,4 +129,4 @@ if (window !== undefined && window !== null && !window.hasOwnProperty("NetTango"
   w["NetTango"] = NetTango
 }
 
-export { FormatAttributeType, NetTango, NetTangoOptions, encodeWorkspace, restoreWorkspace, defaultOptions }
+export { FormatAttributeType, NetTango, encodeWorkspace, restoreWorkspace, defaultOptions }

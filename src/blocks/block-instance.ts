@@ -52,6 +52,7 @@ class BlockInstanceUI {
 
   readonly containerId: string
   readonly workspace: CodeWorkspaceUI
+  readonly enableCodeTips: boolean
 
   dragData: BlockDragData = new NewDragData(this, "main", 0, false)
   acceptor: BlockAcceptor = new BlockAcceptor(this)
@@ -59,11 +60,12 @@ class BlockInstanceUI {
   actionDiv = document.createElement("div")
   propertiesToggle: Toggle | null = null
 
-  constructor(def: BlockDefinition, b: BlockInstance, workspace: CodeWorkspaceUI) {
+  constructor(def: BlockDefinition, b: BlockInstance, workspace: CodeWorkspaceUI, enableCodeTips: boolean) {
     this.def = def
     this.b = b
     this.containerId = workspace.containerId
     this.workspace = workspace
+    this.enableCodeTips = enableCodeTips
 
     this.clauses = b.clauses.map( (c, i) => new ClauseUI(def.clauses[i], c, this, i) )
     this.params = b.params.map( (p, j) => createAttribute(j, def.params[j], p, this, false) )
@@ -257,15 +259,17 @@ class BlockInstanceUI {
   fireBlockInstanceEvent(ev: MouseEvent) {
     ev.stopPropagation()
     ev.preventDefault()
-    const event: BlockInstanceMenuEvent = {
-      type:        "block-instance-menu"
-    , containerId: this.containerId
-    , action:      this.def.action
-    , codeTip:     this.formatCodeTip()
-    , x:           ev.pageX
-    , y:           ev.pageY
+    if (this.enableCodeTips) {
+      const event: BlockInstanceMenuEvent = {
+        type:        "block-instance-menu"
+      , containerId: this.containerId
+      , action:      this.def.action
+      , codeTip:     this.formatCodeTip()
+      , x:           ev.pageX
+      , y:           ev.pageY
+      }
+      EventRouter.fireEvent(event)
     }
-    EventRouter.fireEvent(event)
     return false
   }
 

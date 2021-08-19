@@ -28,7 +28,7 @@ class ClauseUI extends BlockCollection {
   blocksDiv: HTMLDivElement = document.createElement("div")
 
   constructor(def: Clause, c: ClauseInstance, owner: BlockInstanceUI, clauseIndex: number) {
-    super(c.blocks, owner.workspace)
+    super(c.blocks, owner.workspace, owner.enableCodeTips)
     this.def = def
     this.c = c
     this.owner = owner
