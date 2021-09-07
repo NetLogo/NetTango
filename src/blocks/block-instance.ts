@@ -217,7 +217,7 @@ class BlockInstanceUI {
   }
 
   static wireDragEvents(block: BlockInstanceUI, div: HTMLDivElement): void {
-    const dragListener = new DragListener(block.workspace.dragImage, div)
+    const dragListener = new DragListener(block.workspace.dragImage, div, null, "nt-attribute-value")
     dragListener.start = (e: InteractEvent) => block.startDrag(e)
     dragListener.end   = () => block.endDrag()
 
