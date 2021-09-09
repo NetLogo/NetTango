@@ -5,6 +5,8 @@ import type { InteractEvent } from '@interactjs/core/InteractEvent'
 
 import type { DraggableOptions, Point } from '@interactjs/types/index'
 
+interact.pointerMoveTolerance(5)
+
 class DragListener {
 
   static readonly ORIGIN: Point = Object.freeze({ x: 0, y: 0 })
