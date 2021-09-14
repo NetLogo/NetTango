@@ -167,8 +167,7 @@ class CodeWorkspaceUI {
       }
     })
 
-    const codeTipDialog = new InfoDialog()
-    document.body.append(codeTipDialog.div)
+    const codeTipDialog = new InfoDialog(this.containerId)
 
     EventRouter.addListener(
       "workspace-instance-listener"

@@ -9,8 +9,16 @@ class InfoDialog {
   readonly div: HTMLDivElement
   private isActive = false
 
-  constructor() {
-    this.div = document.createElement("div")
+  constructor(containerId: string) {
+    const id = `${containerId}-info-dialog`
+    const maybeDiv = document.getElementById(id)
+    if (maybeDiv !== null) {
+      this.div = maybeDiv as HTMLDivElement
+    } else {
+      this.div = document.createElement("div")
+      this.div.id = id
+      document.body.append(this.div)
+    }
     this.div.classList.add("nt-info-dialog")
   }
 
