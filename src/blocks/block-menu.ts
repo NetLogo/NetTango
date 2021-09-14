@@ -8,6 +8,7 @@ import { createBlockInstanceEvent } from "./program-changed-event"
 import { BlockDefinitionUI } from "./block-definition"
 import { EventRouter } from "../event-router"
 import { BlockMenuGroupUI } from "./block-menu-group"
+import NetTangoOptions from '../options'
 
 class BlockMenuUI {
 
@@ -17,7 +18,7 @@ class BlockMenuUI {
   readonly menuConfig: MenuConfig
   readonly containerId: string
   readonly workspace: CodeWorkspaceUI
-  readonly enableDefinitionChanges: boolean
+  readonly options: NetTangoOptions
 
   readonly mainGroup: BlockMenuGroupUI
   readonly tagGroups: BlockMenuGroupUI[]
@@ -26,16 +27,16 @@ class BlockMenuUI {
 
   menuDiv = document.createElement("div")
 
-  constructor(blocks: BlockDefinition[], menuConfig: MenuConfig, workspace: CodeWorkspaceUI, enableDefinitionChanges: boolean) {
+  constructor(blocks: BlockDefinition[], menuConfig: MenuConfig, workspace: CodeWorkspaceUI, options: NetTangoOptions) {
     this.blocks = blocks
     this.menuConfig = menuConfig
     this.containerId = workspace.containerId
     this.workspace = workspace
-    this.enableDefinitionChanges = enableDefinitionChanges
+    this.options = options
 
-    this.mainGroup = BlockMenuGroupUI.createMain(this.workspace, this.containerId, this.enableDefinitionChanges, this.menuConfig.mainGroup, this.blocks)
+    this.mainGroup = BlockMenuGroupUI.createMain(this.workspace, this.containerId, this.options, this.menuConfig.mainGroup, this.blocks)
     this.tagGroups = this.menuConfig.tagGroups.map( (group, index) =>
-      BlockMenuGroupUI.createTag(this.workspace, this.containerId, this.enableDefinitionChanges, index, group, this.blocks)
+      BlockMenuGroupUI.createTag(this.workspace, this.containerId, this.options, index, group, this.blocks)
     )
 
   }

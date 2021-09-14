@@ -82,7 +82,7 @@ class CodeWorkspaceUI {
     this.height = ws.height
     this.width  = ws.width
 
-    this.menu = new BlockMenuUI(this.ws.blocks, this.ws.menuConfig, this, options.enableDefinitionChanges)
+    this.menu = new BlockMenuUI(this.ws.blocks, this.ws.menuConfig, this, options)
 
     if (this.ws.blockStyles === null) {
       this.starterBlockStyle = new BlockStyleUI(BlockStyleUI.DEFAULT_STARTER_STYLE)

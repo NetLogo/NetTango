@@ -10,10 +10,11 @@ import { DomUtils } from "../utils/dom-utils"
 import { EventRouter } from "../event-router"
 import { BlockDefinitionEvent, MenuGroupCollapseEvent, MenuGroupEvent } from "../events"
 import { Toggle } from "./baubles/toggle"
+import NetTangoOptions from '../options'
 
 class BlockMenuGroupUI {
   readonly containerId: string
-  readonly enableDefinitionChanges: boolean
+  readonly options: NetTangoOptions
   readonly groupIndex: "main" | number
   readonly header: string
   readonly group: Grouping
@@ -22,28 +23,28 @@ class BlockMenuGroupUI {
   readonly groupDiv: HTMLDivElement = document.createElement("div")
   readonly blocksDiv: HTMLDivElement = document.createElement("div")
 
-  private constructor(workspace: CodeWorkspaceUI, containerId: string, enableDefinitionChanges: boolean, groupIndex: "main" | number, header: string, group: Grouping, defs: BlockDefinition[]) {
-    this.containerId             = containerId
-    this.enableDefinitionChanges = enableDefinitionChanges
-    this.groupIndex              = groupIndex
-    this.header                  = header
-    this.group                   = group
+  private constructor(workspace: CodeWorkspaceUI, containerId: string, options: NetTangoOptions, groupIndex: "main" | number, header: string, group: Grouping, defs: BlockDefinition[]) {
+    this.containerId = containerId
+    this.options     = options
+    this.groupIndex  = groupIndex
+    this.header      = header
+    this.group       = group
 
     const getBlockById = (id: number): BlockDefinition => defs.filter( (def) => def.id === id )[0]
     this.blocks = this.group.order.map( (id, index) => {
       const def = getBlockById(id)
-      return new BlockDefinitionUI(def, workspace, groupIndex, index)
+      return new BlockDefinitionUI(def, workspace, groupIndex, index, options.enableCodeTips)
     })
   }
 
-  static createMain(workspace: CodeWorkspaceUI, containerId: string, enableDefinitionChanges: boolean, group: Grouping, defs: BlockDefinition[]) {
+  static createMain(workspace: CodeWorkspaceUI, containerId: string, options: NetTangoOptions, group: Grouping, defs: BlockDefinition[]) {
     const header = group.header ?? "blocks"
-    return new BlockMenuGroupUI(workspace, containerId, enableDefinitionChanges, "main", header, group, defs)
+    return new BlockMenuGroupUI(workspace, containerId, options, "main", header, group, defs)
   }
 
-  static createTag(workspace: CodeWorkspaceUI, containerId: string, enableDefinitionChanges: boolean, groupIndex: number, group: TagGrouping, defs: BlockDefinition[]) {
+  static createTag(workspace: CodeWorkspaceUI, containerId: string, options: NetTangoOptions, groupIndex: number, group: TagGrouping, defs: BlockDefinition[]) {
     const header = group.header ?? ((group.tags.length > 0) ? group.tags[0] : "empty")
-    return new BlockMenuGroupUI(workspace, containerId, enableDefinitionChanges, groupIndex, header, group, defs)
+    return new BlockMenuGroupUI(workspace, containerId, options, groupIndex, header, group, defs)
   }
 
   draw(): HTMLDivElement {
@@ -75,7 +76,7 @@ class BlockMenuGroupUI {
     }
     headerDiv.append(blocksToggle.div)
 
-    if (this.enableDefinitionChanges) {
+    if (this.options.enableDefinitionChanges) {
       const dropZone = interact(headerDiv).dropzone({
         accept: ".nt-menu-slot"
       , checker: (_1, _2, dropped) => checker(dropped)
@@ -97,7 +98,7 @@ class BlockMenuGroupUI {
     }
 
     this.blocks.forEach( (slot, i) => {
-      this.blocksDiv.append(slot.draw(i, slotDropNotifier, this.enableDefinitionChanges))
+      this.blocksDiv.append(slot.draw(i, slotDropNotifier, this.options.enableDefinitionChanges))
     })
     this.groupDiv.append(this.blocksDiv)
 
