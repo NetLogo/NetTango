@@ -21,11 +21,12 @@ import { Version3 } from "./version-3"
 import { Version4 } from "./version-4"
 import { Version5 } from "./version-5"
 import { Version6 } from "./version-6"
+import { Version7 } from "./version-7"
 import { ArrayUtils } from "../utils/array-utils"
 import { ObjectUtils } from "../utils/object-utils"
 
 class VersionManager {
-  static readonly VERSION = 6
+  static readonly VERSION = 7
 
   static updateWorkspace(definition: any): CodeWorkspace {
     const version: number = definition.hasOwnProperty("version") ? definition.version ?? 0 : 0
@@ -44,9 +45,14 @@ class VersionManager {
       definition = Version5.validate(definition)
       definition = Version6.update(definition)
     }
+    if (version < 7) {
+      definition.version = 6
+      definition = Version6.validate(definition)
+      definition = Version7.update(definition)
+    }
     definition.version = VersionManager.VERSION
 
-    const validated = Version6.validate(definition)
+    const validated = Version7.validate(definition)
 
     VersionManager.fixupUntypedIssues(validated)
 

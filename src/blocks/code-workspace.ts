@@ -5,7 +5,7 @@ import interact from "interactjs"
 
 import { FormatAttributeType } from "../nettango"
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../nettango-defaults'
-import { Chain, CodeWorkspace, ExpressionDefinition } from '../types/types'
+import { Chain, CodeWorkspace, ExpressionDefinition, Variable } from '../types/types'
 import { NumUtils } from "../utils/num-utils"
 import { BlockInstanceUI } from "./block-instance"
 import { BlockMenuUI } from "./block-menu"
@@ -332,7 +332,7 @@ class CodeWorkspaceUI {
     this.menu.menuDiv.style.maxHeight = newHeight
   }
 
-  setVariables(variables: string[]): void {
+  setVariables(variables: Variable[]): void {
     this.ws.variables = variables
   }
 

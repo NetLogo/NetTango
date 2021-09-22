@@ -1,6 +1,6 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
-import { ExpressionDefinition, Expression, ExpressionTypes } from "../../types/types"
+import { ExpressionDefinition, Expression, ExpressionTypes, Variable } from "../../types/types"
 import { NumUtils } from "../../utils/num-utils"
 import { StringBuffer } from "../../utils/string-buffer"
 import { StringUtils } from "../../utils/string-utils"
@@ -249,16 +249,16 @@ class ExpressionUI {
     }
   }
 
-  _addVariableItems(hmenu: HTMLDivElement, variables: string[]): void {
+  _addVariableItems(hmenu: HTMLDivElement, variables: Variable[]): void {
     for (const variable of variables) {
       const link = document.createElement("a")
       link.href = "#"
-      link.innerHTML = variable
+      link.innerHTML = variable.name
       hmenu.append(link)
       link.addEventListener("click", (e) => {
         hmenu.remove()
         this.setChildren([])
-        this.e.name   = variable
+        this.e.name   = variable.name
         this.e.format = null
         this.builder.renderHtml()
         e.stopPropagation()

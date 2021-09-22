@@ -37,8 +37,6 @@ export type AttributeValue = z.infer<typeof attributeValueSchema>
 export type ExpressionDefinition = z.infer<typeof expressionDefinitionSchema>
 export type CodeWorkspace = z.infer<typeof codeWorkspaceSchema>
 
-export type Variable = z.infer<typeof variableSchema>
-
 export type ExpressionTypes = z.infer<typeof expressionTypeSchema>
 
 export type Expression = {
@@ -255,13 +253,8 @@ const menuConfigSchema = z.object({
 , tagGroups: z.array(tagGroupingSchema).default([])
 })
 
-const variableSchema = z.object({
-  name: z.string()
-, tags: z.array(z.string()).default([])
-})
-
 export const codeWorkspaceSchema = z.object({
-  version: z.literal(7)
+  version: z.literal(6)
 , height: z.number().default(DEFAULT_HEIGHT)
 , width: z.number().default(DEFAULT_WIDTH)
 , blocks: z.array(blockDefinitionSchema).default([])
@@ -274,6 +267,6 @@ export const codeWorkspaceSchema = z.object({
   , containerBlockStyle: blockStyleSchema
   , commandBlockStyle: blockStyleSchema
   }).nullable().default(null)
-, variables: z.array(variableSchema).default([])
+, variables: z.array(z.string()).default([])
 , expressions: z.array(expressionDefinitionSchema).default([])
 }).passthrough()

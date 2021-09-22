@@ -1,6 +1,6 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
-import { ExpressionDefinition, Expression } from "../../types/types"
+import { Expression, Variable } from "../../types/types"
 import { StringBuffer } from "../../utils/string-buffer"
 import { CodeWorkspaceUI } from "../code-workspace"
 import { ExpressionUI } from "./expression"
@@ -11,7 +11,7 @@ class ExpressionBuilder {
   parent?: Element
   root: ExpressionUI
 
-  get variables(): string[] {
+  get variables(): Variable[] {
     return this.workspace.ws.variables
   }
 

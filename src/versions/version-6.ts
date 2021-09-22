@@ -1,10 +1,10 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import { makeAttributeDefault, makeExpressionValue } from "../blocks/attributes/attribute-factory"
-import { Attribute, AttributeValue, BlockDefinition, BlockInstance, Chain, Clause, ClauseInstance, CodeWorkspace, codeWorkspaceSchema } from "../types/types"
+import { Attribute, AttributeValue, BlockDefinition, BlockInstance, Chain, Clause, ClauseInstance, CodeWorkspace, codeWorkspaceSchema } from "../types/types-6"
 import { AttributeInput, BlockInput, ChainInput, ClauseInput, CodeWorkspaceInput } from "../types/types-5"
 import { ObjectUtils } from "../utils/object-utils"
-import { newBlockDefinition, newBlockInstance, newClauseInstance, newWorkspace } from "./empty-objects"
+import { newBlockDefinition, newBlockInstance, newClauseInstance, newWorkspace } from "./empty-objects-6"
 import { VersionUtils } from "./version-utils"
 
 type GetBlockDefType = (id: number| undefined) => BlockDefinition | undefined

@@ -7,5 +7,5 @@ test("check check, ba-boom!", () => {
 })
 
 test("VersionManager", () => {
-  expect(VersionManager.VERSION).toBe(6)
+  expect(VersionManager.VERSION).toBe(7)
 })

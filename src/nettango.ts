@@ -6,7 +6,7 @@ import { AttributeTypes } from "./attribute-types"
 import { CodeFormatter } from "./blocks/code-formatter"
 import { CodeWorkspaceUI } from "./blocks/code-workspace"
 import { VersionManager } from "./versions/version-manager"
-import { CodeWorkspace, ExpressionDefinition } from "./types/types"
+import { CodeWorkspace, ExpressionDefinition, Variable } from "./types/types"
 import { ProgramChangedEvent } from "./events"
 import { ObjectUtils } from "./utils/object-utils"
 import { defaultExpressions } from "./default-expressions"
@@ -122,7 +122,7 @@ class NetTango {
     workspace.menu.moveSlot(groupIndex, from, to)
   }
 
-  static setVariables(containerId: string, variables: string[]): void {
+  static setVariables(containerId: string, variables: Variable[]): void {
     const workspace = NetTango.getWorkspace(containerId)
     workspace.setVariables(variables)
   }

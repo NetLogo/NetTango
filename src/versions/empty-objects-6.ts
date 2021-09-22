@@ -21,7 +21,7 @@ import {
 , textAttributeSchema
 , rangeAttributeSchema
 , Attribute
-} from "../types/types"
+} from "../types/types-6"
 
 import { BlockStyleUI } from "../blocks/block-style"
 import { ObjectUtils } from "../utils/object-utils"
@@ -44,7 +44,7 @@ function newBlockStyles() {
 }
 
 const EMPTY_WORKSPACE: CodeWorkspace = codeWorkspaceSchema.parse({
-  version: 7
+  version: 6
 })
 
 function newWorkspace() {
