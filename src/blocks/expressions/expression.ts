@@ -1,6 +1,6 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
-import { ExpressionDefinition, Expression, ExpressionValue } from "../../types/types"
+import { ExpressionDefinition, Expression, ExpressionTypes } from "../../types/types"
 import { NumUtils } from "../../utils/num-utils"
 import { StringBuffer } from "../../utils/string-buffer"
 import { StringUtils } from "../../utils/string-utils"
@@ -33,7 +33,7 @@ class ExpressionUI {
     this.children = e.children.map( (ce) => new ExpressionUI(builder, ce) )
   }
 
-  static getDefaultValue(type: 'num' | 'bool'): '0' | 'false' {
+  static getDefaultValue(type: ExpressionTypes): '0' | 'false' {
     return (type === 'num') ? '0' : 'false'
   }
 
@@ -149,7 +149,7 @@ class ExpressionUI {
     input.className = "nt-number-input"
     input.value = this.e.name
     input.step = "1"
-    input.addEventListener("change", (e) => {
+    input.addEventListener("change", () => {
       this.e.name = input.value
       if (this.e.name === "") {
         this.e.name = "0"
@@ -202,9 +202,10 @@ class ExpressionUI {
 
     this._addMenuItems(hmenu, this.builder.workspace.expressions)
 
-    if (this.builder.variables.length > 0) hmenu.insertAdjacentHTML("beforeend", "<hr>")
-    // TODO: get this working again once variables are implemented
-    // _addMenuItems(hmenu, builder.variables)
+    if (this.builder.variables.length > 0) {
+      hmenu.insertAdjacentHTML("beforeend", "<hr>")
+      this._addVariableItems(hmenu, this.builder.variables)
+    }
 
     hmenu.insertAdjacentHTML("beforeend", "<hr>")
     const link = document.createElement("a")
@@ -245,6 +246,24 @@ class ExpressionUI {
           e.preventDefault()
         })
       }
+    }
+  }
+
+  _addVariableItems(hmenu: HTMLDivElement, variables: string[]): void {
+    for (const variable of variables) {
+      const link = document.createElement("a")
+      link.href = "#"
+      link.innerHTML = variable
+      hmenu.append(link)
+      link.addEventListener("click", (e) => {
+        hmenu.remove()
+        this.setChildren([])
+        this.e.name   = variable
+        this.e.format = null
+        this.builder.renderHtml()
+        e.stopPropagation()
+        e.preventDefault()
+      })
     }
   }
 

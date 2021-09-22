@@ -37,9 +37,11 @@ export type AttributeValue = z.infer<typeof attributeValueSchema>
 export type ExpressionDefinition = z.infer<typeof expressionDefinitionSchema>
 export type CodeWorkspace = z.infer<typeof codeWorkspaceSchema>
 
+export type ExpressionTypes = z.infer<typeof expressionTypeSchema>
+
 export type Expression = {
   name: string
-  type: "num" | "bool"
+  type: ExpressionTypes
   format: string | null
   children: Array<Expression>
 }
@@ -141,19 +143,19 @@ export const rangeAttributeSchema = numAttributeSchema.extend({
 , max: z.number().default(100)
 }).passthrough()
 
-const expressionTypes = z.union([z.literal("num"), z.literal("bool")])
+const expressionTypeSchema = z.union([z.literal("num"), z.literal("bool")])
 
 export const expressionSchema: z.ZodSchema<Expression, any, any> = z.lazy(() =>
   z.object({
     name: z.string()
-  , type: expressionTypes.default("num")
+  , type: expressionTypeSchema.default("num")
   , format: z.string().nullable().default(null)
   , children: z.array(expressionSchema).default([])
   }).passthrough()
 )
 
 export const expressionAttributeSchema = attributeBaseSchema.extend({
-  type: expressionTypes
+  type: expressionTypeSchema
 , default: z.string().default("0")
 }).passthrough()
 
@@ -228,8 +230,6 @@ const chainSchema = z.object({
 , y: z.number().default(0)
 , blocks: z.array(blockInstanceSchema).default([])
 }).passthrough()
-
-const expressionTypeSchema = z.union([z.literal("num"), z.literal("bool")])
 
 const expressionDefinitionSchema = z.object({
   name: z.string()
