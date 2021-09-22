@@ -117,11 +117,15 @@ class NetTango {
     return NetTango.workspaces.get(containerId)!
   }
 
-  static moveBlock(containerId: string, groupIndex: "main" | number, from: number, to: number) {
+  static moveBlock(containerId: string, groupIndex: "main" | number, from: number, to: number): void {
     const workspace = NetTango.getWorkspace(containerId)
     workspace.menu.moveSlot(groupIndex, from, to)
   }
 
+  static setVariables(containerId: string, variables: string[]): void {
+    const workspace = NetTango.getWorkspace(containerId)
+    workspace.setVariables(variables)
+  }
 }
 
 if (window !== undefined && window !== null && !window.hasOwnProperty("NetTango")) {

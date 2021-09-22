@@ -332,6 +332,10 @@ class CodeWorkspaceUI {
     this.menu.menuDiv.style.maxHeight = newHeight
   }
 
+  setVariables(variables: string[]): void {
+    this.ws.variables = variables
+  }
+
 }
 
 export { CodeWorkspaceUI }
