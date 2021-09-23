@@ -21,7 +21,7 @@ class ExpressionAttributeUI extends AttributeUI {
     super(id, expDef, ea, block, isProperty)
     this.expDef = expDef
     this.ea = ea
-    this.builder = new ExpressionBuilder(this.block.workspace, this.ea.value)
+    this.builder = new ExpressionBuilder(this.block.workspace, this.ea.value, this.block.def.tags)
   }
 
   showParameterDialog(x: number, y: number, acceptCallback: () => void): void {

@@ -10,14 +10,18 @@ class ExpressionBuilder {
   workspace: CodeWorkspaceUI
   parent?: Element
   root: ExpressionUI
+  tags: string[]
 
   get variables(): Variable[] {
-    return this.workspace.ws.variables
+    return this.workspace.ws.variables.filter( (variable) =>
+      variable.tags.length === 0 || variable.tags.some( (varTag) => this.tags.includes(varTag) )
+    )
   }
 
-  constructor(workspace: CodeWorkspaceUI, ea: Expression) {
+  constructor(workspace: CodeWorkspaceUI, ea: Expression, tags: string[]) {
     this.workspace = workspace
     this.root = new ExpressionUI(this, ea)
+    this.tags = tags
   }
 
   toString(): string {
