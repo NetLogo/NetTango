@@ -53,7 +53,6 @@ class BlockMenuGroupUI {
     const checker = (d: boolean) => d && DragManager.isInSameWorkspace(this.containerId) && DragManager.isInSameGroup(this.groupIndex)
 
     const headerDiv = document.createElement("div")
-    headerDiv.innerText = this.header
     headerDiv.classList.add("nt-drop-spot")
     this.groupDiv.append(headerDiv)
 
@@ -70,7 +69,7 @@ class BlockMenuGroupUI {
       , isCollapsed: this.group.isCollapsed
       }
       EventRouter.fireEvent(collapseEvent)
-    })
+    }, this.header)
     if (this.group.isCollapsed) {
       this.blocksDiv.classList.add("nt-group-blocks-hidden")
     }

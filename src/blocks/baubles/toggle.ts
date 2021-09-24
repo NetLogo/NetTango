@@ -8,13 +8,15 @@ class Toggle {
   offGlyph = "\u25BC"
   isOn: boolean
   onChange: (b: boolean) => void
+  extraText: string
 
-  constructor(isOn: boolean, onChange: (b: boolean) => void) {
-    this.isOn = isOn
-    this.onChange = onChange
-    this.div = document.createElement("div")
+  constructor(isOn: boolean, onChange: (b: boolean) => void, extraText: string = "") {
+    this.isOn          = isOn
+    this.onChange      = onChange
+    this.extraText     = extraText
+    this.div           = document.createElement("div")
     this.div.classList.add("nt-toggle")
-    this.div.innerText = isOn ? this.onGlyph : this.offGlyph
+    this.div.innerText = this.innerText()
     this.div.addEventListener("click", (e) => this.click(e) )
   }
 
@@ -24,9 +26,13 @@ class Toggle {
   }
 
   toggle(): void {
-    this.isOn = !this.isOn
-    this.div.innerText = this.isOn ? this.onGlyph : this.offGlyph
+    this.isOn          = !this.isOn
+    this.div.innerText = this.innerText()
     this.onChange(this.isOn)
+  }
+
+  innerText(): string {
+    return `${this.extraText} ${this.isOn ? this.onGlyph : this.offGlyph}`
   }
 
 }
