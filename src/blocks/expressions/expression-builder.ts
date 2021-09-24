@@ -13,9 +13,10 @@ class ExpressionBuilder {
   tags: string[]
 
   get variables(): Variable[] {
-    return this.workspace.ws.variables.filter( (variable) =>
+    const vars = this.workspace.ws.variables.filter( (variable) =>
       variable.tags.length === 0 || variable.tags.some( (varTag) => this.tags.includes(varTag) )
     )
+    return vars.sort( (v1, v2) => v1.name.localeCompare(v2.name) )
   }
 
   constructor(workspace: CodeWorkspaceUI, ea: Expression, tags: string[]) {
