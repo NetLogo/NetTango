@@ -239,8 +239,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -337,7 +337,7 @@
     "chains": []
   },
   "chainOpen": null,
-  "chainClose": null,
+  "chainClose": "end",
   "blockStyles": {
     "starterBlockStyle": {
       "blockColor": "#bb5555",

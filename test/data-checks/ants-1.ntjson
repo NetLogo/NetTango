@@ -52,8 +52,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -87,8 +87,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -122,8 +122,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -157,8 +157,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -192,8 +192,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -227,8 +227,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -669,7 +669,7 @@
     ]
   },
   "chainOpen": null,
-  "chainClose": null,
+  "chainClose": "end",
   "blockStyles": {
     "starterBlockStyle": {
       "blockColor": "#bb5555",

@@ -26,7 +26,7 @@ function restoreWorkspace(containerId: string, workspaceEnc: CodeWorkspace, lang
     throw new Error(`The supported NetTango version is ${VersionManager.VERSION}, but the given definition version was ${workspaceEnc["version"]}.`)
   }
   const expressions: ExpressionDefinition[] = defaultExpressions.has(language) ? defaultExpressions.get(language)! : []
-  const workspace = new CodeWorkspaceUI(containerId, workspaceEnc, language, expressions, formatAttribute, options)
+  const workspace = new CodeWorkspaceUI(containerId, workspaceEnc, expressions, formatAttribute, options)
   return workspace
 }
 

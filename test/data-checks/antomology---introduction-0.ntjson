@@ -83,7 +83,7 @@
     "chains": []
   },
   "chainOpen": null,
-  "chainClose": null,
+  "chainClose": "end",
   "blockStyles": null,
   "variables": [],
   "expressions": [

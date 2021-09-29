@@ -61,7 +61,6 @@ class CodeWorkspaceUI {
   constructor(
     containerId: string
   , ws: CodeWorkspace
-  , language: string
   , defaultExpressions: ExpressionDefinition[]
   , formatAttribute: FormatAttributeType
   , options: NetTangoOptions
@@ -69,7 +68,7 @@ class CodeWorkspaceUI {
     this.ws = ws
     this.options = options
     this.containerId = containerId
-    this.formatter = new CodeFormatter(this, language, formatAttribute)
+    this.formatter = new CodeFormatter(this, formatAttribute)
     const usableDefaults = defaultExpressions.filter( (de) => !this.ws.expressions.some( (e) => e.name.toLowerCase() === de.name.toLowerCase() ))
     this.expressions = usableDefaults.concat(this.ws.expressions)
 

@@ -4,6 +4,7 @@ import { CodeWorkspace as CodeWorkspaceInput } from "../types/types-6"
 import { CodeWorkspace, codeWorkspaceSchema } from "../types/types"
 
 import { newWorkspace } from "./empty-objects"
+import { StringUtils } from "../utils/string-utils"
 
 class Version7 {
 
@@ -16,7 +17,24 @@ class Version7 {
     Object.assign(workspace, ws, {
       variables: variables
     })
+
+    Version7.fillNetLogoCodeFormatDefaults(workspace)
+
     return workspace
+  }
+
+  // We had NetLogo defaults for these values in the formatter, but they
+  // have been removed in favor of asking the user to provide them.  But
+  // we update old versions since NetLogo was the only supported language
+  // previously.  -Jeremy B September 2021
+  static fillNetLogoCodeFormatDefaults(workspace: CodeWorkspace): void {
+    workspace.chainClose = StringUtils.toStrNotEmpty(workspace.chainClose, "end")
+    workspace.blocks.forEach( (b) => {
+      b.clauses.forEach( (c) => {
+        c.open  = StringUtils.toStrNotEmpty(c.open,  "[")
+        c.close = StringUtils.toStrNotEmpty(c.close, "]")
+      })
+    })
   }
 
   static validate(workspaceEnc: any): CodeWorkspace {

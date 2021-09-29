@@ -142,16 +142,16 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
         },
         {
           "action": "else",
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           },
@@ -192,8 +192,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -438,8 +438,8 @@
       "clauses": [
         {
           "action": null,
-          "open": null,
-          "close": null,
+          "open": "[",
+          "close": "]",
           "allowedTags": {
             "type": "unrestricted"
           }
@@ -479,7 +479,7 @@
     "chains": []
   },
   "chainOpen": null,
-  "chainClose": null,
+  "chainClose": "end",
   "blockStyles": null,
   "variables": [],
   "expressions": [

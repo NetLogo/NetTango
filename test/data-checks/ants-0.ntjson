@@ -313,7 +313,7 @@
     ]
   },
   "chainOpen": null,
-  "chainClose": null,
+  "chainClose": "end",
   "blockStyles": {
     "starterBlockStyle": {
       "blockColor": "#bb5555",

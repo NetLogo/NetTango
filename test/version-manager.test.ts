@@ -9,7 +9,8 @@ import {
 , IntAttribute
 , NumberValue
 , SelectAttribute
-, StringValue
+, StringValue,
+CodeWorkspace
 } from "../src/types/types"
 
 import { ObjectUtils } from "../src/utils/object-utils"
@@ -17,9 +18,15 @@ import { VersionManager } from "../src/versions/version-manager"
 
 import { newAttribute, newAttributeValue, newBlockDefinition, newBlockInstance, newClauseDefinition, newClauseInstance, newExpression, newWorkspace } from "../src/versions/empty-objects"
 
+function makeExpectedWorkspace(): CodeWorkspace {
+  const expected = newWorkspace()
+  expected.chainClose = "end"
+  return expected
+}
+
 test("Version1 - blank workspace gets version added", () => {
   const model = {}
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const result = VersionManager.updateWorkspace(model)
   expect(result).toStrictEqual(expected)
 })
@@ -30,7 +37,7 @@ test("Version1 - block gets id added", () => {
     "blocks": [ action ]
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
   expected.blocks.push(blockDef)
   expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
@@ -48,7 +55,7 @@ test("Version1 - chain block gets id added", () => {
     "program": { "chains": [ [ chain ] ] }
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
   expected.blocks.push(blockDef)
   expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
@@ -70,9 +77,9 @@ test("Version1 - chain block with children gets id added", () => {
     "program": { "chains": [ [ chain ] ] }
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
-  const clause1: Clause = ObjectUtils.clone(newClauseDefinition())
+  const clause1: Clause = ObjectUtils.clone(newClauseDefinition(), { open: "[", close: "]" })
   blockDef1.clauses.push(clause1)
   expected.blocks.push(blockDef1)
   const blockDef2 = ObjectUtils.clone(newBlockDefinition(), { id: 1, action: "forward 10" })
@@ -100,11 +107,11 @@ test("Version1 - chain block with clauses gets id added", () => {
     "program": { "chains": [ [ chain ] ] }
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
-  const clause1: Clause = ObjectUtils.clone(newClauseDefinition())
+  const clause1: Clause = ObjectUtils.clone(newClauseDefinition(), { open: "[", close: "]" })
   blockDef1.clauses.push(clause1)
-  const clause2: Clause = newClauseDefinition()
+  const clause2: Clause = ObjectUtils.clone(newClauseDefinition(), { open: "[", close: "]" })
   blockDef1.clauses.push(clause2)
   expected.blocks.push(blockDef1)
   const blockDef2 = ObjectUtils.clone(newBlockDefinition(), { id: 1, action: "forward 10" })
@@ -135,7 +142,7 @@ test("Version1 - block, parameter, and property get ids added", () => {
     "blocks": [ action ]
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
   const param1: IntAttribute = ObjectUtils.clone(newAttribute("int") as IntAttribute, { default: 10 })
   blockDef1.params.push(param1)
@@ -164,7 +171,7 @@ test("Version1 - chain block, parameter, and property get ids added", () => {
     "program": { "chains": [ [ chain ] ] }
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
   const param1: IntAttribute = ObjectUtils.clone(newAttribute("int") as IntAttribute, { default: 10 })
   blockDef1.params.push(param1)
@@ -202,7 +209,7 @@ test("Version2 - select parameter converts to objects", () => {
     "program": { "chains": [ [ chain ] ] }
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "wolf actions" })
   const param1: SelectAttribute = ObjectUtils.clone(newAttribute("select") as SelectAttribute, {
     default: "apples"
@@ -231,7 +238,7 @@ test("Version4 - chain gets x and y coordinates from first block", () => {
     }
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "act1" })
   expected.blocks.push(blockDef1)
   expected.menuConfig.mainGroup.order = VersionManager.fixupMainGroupOrder(expected.blocks, [], [])
@@ -257,7 +264,7 @@ test("Version5 - select with unquoted values gets `never-quote` set", () => {
     } ] } ]
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "act1" })
   const param1: SelectAttribute = ObjectUtils.clone(newAttribute("select") as SelectAttribute, {
     default: "red"
@@ -320,7 +327,7 @@ test("Version6 - expression attributes get proper values reset", () => {
     }]}]}
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "act1" })
   const param1: ExpressionAttribute = ObjectUtils.clone(newAttribute("num") as ExpressionAttribute, {
     default: "0"
@@ -389,7 +396,7 @@ test("Version6 - group orders are properly reset", () => {
     }
   }
 
-  const expected = newWorkspace()
+  const expected = makeExpectedWorkspace()
   const blockDef1 = ObjectUtils.clone(newBlockDefinition(), { id: 0, action: "main-1" })
   expected.blocks.push(blockDef1)
   const blockDef2 = ObjectUtils.clone(newBlockDefinition(), { id: 1, action: "main-2" })

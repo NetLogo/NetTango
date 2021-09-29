@@ -22,24 +22,6 @@ import { BlockRules } from "./block-rules"
 import { ChainUI } from "./chain"
 import { CodeWorkspaceUI } from "./code-workspace"
 
-// TODO: This is an over-simplification, but it works for our big use-case (NetLogo)
-// If we want to look at custom per-language code formatters again, I think it makese
-// more sense for them to be provided by the end users, as opposed to included in the
-// NetTango runtime directly.  -Jeremy B July 2020
-class FormatOptions {
-  readonly chainOpen: string
-  readonly chainClose: string
-  readonly clauseOpen: string
-  readonly clauseClose: string
-
-  constructor(chainOpen: string, chainClose: string, clauseOpen: string, clauseClose: string) {
-    this.chainOpen = chainOpen
-    this.chainClose = chainClose
-    this.clauseOpen = clauseOpen
-    this.clauseClose = clauseClose
-  }
-}
-
 type BlockData     = { def: BlockDefinition, b: BlockInstance }
 type AttributeData = { def: Attribute, a: AttributeValue }
 type ClauseData    = { def: Clause, c: ClauseInstance }
@@ -54,28 +36,15 @@ function compareChainsByAction(c1: ChainUI, c2: ChainUI) {
   return c1.blocks[0].def.action.localeCompare(c2.blocks[0].def.action)
 }
 
-class CodeFormatter  {
+class CodeFormatter {
 
   indentString: string = "  "
-  formatOptions: FormatOptions
   formatAttribute: FormatAttributeType
   readonly workspace: CodeWorkspaceUI
 
-  constructor(workspace: CodeWorkspaceUI, language: string, formatAttribute: FormatAttributeType) {
+  constructor(workspace: CodeWorkspaceUI, formatAttribute: FormatAttributeType) {
     this.workspace = workspace
     this.formatAttribute = formatAttribute
-
-    switch (language) {
-
-      case "NetLogo":
-        this.formatOptions = new FormatOptions("", "end", "[", "]")
-        break
-
-      default:
-        this.formatOptions = new FormatOptions("", "", "", "")
-        break
-
-    }
   }
 
   formatCode(includeRequired: boolean, formatAttributeOverride: FormatAttributeType | null = null): string {
@@ -123,11 +92,11 @@ class CodeFormatter  {
     var first = blocks[0]
     if (!BlockRules.canBeStarter(first.def)) { return }
 
-    this.writeFormatOption(out, null, 0, this.formatOptions.chainOpen, chainOpen)
+    this.writeIfNotBlank(out, null, 0, chainOpen)
     this.formatBlock(out, 0, first)
     this.formatBlocks(out, 1, blocks.slice(1))
     const override = StringUtils.isNotNullOrEmpty(first.def.closeStarter) ? first.def.closeStarter : chainClose
-    this.writeFormatOption(out, null, 0, this.formatOptions.chainClose, override)
+    this.writeIfNotBlank(out, null, 0, override)
     out.writeln()
   }
 
@@ -181,10 +150,10 @@ class CodeFormatter  {
   }
 
   formatClause(out: StringBuffer, block: BlockData, clause: ClauseData, indent: number): void {
-    this.writeFormatOption(out, block, indent, this.formatOptions.clauseOpen, clause.def.open)
+    this.writeIfNotBlank(out, block, indent, clause.def.open)
     const clauseBlocks = clause.c.blocks.map( (b) => { return { def: this.workspace.menu.getBlockById(b.definitionId), b: b }} )
     this.formatBlocks(out, indent + 1, clauseBlocks)
-    this.writeFormatOption(out, block, indent, this.formatOptions.clauseClose, clause.def.close)
+    this.writeIfNotBlank(out, block, indent, clause.def.close)
   }
 
   replaceAttribute(code: string, placeholder: string, block: BlockData, id: number, a: AttributeData, isProperty: boolean): string {
@@ -201,11 +170,10 @@ class CodeFormatter  {
     out.writeln(indentedPost)
   }
 
-  writeFormatOption(out: StringBuffer, block: BlockData | null, indent: number, formatOption: string, override: string | null): void {
-    const option = StringUtils.toStr(override, formatOption)
-    if (StringUtils.isNotNullOrEmpty(option) && option.trim() !== "") {
-      const optionFormat = block === null ? option : this.replaceParamsAndProps(option, block)
-      this.writeIndentedLine(out, indent, optionFormat)
+  writeIfNotBlank(out: StringBuffer, block: BlockData | null, indent: number, code: string | null): void {
+    if (code !== null && code.trim() !== "") {
+      const line = block === null ? code : this.replaceParamsAndProps(code, block)
+      this.writeIndentedLine(out, indent, line)
     }
   }
 
