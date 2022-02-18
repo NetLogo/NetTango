@@ -569,6 +569,12 @@
   overflow: auto;
 }
 
+.nt-info-dialog-note {
+  font-family: Poppins, sans-serif;
+  font-size: small;
+  margin: 0.5em;
+}
+
 .nt-info-dialog-header {
   font-family: Poppins, sans-serif;
   font-size: medium;

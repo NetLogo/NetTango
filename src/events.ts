@@ -56,6 +56,7 @@ type BlockInstanceMenuEvent = {
   readonly type:        "block-instance-menu"
   readonly containerId: string
   readonly action:      string
+  readonly note:        string | null
   readonly codeTip:     string
   readonly x:           number
   readonly y:           number

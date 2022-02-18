@@ -236,10 +236,6 @@ class BlockInstanceUI {
 
   formatCodeTip(): string {
     const out = new StringBuffer()
-    if (this.def.note !== null && StringUtils.isNotNullOrEmpty(this.def.note.trimLeft())) {
-      out.writeln(this.def.note)
-      out.writeln()
-    }
     if (this.dragData instanceof ChainDragData && this.dragData.blockIndex === 0) {
       const chain = this.workspace.chains[this.dragData.chainIndex]
       const chainBlocks = chain.blocks.map( (block) => { return { def: block.def, b: block.b }} )
@@ -264,6 +260,7 @@ class BlockInstanceUI {
         type:        "block-instance-menu"
       , containerId: this.containerId
       , action:      this.def.action
+      , note:        this.def.note
       , codeTip:     this.formatCodeTip()
       , x:           ev.pageX
       , y:           ev.pageY

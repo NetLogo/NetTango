@@ -1,6 +1,7 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import { BlockInstanceMenuEvent } from "../events"
+import { StringUtils } from "../utils/string-utils"
 
 type Rect = { top: number, left: number }
 
@@ -38,10 +39,15 @@ class InfoDialog {
       if (key === 'Escape' && this.isActive) { hide() }
     })
 
+    const note = (event.note !== null && StringUtils.isNotNullOrEmpty(event.note.trimStart())) ?
+      `<p class="nt-info-dialog-note">${event.note.trimStart()}</p>` :
+      ""
+
     this.div.style.left = `${event.x}px`
     this.div.style.top  = `${event.y}px`
     this.div.innerHTML = `
       <h3 class="nt-info-dialog-header">NetLogo code for <em>${event.action}</em> block</h3>
+      ${note}
       <pre class="nt-info-dialog-code">${event.codeTip}</pre>
     `
 
