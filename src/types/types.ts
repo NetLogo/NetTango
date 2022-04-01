@@ -109,21 +109,22 @@ const attributeBaseSchema = z.object({
 , unit: z.string().nullable().default(null)
 })
 
+export const quoteOptionsSchema = z.union([
+  z.literal("smart-quote")
+, z.literal("always-quote")
+, z.literal("never-quote")
+])
+
 export const textAttributeSchema = attributeBaseSchema.extend({
   type: z.literal("text")
 , default: z.string().default("")
+, quoteValues: quoteOptionsSchema.default("always-quote")
 }).passthrough()
 
 const selectOptionSchema = z.object({
   actual: z.string()
 , display: z.string().nullable().default(null)
 }).passthrough()
-
-export const quoteOptionsSchema = z.union([
-  z.literal("smart-quote")
-, z.literal("always-quote")
-, z.literal("never-quote")
-])
 
 export const selectAttributeSchema = attributeBaseSchema.extend({
   type: z.literal("select")

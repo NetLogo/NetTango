@@ -528,7 +528,8 @@
           "name": "name",
           "unit": null,
           "type": "text",
-          "default": "blurpeous"
+          "default": "blurpeous",
+          "quoteValues": "always-quote"
         },
         {
           "name": "color",

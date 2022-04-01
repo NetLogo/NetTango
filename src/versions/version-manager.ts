@@ -188,7 +188,7 @@ class VersionManager {
         if (["text", "select"].includes(value.type)) {
           value.type = attribute.type
         } else {
-          value = makeStringDefault(attribute)
+          value = makeStringDefault(attribute.type, attribute.default)
         }
         break
 
@@ -197,7 +197,7 @@ class VersionManager {
         if (["int", "range"].includes(value.type)) {
           value.type = attribute.type
         } else {
-          value = makeNumberDefault(attribute)
+          value = makeNumberDefault(attribute.type, attribute.default)
         }
         break
 

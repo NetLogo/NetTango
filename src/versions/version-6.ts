@@ -1,6 +1,6 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
-import { makeAttributeDefault, makeExpressionValue } from "../blocks/attributes/attribute-factory"
+import { makeExpressionDefault, makeExpressionValue, makeNumberDefault, makeStringDefault } from "../blocks/attributes/attribute-factory"
 import { Attribute, AttributeValue, BlockDefinition, BlockInstance, Chain, Clause, ClauseInstance, CodeWorkspace, codeWorkspaceSchema } from "../types/types-6"
 import { AttributeInput, BlockInput, ChainInput, ClauseInput, CodeWorkspaceInput } from "../types/types-5"
 import { ObjectUtils } from "../utils/object-utils"
@@ -184,16 +184,32 @@ class Version6 {
     return clause
   }
 
+  static makeAttributeDefault(attribute: Attribute): AttributeValue {
+    switch (attribute.type) {
+      case "text":
+      case "select":
+        return makeStringDefault(attribute.type, attribute.default)
+
+      case "int":
+      case "range":
+        return makeNumberDefault(attribute.type, attribute.default)
+
+      case "num":
+      case "bool":
+        return makeExpressionDefault(attribute)
+    }
+  }
+
   static makeAttributeValue(def: Attribute, a: AttributeInput | undefined): AttributeValue {
     if (a === undefined) {
-      return makeAttributeDefault(def)
+      return Version6.makeAttributeDefault(def)
     }
 
     var value: AttributeValue | null = null
     switch (a.type) {
       case "text":
         value = (def.type !== "text") ?
-          makeAttributeDefault(def) :
+          Version6.makeAttributeDefault(def) :
           {
             type: a.type
           , value: a.value ?? def.default
@@ -202,7 +218,7 @@ class Version6 {
 
       case "select":
         value = (def.type !== "select") ?
-          makeAttributeDefault(def) :
+          Version6.makeAttributeDefault(def) :
           {
             type: "select"
           , value: a.value ?? def.default
@@ -212,7 +228,7 @@ class Version6 {
       case "range":
       case "int":
         value = (def.type !== "range" && def.type !== "int") ?
-          makeAttributeDefault(def) :
+          Version6.makeAttributeDefault(def) :
           {
             type: a.type
           , value: a.value ?? def.default
@@ -222,7 +238,7 @@ class Version6 {
       case "num":
       case "bool":
         value = (def.type !== "num" && def.type !== "bool" || a.value === undefined) ?
-          makeAttributeDefault(def) :
+          Version6.makeAttributeDefault(def) :
           {
             type: a.type
           , value: (typeof a.value === "string") ? makeExpressionValue(def.type, a.value) : a.value

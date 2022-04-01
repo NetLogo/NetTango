@@ -8,7 +8,8 @@ import {
 , Clause
 , NumAttribute
 , SelectAttribute
-, ClauseInstance
+, ClauseInstance,
+TextAttribute
 } from "../types/types"
 
 import { FormatAttributeType } from "../nettango"
@@ -204,15 +205,16 @@ class CodeFormatter {
     static shouldQuote(a: AttributeData): boolean {
       switch (a.a.type) {
         case 'text':
-          return true
-
-        case 'int':
-        case 'range':
-          return false
+          const ta = a.def as TextAttribute
+          return shouldQuote(ta.quoteValues, a.a.value)
 
         case 'select':
           const sa = a.def as SelectAttribute
           return shouldQuote(sa.quoteValues, a.a.value)
+
+        case 'int':
+        case 'range':
+          return false
 
         case 'num':
         case 'bool':

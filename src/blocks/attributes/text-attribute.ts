@@ -6,13 +6,16 @@ import { BlockInstanceUI } from "../block-instance"
 import { EventRouter } from "../../event-router"
 import { AttributeChangedEvent } from "../../events"
 import { AttributeUI } from "./attribute"
+import { maybeAddQuotes } from "./quote-options"
 
 class TextAttributeUI extends AttributeUI {
 
+  readonly textDef: TextAttribute
   readonly ta: StringValue
 
   constructor(id: number, def: TextAttribute, ta: StringValue, block: BlockInstanceUI, isProperty: boolean) {
     super(id, def, ta, block, isProperty)
+    this.textDef = def
     this.ta = ta
   }
 
@@ -44,7 +47,7 @@ class TextAttributeUI extends AttributeUI {
         }
         backdrop.classList.remove("show")
         acceptCallback()
-        const formattedValue = this.ta.value
+        const formattedValue = maybeAddQuotes(this.textDef.quoteValues, this.ta.value)
         const event: AttributeChangedEvent = {
           type: "attribute-changed"
         , containerId: this.block.containerId

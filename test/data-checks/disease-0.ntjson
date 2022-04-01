@@ -595,6 +595,7 @@
           "unit": null,
           "type": "text",
           "default": "false",
+          "quoteValues": "always-quote",
           "def": "false"
         }
       ],
@@ -1340,7 +1341,8 @@
           "name": "equals",
           "unit": null,
           "type": "text",
-          "default": "false"
+          "default": "false",
+          "quoteValues": "always-quote"
         }
       ],
       "start": false,
@@ -1372,7 +1374,8 @@
           "name": "Parameter 0",
           "unit": null,
           "type": "text",
-          "default": "orange"
+          "default": "orange",
+          "quoteValues": "always-quote"
         }
       ],
       "properties": [],

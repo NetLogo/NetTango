@@ -45,11 +45,11 @@ function makeAttributeDefault(attribute: Attribute): AttributeValue {
   switch (attribute.type) {
     case "text":
     case "select":
-      return makeStringDefault(attribute)
+      return makeStringDefault(attribute.type, attribute.default)
 
     case "int":
     case "range":
-      return makeNumberDefault(attribute)
+      return makeNumberDefault(attribute.type, attribute.default)
 
     case "num":
     case "bool":
@@ -57,17 +57,17 @@ function makeAttributeDefault(attribute: Attribute): AttributeValue {
   }
 }
 
-function makeStringDefault(attribute: TextAttribute | SelectAttribute): StringValue {
+function makeStringDefault(type: "text" | "select", def: string): StringValue {
   return {
-    type: attribute.type
-  , value: attribute.default
+    type: type
+  , value: def
   }
 }
 
-function makeNumberDefault(attribute: IntAttribute | RangeAttribute): NumberValue {
+function makeNumberDefault(type: "int" | "range", def: number): NumberValue {
   return {
-    type: attribute.type
-  , value: attribute.default
+    type: type
+  , value: def
   }
 }
 
