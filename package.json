@@ -1,6 +1,6 @@
 {
   "name": "nettango",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "description": "A blocks-based programming library written in TypeScript",
   "main": "nettango.js",
   "scripts": {
