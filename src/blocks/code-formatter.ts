@@ -16,11 +16,11 @@ import { StringBuffer } from "../utils/string-buffer"
 import { StringUtils } from "../utils/string-utils"
 import { ExpressionAttributeUI } from "./attributes/expression-attribute"
 import { NumAttributeUI } from "./attributes/num-attribute"
-import { SelectAttributeUI } from "./attributes/select-attribute"
 import { BlockDefinitionUI } from "./block-definition"
 import { BlockRules } from "./block-rules"
 import { ChainUI } from "./chain"
 import { CodeWorkspaceUI } from "./code-workspace"
+import { shouldQuote } from "./attributes/quote-options"
 
 type BlockData     = { def: BlockDefinition, b: BlockInstance }
 type AttributeData = { def: Attribute, a: AttributeValue }
@@ -211,7 +211,8 @@ class CodeFormatter {
           return false
 
         case 'select':
-          return SelectAttributeUI.shouldQuote(a.def as SelectAttribute, a.a)
+          const sa = a.def as SelectAttribute
+          return shouldQuote(sa.quoteValues, a.a.value)
 
         case 'num':
         case 'bool':

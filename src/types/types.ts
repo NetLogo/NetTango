@@ -13,6 +13,7 @@ export type ConcreteTags = z.infer<typeof concreteTagsSchema>
 export type AllowedTags = z.infer<typeof allowedTagsSchema>
 
 export type SelectOption = z.infer<typeof selectOptionSchema>
+export type QuoteOptions = z.infer<typeof quoteOptionsSchema>
 
 export type TextAttribute = z.infer<typeof textAttributeSchema>
 export type SelectAttribute = z.infer<typeof selectAttributeSchema>
@@ -118,14 +119,16 @@ const selectOptionSchema = z.object({
 , display: z.string().nullable().default(null)
 }).passthrough()
 
+export const quoteOptionsSchema = z.union([
+  z.literal("smart-quote")
+, z.literal("always-quote")
+, z.literal("never-quote")
+])
+
 export const selectAttributeSchema = attributeBaseSchema.extend({
   type: z.literal("select")
 , default: z.string().default("")
-, quoteValues: z.union([
-    z.literal("smart-quote")
-  , z.literal("always-quote")
-  , z.literal("never-quote")
-  ]).default("smart-quote")
+, quoteValues: quoteOptionsSchema.default("smart-quote")
 , values: z.array(selectOptionSchema).default([])
 }).passthrough()
 

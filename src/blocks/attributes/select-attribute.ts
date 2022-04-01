@@ -5,14 +5,7 @@ import { BlockInstanceUI } from "../block-instance"
 import { EventRouter } from "../../event-router"
 import { AttributeChangedEvent } from "../../events"
 import { AttributeUI } from "./attribute"
-
-type QuoteOptionTypes = "smart-quote" | "always-quote" | "never-quote"
-
-class QuoteOptions {
-  static readonly SMART_QUOTE  = "smart-quote"
-  static readonly ALWAYS_QUOTE = "always-quote"
-  static readonly NEVER_QUOTE  = "never-quote"
-}
+import { maybeAddQuotes } from "./quote-options"
 
 function selectOptionDisplay(o: SelectOption): string {
   return (o.display === null || o.display === "") ? o.actual : o.display
@@ -58,7 +51,7 @@ class SelectAttributeUI extends AttributeUI {
         this.sa.value = v.actual
         backdrop.classList.remove("show")
         acceptCallback()
-        const formattedValue = SelectAttributeUI.shouldQuote(this.selectDef, this.sa) ? `"${this.sa.value}"` : this.sa.value
+        const formattedValue = maybeAddQuotes(this.selectDef.quoteValues, this.sa.value)
         const event: AttributeChangedEvent = {
           type: "attribute-changed"
         , containerId: this.block.containerId
@@ -88,23 +81,6 @@ class SelectAttributeUI extends AttributeUI {
     }
   }
 
-  static shouldQuote(def: SelectAttribute, sa: StringValue): boolean {
-    switch (def.quoteValues) {
-
-      case "always-quote":
-        return true
-
-      case "never-quote":
-        return false
-
-      case "smart-quote":
-      default:
-        const maybeNum = Number.parseFloat(sa.value)
-        return Number.isNaN(maybeNum) && !["true", "false"].includes(sa.value)
-
-    }
-  }
-
 }
 
-export { SelectAttributeUI, QuoteOptions, QuoteOptionTypes }
+export { SelectAttributeUI }

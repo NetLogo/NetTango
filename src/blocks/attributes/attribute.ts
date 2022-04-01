@@ -55,6 +55,7 @@ abstract class AttributeUI {
   }
 
   abstract showParameterDialog(x: number, y: number, acceptCallback: () => void): void
+
 }
 
 export { AttributeUI }

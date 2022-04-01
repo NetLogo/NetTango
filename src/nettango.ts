@@ -1,6 +1,6 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
-import { QuoteOptions } from "./blocks/attributes/select-attribute"
+import { QuoteOptionValues } from "./blocks/attributes/quote-options"
 import { BlockPlacement } from "./blocks/block-placement"
 import { AttributeTypes } from "./attribute-types"
 import { CodeFormatter } from "./blocks/code-formatter"
@@ -39,7 +39,7 @@ function encodeWorkspace(workspace: CodeWorkspaceUI): CodeWorkspace {
 class NetTango {
 
   static blockPlacementOptions = BlockPlacement
-  static selectQuoteOptions    = QuoteOptions
+  static selectQuoteOptions    = QuoteOptionValues
   static defaultExpressions    = defaultExpressions
   static defaultBlockStyles    = {
     commandBlockStyle:   BlockStyleUI.DEFAULT_COMMAND_STYLE
