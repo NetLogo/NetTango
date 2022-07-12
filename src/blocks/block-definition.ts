@@ -14,6 +14,7 @@ import { NewDragData } from './drag-drop/drag-data/new-drag-data'
 import { BlockDefinition, BlockInstance } from '../types/types'
 import { makeAttributeDefault } from './attributes/attribute-factory'
 import { EventRouter } from "../event-router"
+import { BlockRules } from "./block-rules"
 
 class BlockDefinitionUI {
 
@@ -91,12 +92,13 @@ class BlockDefinitionUI {
 
   formatCodeTip(): string {
     const out = new StringBuffer()
-    if (this.def.note !== null && StringUtils.isNotNullOrEmpty(this.def.note.trimStart())) {
-      out.writeln(this.def.note)
-      out.writeln()
-    }
     const fakeInstance = this.makeInstance()
-    this.workspace.formatter.formatBlock(out, 0, { def: this.def, b: fakeInstance })
+    if (BlockRules.canBeStarter(this.def)) {
+      const chainBlocks = [{ def: this.def, b: fakeInstance }]
+      this.workspace.formatter.formatChainBlocks(out, chainBlocks, this.workspace.ws.chainOpen, this.workspace.ws.chainClose)
+    } else {
+      this.workspace.formatter.formatBlock(out, 0, { def: this.def, b: fakeInstance })
+    }
     const value = out.toString().trim()
     const escapedValue = StringUtils.escapeHtml(value)
     return escapedValue
@@ -147,6 +149,9 @@ class BlockDefinitionUI {
     , groupIndex:  this.groupIndex
     , slotIndex:   this.slotIndex
     , blockId:     this.def.id
+    , action:      this.def.action
+    , note:        this.def.note
+    , codeTip:     this.formatCodeTip()
     , x:           e.pageX
     , y:           e.pageY
     }
@@ -162,6 +167,9 @@ class BlockDefinitionUI {
     , groupIndex:  this.groupIndex
     , slotIndex:   this.slotIndex
     , blockId:     this.def.id
+    , action:      this.def.action
+    , note:        this.def.note
+    , codeTip:     this.formatCodeTip()
     , x:           e.pageX
     , y:           e.pageY
     }

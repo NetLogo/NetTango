@@ -3,7 +3,7 @@
 import type { InteractEvent } from '@interactjs/core/InteractEvent'
 import interact from "interactjs"
 
-import { FormatAttributeType } from "../nettango"
+import { FormatAttributeType, NetTango } from "../nettango"
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../nettango-defaults'
 import { Chain, CodeWorkspace, ExpressionDefinition, Variable } from '../types/types'
 import { NumUtils } from "../utils/num-utils"
@@ -128,7 +128,7 @@ class CodeWorkspaceUI {
     throw new Error(`Block with given definition and instance IDs not found in workspace: ${definitionId} / ${instanceId}`)
   }
 
-  draw(enableCodeTips: boolean): void {
+  draw(options: NetTangoOptions): void {
     const styleId = `${this.containerId}-styles`
     var style = document.getElementById(styleId)
     if (style === null) {
@@ -171,10 +171,21 @@ class CodeWorkspaceUI {
     EventRouter.addListener(
       "workspace-instance-listener"
     , this.containerId
-    , ["block-instance-menu"]
+    , ["block-instance-menu", "menu-item-context-menu"]
     , (e) => {
-      if (enableCodeTips && e.type === "block-instance-menu") {
-        codeTipDialog.show(e)
+      if (options.enableCodeTips) {
+        switch (e.type) {
+          case "block-instance-menu":
+            codeTipDialog.show(e)
+            break
+
+          case "menu-item-context-menu":
+            if (!options.enableDefinitionChanges) {
+              codeTipDialog.show(e)
+            }
+            break
+
+        }
       }
     })
 

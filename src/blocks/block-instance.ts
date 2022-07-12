@@ -256,6 +256,8 @@ class BlockInstanceUI {
     const event: BlockInstanceMenuEvent = {
       type:        "block-instance-menu"
     , containerId: this.containerId
+    , blockId:     this.b.definitionId
+    , instanceId:  this.b.instanceId
     , action:      this.def.action
     , note:        this.def.note
     , codeTip:     this.formatCodeTip()

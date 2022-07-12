@@ -42,6 +42,9 @@ type MenuItemEvent = {
   readonly groupIndex:  "main" | number
   readonly slotIndex:   number
   readonly blockId:     number
+  readonly action:      string
+  readonly note:        string | null
+  readonly codeTip:     string
   readonly x:           number
   readonly y:           number
 }
@@ -55,6 +58,8 @@ type BlockDefinitionEvent = {
 type BlockInstanceMenuEvent = {
   readonly type:        "block-instance-menu"
   readonly containerId: string
+  readonly blockId:     number
+  readonly instanceId:  number
   readonly action:      string
   readonly note:        string | null
   readonly codeTip:     string

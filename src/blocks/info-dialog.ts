@@ -1,6 +1,6 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
-import { BlockInstanceMenuEvent } from "../events"
+import { BlockInstanceMenuEvent, MenuItemEvent } from "../events"
 import { StringUtils } from "../utils/string-utils"
 
 type Rect = { top: number, left: number }
@@ -28,7 +28,7 @@ class InfoDialog {
     this.isActive = false
   }
 
-  show(event: BlockInstanceMenuEvent) {
+  show(event: BlockInstanceMenuEvent | MenuItemEvent) {
     this.div.classList.add("show")
     this.isActive = true
 
