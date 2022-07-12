@@ -20,7 +20,6 @@ class BlockDefinitionUI {
   readonly def: BlockDefinition
   readonly containerId: string
   readonly workspace: CodeWorkspaceUI
-  readonly enableCodeTips: boolean
 
   groupIndex: "main" | number
   slotIndex: number
@@ -33,7 +32,6 @@ class BlockDefinitionUI {
     this.workspace = workspace
     this.groupIndex = groupIndex
     this.slotIndex = slotIndex
-    this.enableCodeTips = enableCodeTips
   }
 
   isAvailable(): boolean {
@@ -93,7 +91,7 @@ class BlockDefinitionUI {
 
   formatCodeTip(): string {
     const out = new StringBuffer()
-    if (this.def.note !== null && StringUtils.isNotNullOrEmpty(this.def.note.trimLeft())) {
+    if (this.def.note !== null && StringUtils.isNotNullOrEmpty(this.def.note.trimStart())) {
       out.writeln(this.def.note)
       out.writeln()
     }
@@ -128,7 +126,7 @@ class BlockDefinitionUI {
   }
 
   startDrag(event: InteractEvent): void {
-    const newInstance = new BlockInstanceUI(this.def, this.makeInstance(), this.workspace, this.enableCodeTips)
+    const newInstance = new BlockInstanceUI(this.def, this.makeInstance(), this.workspace)
     const dragData = new NewDragData(newInstance, this.groupIndex, this.slotIndex, this.isAvailable())
     if (this.isAvailable()) {
       newInstance.draw(dragData)

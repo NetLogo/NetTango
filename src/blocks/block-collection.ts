@@ -13,11 +13,11 @@ abstract class BlockCollection {
 
   div: HTMLDivElement = document.createElement("div")
 
-  constructor(bs: BlockInstance[], workspace: CodeWorkspaceUI, enableCodeTip: boolean) {
+  constructor(bs: BlockInstance[], workspace: CodeWorkspaceUI) {
     this.bs = bs
     this.blocks = bs.map( (b) => {
       const def = workspace.menu.getBlockById(b.definitionId)
-      return new BlockInstanceUI(def, b, workspace, enableCodeTip)
+      return new BlockInstanceUI(def, b, workspace)
     })
     this.containerId = workspace.containerId
   }
@@ -30,7 +30,7 @@ abstract class BlockCollection {
         return 0
       }
       return NumUtils.sum(this.blocks.map( (b) => b.getBlockCount(id) ))
-    } catch (ex) {
+    } catch (ex: any) {
       console.log(`here is the fail ${ex.toString()}`)
       throw ex
     }

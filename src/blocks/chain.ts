@@ -28,8 +28,8 @@ class ChainUI extends BlockCollection {
 
   get isFragment(): boolean { return this.blocks.length === 0 || !this.blocks[0].canBeStarter }
 
-  constructor(c: Chain, workspace: CodeWorkspaceUI, chainIndex: number, enableCodeTips: boolean) {
-    super(c.blocks, workspace, enableCodeTips)
+  constructor(c: Chain, workspace: CodeWorkspaceUI, chainIndex: number) {
+    super(c.blocks, workspace)
     this.c = c
     this.chainIndex = chainIndex
   }

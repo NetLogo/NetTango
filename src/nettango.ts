@@ -94,7 +94,7 @@ class NetTango {
     try {
       const workspace = restoreWorkspace(containerId, ws, language, formatAttribute, options)
       NetTango.workspaces.set(containerId, workspace)
-      workspace.draw()
+      workspace.draw(options.enableCodeTips)
     } catch (e) {
       console.log(e)
       throw new Error("There was an error initializing the workspace with the given NetTango model JSON.")

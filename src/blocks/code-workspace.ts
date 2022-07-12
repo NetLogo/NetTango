@@ -93,7 +93,7 @@ class CodeWorkspaceUI {
       this.commandBlockStyle = new BlockStyleUI(this.ws.blockStyles.commandBlockStyle)
     }
 
-    this.chains = this.ws.program.chains.map( (c, i) => new ChainUI(c, this, i, options.enableCodeTips) )
+    this.chains = this.ws.program.chains.map( (c, i) => new ChainUI(c, this, i) )
 
     EventRouter.addListener(
       "workspace-change-listener"
@@ -128,7 +128,7 @@ class CodeWorkspaceUI {
     throw new Error(`Block with given definition and instance IDs not found in workspace: ${definitionId} / ${instanceId}`)
   }
 
-  draw(): void {
+  draw(enableCodeTips: boolean): void {
     const styleId = `${this.containerId}-styles`
     var style = document.getElementById(styleId)
     if (style === null) {
@@ -172,8 +172,11 @@ class CodeWorkspaceUI {
       "workspace-instance-listener"
     , this.containerId
     , ["block-instance-menu"]
-    , (e) => { if (e.type === "block-instance-menu") { codeTipDialog.show(e) } }
-    )
+    , (e) => {
+      if (enableCodeTips && e.type === "block-instance-menu") {
+        codeTipDialog.show(e)
+      }
+    })
 
     this.dialog = document.createElement("div")
     this.dialog.className = "nt-attribute-dialog"
@@ -268,7 +271,7 @@ class CodeWorkspaceUI {
   createChain(newBlocks: BlockInstanceUI[], x: number, y: number): void {
     const newChainIndex = this.chains.length
     const c: Chain = { x, y, blocks: [] }
-    const newChain = new ChainUI(c, this, newChainIndex, this.options.enableCodeTips)
+    const newChain = new ChainUI(c, this, newChainIndex)
     this.ws.program.chains.push(c)
     this.chains.push(newChain)
     const chainDiv = newChain.draw(newChainIndex)
