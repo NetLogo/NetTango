@@ -38,6 +38,7 @@ function encodeWorkspace(workspace: CodeWorkspaceUI): CodeWorkspace {
 // associated with an HTML element.
 class NetTango {
 
+  static highlighter: ((elementId: String, code: String) => void) | null = null
   static blockPlacementOptions = BlockPlacement
   static selectQuoteOptions    = QuoteOptionValues
   static defaultExpressions    = defaultExpressions
@@ -84,6 +85,10 @@ class NetTango {
     const workspace  = NetTango.getWorkspace(containerId)
     const definition = encodeWorkspace(workspace)
     return definition
+  }
+
+  static setSyntaxHighlighter(highlighter: (elementId: String, code: String) => void) {
+    NetTango.highlighter = highlighter
   }
 
   /// Call `restore` to instantiate a workspace associated with an HTML canvas.

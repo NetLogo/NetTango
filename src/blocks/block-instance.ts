@@ -246,8 +246,7 @@ class BlockInstanceUI {
       this.workspace.formatter.formatBlock(out, 0, { def: this.def, b: this.b })
     }
     const value = out.toString().trim()
-    const escapedValue = StringUtils.escapeHtml(value)
-    return escapedValue
+    return value
   }
 
   fireBlockInstanceEvent(ev: MouseEvent) {

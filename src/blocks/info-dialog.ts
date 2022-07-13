@@ -1,6 +1,7 @@
 // NetTango Copyright (C) Michael S. Horn, Uri Wilensky, and Corey Brady. https://github.com/NetLogo/NetTango
 
 import { BlockInstanceMenuEvent, MenuItemEvent } from "../events"
+import { NetTango } from "../nettango"
 import { StringUtils } from "../utils/string-utils"
 
 type Rect = { top: number, left: number }
@@ -8,6 +9,9 @@ type Rect = { top: number, left: number }
 class InfoDialog {
 
   readonly div: HTMLDivElement
+  readonly header: HTMLHeadingElement
+  readonly note: HTMLParagraphElement
+  readonly code: HTMLDivElement
   private isActive = false
 
   constructor(containerId: string) {
@@ -20,6 +24,17 @@ class InfoDialog {
       this.div.id = id
       document.body.append(this.div)
     }
+    this.div.innerHTML = ""
+    this.header = document.createElement("h3")
+    this.header.classList.add("nt-info-dialog-header")
+    this.note   = document.createElement("p")
+    this.note.classList.add("nt-info-dialog-note")
+    this.code  = document.createElement("div")
+    this.code.id = "nettango-info-dialog-code"
+    this.code.classList.add("nt-info-dialog-code")
+    this.div.appendChild(this.header)
+    this.div.appendChild(this.note)
+    this.div.appendChild(this.code)
     this.div.classList.add("nt-info-dialog")
   }
 
@@ -39,17 +54,19 @@ class InfoDialog {
       if (key === 'Escape' && this.isActive) { hide() }
     })
 
-    const note = (event.note !== null && StringUtils.isNotNullOrEmpty(event.note.trimStart())) ?
-      `<p class="nt-info-dialog-note">${event.note.trimStart()}</p>` :
-      ""
+    if (event.note !== null && StringUtils.isNotNullOrEmpty(event.note.trimStart())) {
+      this.note.innerHTML = event.note.trimStart()
+    }
 
     this.div.style.left = `${event.x}px`
     this.div.style.top  = `${event.y}px`
-    this.div.innerHTML = `
-      <h3 class="nt-info-dialog-header">NetLogo code for <em>${event.action}</em> block</h3>
-      ${note}
-      <pre class="nt-info-dialog-code">${event.codeTip}</pre>
-    `
+    if (NetTango.highlighter != null) {
+      this.header.innerHTML = `NetLogo code for <em>${event.action}</em> block`
+      NetTango.highlighter("nettango-info-dialog-code", event.codeTip)
+    } else {
+      this.header.innerHTML = `NetLogo code for <em>${event.action}</em> block`
+      this.code.innerHTML   = StringUtils.escapeHtml(event.codeTip)
+    }
 
     this.div.addEventListener("click", (e) => {
       e.preventDefault()

@@ -100,8 +100,7 @@ class BlockDefinitionUI {
       this.workspace.formatter.formatBlock(out, 0, { def: this.def, b: fakeInstance })
     }
     const value = out.toString().trim()
-    const escapedValue = StringUtils.escapeHtml(value)
-    return escapedValue
+    return value
   }
 
   updateForLimit(): void {
