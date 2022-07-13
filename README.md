@@ -1,3 +1,16 @@
+# Building, Testing, and Publishing
+
+If you have yarn installed you should be able to do:
+
+```sh
+yarn install
+yarn build
+```
+
+And you'll get everything packaged up to the `dist/` folder.  `nettango.js` is the entry point.
+
+To test run `yarn test`.  To publish run `yarn publish`; you must have appropriate credentials configured for npm.
+
 # Getting Started with NetTango Modeling
 
 NetTango is published as a package on [the npm package directory](https://www.npmjs.com/package/nettango).  You can include it as a regular JavaScript dependency if your project uses a `package.json` file with the `npm` or `yarn` tools:
