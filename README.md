@@ -11,6 +11,15 @@ And you'll get everything packaged up to the `dist/` folder.  `nettango.js` is t
 
 To test run `yarn test`.  To publish run `yarn publish`; you must have appropriate credentials configured for npm.
 
+# Developing NetTango Web with NetLogo Web
+
+NetTango is included as a normal package dependency by the Galapagos project.  It's used there to create the NetTango builder, which enables creation of domain-specific NetTango Web projects that can be run in "play mode" by end users.  Doing development of NetTango Web often includes changes to this NetTango core library, which is used to create the drag and drop block workspaces and to generate the code from the blocks the user has positioned.
+
+To work on the whole NetTango Web application, you will need to get [the Galapagos repository building and running](https://github.com/NetLogo/Galapagos/wiki/Building-and-running).  The Galapagos repository contains [a utility script](https://github.com/NetLogo/Galapagos/blob/master/scripts/nettango-package.sh) that contains more information on a workflow for making changes to this core library and getting it used by a local version of the Galapagos repository.  The short version is that you need:
+
+1) To use `yarn` to link your local core library instead of the public release version, to make sure your version is picked up when you do `sbt run` to start the Play Framework development web server.
+2) To manually copy your generated NetTango core library files when you make changes after starting the web server, as it won't seen those changes without restarting (which takes a long time).  The utility script does this for you.
+
 # Getting Started with NetTango Modeling
 
 NetTango is published as a package on [the npm package directory](https://www.npmjs.com/package/nettango).  You can include it as a regular JavaScript dependency if your project uses a `package.json` file with the `npm` or `yarn` tools:
