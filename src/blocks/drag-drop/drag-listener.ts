@@ -2,8 +2,8 @@
 
 import interact from "interactjs"
 import type { InteractEvent } from '@interactjs/core/InteractEvent'
-
-import type { DraggableOptions, Point } from '@interactjs/types/index'
+import type { Point } from '@interactjs/core/types'
+import type { DraggableOptions } from '@interactjs/actions/drag/plugin'
 
 interact.pointerMoveTolerance(5)
 

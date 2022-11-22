@@ -30,9 +30,9 @@ function getFiles(dir: string, filter: (f: string, s: fs.Stats) => boolean): str
 
 const modelFiles = getFiles(MODELS_PATH, (f, _) => path.extname(f) === ".ntjson" )
 
-modelFiles.forEach( (modelFile) => {
+test.each(modelFiles)("%p", (modelFile) => {
   const modelName = path.basename(modelFile).slice(0, -7)
-  test(modelName, () => testModel(modelFile, modelName))
+  testModel(modelFile, modelName)
 })
 
 function testModel(modelFile: string, modelName: string) {
@@ -100,7 +100,7 @@ function makeFileChecker(checkFolder: string, resultsFolder: string, extension: 
 
     try {
       expect(checkText).toStrictEqual(text)
-    } catch (error) {
+    } catch (error: any) {
       writeResultsFile()
       const message = `The given text differed from the prior stored results in '${checkFile}'.  Results written to '${resultsFolder}'.\n${error.stack}`
       throw new Error(message)
