@@ -1,6 +1,6 @@
 # Building, Testing, and Publishing
 
-If you have yarn installed you should be able to do:
+If you have [Node.js 14, 16, or 18+](https://nodejs.org/) installed you should be able to do:
 
 ```sh
 npm install
