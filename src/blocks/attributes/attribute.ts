@@ -28,6 +28,7 @@ abstract class AttributeUI {
     const paramDiv = document.createElement("div")
     const updateValue = () => { paramDiv.innerText = this.getDisplayValue(); }
     updateValue()
+    paramDiv.dir = "auto"
     paramDiv.classList.add("nt-attribute-value")
     paramDiv.classList.add(`${this.block.getStyleClass()}-attribute`)
     if (this.block.def.blockColor !== null) { paramDiv.style.color = this.block.def.blockColor; }
@@ -47,6 +48,7 @@ abstract class AttributeUI {
     const propDiv = document.createElement("div")
     propDiv.classList.add("nt-property")
     const propName = document.createElement("div")
+    propName.dir = "auto"
     propName.classList.add("nt-property-name")
     propName.innerText = `\u2022 ${this.def.name}`
     propDiv.append(propName)

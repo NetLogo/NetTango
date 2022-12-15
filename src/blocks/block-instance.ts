@@ -129,6 +129,7 @@ class BlockInstanceUI {
 
     this.actionDiv = document.createElement("div")
     this.actionDiv.innerText = this.def.action
+    this.actionDiv.dir = "auto"
     this.actionDiv.classList.add("nt-block-action")
     headerDiv.append(this.actionDiv)
 
@@ -210,6 +211,7 @@ class BlockInstanceUI {
 
     this.actionDiv = document.createElement("div")
     this.actionDiv.innerText = this.def.action
+    this.actionDiv.dir = "auto"
     this.actionDiv.classList.add("nt-block-action")
     headerDiv.append(this.actionDiv)
   }

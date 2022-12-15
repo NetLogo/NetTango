@@ -77,7 +77,7 @@ class TextAttributeUI extends AttributeUI {
   buildHTMLInput(): string {
     const htmlValue = StringUtils.escapeHtml(this.ta.value)
     return `
-      <input class="nt-param-input" id="nt-param-${this.uniqueId}" type="text" value="${htmlValue}">
+      <input class="nt-param-input" id="nt-param-${this.uniqueId}" type="text" value="${htmlValue}" dir="auto">
       <span class="nt-param-unit">${this.displayUnit}</span>
     `
   }

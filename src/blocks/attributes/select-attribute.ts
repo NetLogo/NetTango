@@ -72,6 +72,7 @@ class SelectAttributeUI extends AttributeUI {
       const row = document.createElement("div")
       row.className = "nt-param-row"
       const opt = document.createElement("div")
+      opt.dir = "auto"
       opt.className = "nt-select-option"
       opt.innerHTML = selectOptionDisplay(v)
       if (v.actual === this.sa.value) { opt.classList.add("selected") }

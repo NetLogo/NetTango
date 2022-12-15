@@ -4,7 +4,6 @@ import interact from "interactjs"
 import type { InteractEvent } from '@interactjs/core/InteractEvent'
 
 import { StringBuffer } from "../utils/string-buffer"
-import { StringUtils } from "../utils/string-utils"
 import { BlockInstanceUI } from "./block-instance"
 import { CodeWorkspaceUI } from "./code-workspace"
 import { MenuItemEvent } from "../events"
