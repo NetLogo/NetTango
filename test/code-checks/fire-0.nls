@@ -1,0 +1,11 @@
+to go-nettango
+end
+
+to setup-nettango
+  set density 56
+  set probability-of-spread 100
+end
+
+to firefight
+end
+

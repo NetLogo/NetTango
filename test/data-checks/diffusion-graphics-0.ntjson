@@ -1,0 +1,707 @@
+{
+  "version": 7,
+  "height": 700,
+  "width": 500,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "setup",
+      "isRequired": true,
+      "placement": "starter",
+      "type": null,
+      "format": "to setup-nettango",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": "#000000",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 1,
+      "action": "setup the model",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "\n  create-turtles {P0}   ; each turtle is like a heat source\n  [ setxy random-xcor random-ycor     ; position the turtles randomly\n    hide-turtle   ; so we don't see the turtles themselves, just the heat they produce\n     ] ; turtles set the patch variable\n",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": "this block sets up the whole model, wow! pick how many urtles to create",
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "create",
+          "unit": " circles",
+          "step": 1,
+          "random": false,
+          "default": 30,
+          "type": "int",
+          "def": 30
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "action": "Set brightness",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set brightness {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 100,
+          "type": "int"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 8,
+      "action": "Set saturation",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set saturation {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 100,
+          "type": "int"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 9,
+      "action": "Set initial background color",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set initial-color {P0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": "240 is blue, 120 green, 60 yellow, 0 red",
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "Color of Background",
+          "unit": null,
+          "type": "select",
+          "default": "240",
+          "quoteValues": "smart-quote",
+          "values": [
+            {
+              "actual": "240",
+              "display": "Blue"
+            },
+            {
+              "actual": "120",
+              "display": "Green"
+            },
+            {
+              "actual": "60",
+              "display": "Yellow"
+            },
+            {
+              "actual": "0",
+              "display": "Red"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "action": "Set Position",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask turtles [setxy {P0} {P1}]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "x cor",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 0,
+          "type": "int"
+        },
+        {
+          "name": "y cor",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 0,
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "action": "Set some circles' position",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask n-of {P0} turtles [setxy {P1} {P2}]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "How many circles to ask",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 1,
+          "type": "int"
+        },
+        {
+          "name": "x cor",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 0,
+          "type": "int"
+        },
+        {
+          "name": "y cor",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 0,
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "action": "go",
+      "isRequired": true,
+      "placement": "starter",
+      "type": null,
+      "format": "to go-nettango",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 3,
+      "action": "set patch-here heat",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask turtles [ set heat {0} ] ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "heat",
+          "unit": " cal",
+          "step": 1,
+          "random": false,
+          "default": 500,
+          "type": "int"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 5,
+      "action": "diffuse heat",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "diffuse heat {0} / 100",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "diffuse rate",
+          "unit": "%",
+          "step": 1,
+          "random": false,
+          "default": 50,
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "def": 50
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 4,
+      "action": "set speed of circles",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask turtles [fd {0}]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "speed",
+          "unit": " M/s",
+          "type": "num",
+          "default": "1.0"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 6,
+      "action": "wander",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask turtles \n[ \n  rt random {P0} \n  lt random {P1}\n] ",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "right bias",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 50,
+          "type": "int"
+        },
+        {
+          "name": "left bias",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 50,
+          "type": "int"
+        }
+      ]
+    }
+  ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        1,
+        7,
+        8,
+        9,
+        10,
+        11,
+        2,
+        3,
+        5,
+        4,
+        6
+      ]
+    },
+    "tagGroups": []
+  },
+  "program": {
+    "chains": [
+      {
+        "x": 4,
+        "y": 38,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 1,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [
+              {
+                "type": "int",
+                "value": 10
+              }
+            ],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 7,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "int",
+                "value": 95
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 8,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "int",
+                "value": 70
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 9,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [
+              {
+                "type": "select",
+                "value": "240"
+              }
+            ],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      },
+      {
+        "x": 37,
+        "y": 321,
+        "blocks": [
+          {
+            "definitionId": 2,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": "end",
+  "blockStyles": {
+    "starterBlockStyle": {
+      "blockColor": "#000000",
+      "textColor": "#ffffff",
+      "borderColor": "#000000",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "containerBlockStyle": {
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "commandBlockStyle": {
+      "blockColor": "#ffffff",
+      "textColor": "#000000",
+      "borderColor": "#f2f2f2",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    }
+  },
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}

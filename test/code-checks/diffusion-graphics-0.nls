@@ -1,0 +1,15 @@
+to go-nettango
+end
+
+to setup-nettango
+  
+    create-turtles 10   ; each turtle is like a heat source
+    [ setxy random-xcor random-ycor     ; position the turtles randomly
+      hide-turtle   ; so we don't see the turtles themselves, just the heat they produce
+       ] ; turtles set the patch variable
+  
+  set brightness 95
+  set saturation 70
+  set initial-color 240
+end
+

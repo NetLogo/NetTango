@@ -1,0 +1,612 @@
+{
+  "version": 7,
+  "height": 550,
+  "width": 600,
+  "blocks": [
+    {
+      "id": 0,
+      "action": "setup",
+      "isRequired": true,
+      "placement": "starter",
+      "type": null,
+      "format": "to setup-nettango",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 1,
+      "action": "set 🌳 🌳  density",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set density {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#58b03c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": "%",
+          "step": 1,
+          "random": false,
+          "default": 50,
+          "type": "int",
+          "def": 50
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 2,
+      "action": "chance 🔥 spreads",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set probability-of-spread {0}",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ff7f00",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [
+        {
+          "name": "Parameter 0",
+          "unit": "%",
+          "step": 1,
+          "random": false,
+          "default": 100,
+          "type": "int"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "id": 3,
+      "action": "go",
+      "isRequired": true,
+      "placement": "starter",
+      "type": null,
+      "format": "to go-nettango",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 8,
+      "action": "ask 🔥🔥",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "  ask patches with [ pcolor = red ]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ff7f00",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": "[",
+          "close": "]",
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 9,
+      "action": "ask neighboring 🌳 🌳 ",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask neighbors4 with [ pcolor = green ]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#58b03c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": "[",
+          "close": "]",
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 15,
+      "action": "ask neighboring 🔥🔥 ",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask neighbors4 with [ pcolor = red ]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ff7c3c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": "[",
+          "close": "]",
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 6,
+      "action": "catch 🔥",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "if any? neighbors with [pcolor = red][if random 100 < probability-of-spread [ set pcolor red ]]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#ff7f00",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 10,
+      "action": "cool 🔥🔥",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "set pcolor red - 3.5",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": "once the tree is burned, darken its color",
+      "blockColor": "#ff7c00",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 14,
+      "action": "ask  🌳 🌳 ",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask patches with [pcolor = green]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": null,
+      "blockColor": "#58b03c",
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [
+        {
+          "action": null,
+          "open": "[",
+          "close": "]",
+          "allowedTags": {
+            "type": "unrestricted"
+          }
+        }
+      ],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 13,
+      "action": "Fighting 🔥🔥",
+      "isRequired": true,
+      "placement": "starter",
+      "type": null,
+      "format": "to firefight",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 1,
+      "note": null,
+      "blockColor": null,
+      "textColor": null,
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": []
+    },
+    {
+      "id": 12,
+      "action": "Make a fire break line",
+      "isRequired": false,
+      "placement": "child",
+      "type": null,
+      "format": "ask patches with [pxcor = {P0} and pycor > {P1}] [set pcolor black set cost cost + 100]",
+      "isTerminal": false,
+      "closeClauses": null,
+      "closeStarter": null,
+      "limit": 0,
+      "note": "Using this block you can cut a fire break. Each patch you clear costs $100.",
+      "blockColor": "#ffffff",
+      "textColor": "#171717",
+      "borderColor": null,
+      "font": null,
+      "allowedTags": {
+        "type": "unrestricted"
+      },
+      "tags": [],
+      "clauses": [],
+      "params": [],
+      "properties": [
+        {
+          "name": "fire break line x =",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": 4,
+          "type": "int"
+        },
+        {
+          "name": "fire break line  y < ",
+          "unit": null,
+          "step": 1,
+          "random": false,
+          "default": -100,
+          "type": "int"
+        }
+      ]
+    }
+  ],
+  "menuConfig": {
+    "mainGroup": {
+      "isCollapsed": false,
+      "order": [
+        0,
+        1,
+        2,
+        3,
+        8,
+        9,
+        15,
+        6,
+        10,
+        14,
+        13,
+        12
+      ]
+    },
+    "tagGroups": []
+  },
+  "program": {
+    "chains": [
+      {
+        "x": 84.26953125,
+        "y": 21.5595703125,
+        "blocks": [
+          {
+            "definitionId": 0,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 1,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "int",
+                "value": 56
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          },
+          {
+            "definitionId": 2,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [
+              {
+                "type": "int",
+                "value": 100
+              }
+            ],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      },
+      {
+        "x": 87.2900390625,
+        "y": 183.7265625,
+        "blocks": [
+          {
+            "definitionId": 3,
+            "instanceId": 0,
+            "clauses": [],
+            "params": [],
+            "properties": [],
+            "propertiesDisplay": "shown"
+          }
+        ]
+      }
+    ]
+  },
+  "chainOpen": null,
+  "chainClose": "end",
+  "blockStyles": {
+    "starterBlockStyle": {
+      "blockColor": "#bb5555",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "containerBlockStyle": {
+      "blockColor": "#8899aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    },
+    "commandBlockStyle": {
+      "blockColor": "#9977aa",
+      "textColor": "#ffffff",
+      "borderColor": "#ffffff",
+      "fontWeight": "",
+      "fontSize": "",
+      "fontFace": ""
+    }
+  },
+  "variables": [],
+  "expressions": [
+    {
+      "name": "true",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "false",
+      "type": "bool",
+      "arguments": [],
+      "format": null
+    },
+    {
+      "name": "AND",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} and {1})"
+    },
+    {
+      "name": "OR",
+      "type": "bool",
+      "arguments": [
+        "bool",
+        "bool"
+      ],
+      "format": "({0} or {1})"
+    },
+    {
+      "name": "NOT",
+      "type": "bool",
+      "arguments": [
+        "bool"
+      ],
+      "format": "(not {0})"
+    },
+    {
+      "name": ">",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": ">=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "<=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "!=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "=",
+      "type": "bool",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "+",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "-",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "×",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": "({0} * {1})"
+    },
+    {
+      "name": "/",
+      "type": "num",
+      "arguments": [
+        "num",
+        "num"
+      ],
+      "format": null
+    },
+    {
+      "name": "random",
+      "type": "num",
+      "arguments": [
+        "num"
+      ],
+      "format": "random-float {0}"
+    }
+  ]
+}
