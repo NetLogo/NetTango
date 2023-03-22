@@ -38,6 +38,8 @@ function encodeWorkspace(workspace: CodeWorkspaceUI): CodeWorkspace {
 // associated with an HTML element.
 class NetTango {
 
+  static version = VersionManager.VERSION
+
   static highlighter: ((elementId: String, code: String) => void) | null = null
   static blockPlacementOptions = BlockPlacement
   static selectQuoteOptions    = QuoteOptionValues
