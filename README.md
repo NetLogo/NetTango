@@ -1,6 +1,13 @@
 # Building, Testing, and Publishing
 
-If you have [Node.js 14, 16, or 18+](https://nodejs.org/) installed you should be able to do:
+First, initialize the collection of models by running the following terminal commands:
+
+```sh
+git submodule init
+git submodule update
+```
+
+Then, assuming that you have [Node.js 14, 16, or 18+](https://nodejs.org/) installed, you should be able to do:
 
 ```sh
 npm install
