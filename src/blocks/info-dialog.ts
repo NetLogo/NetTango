@@ -8,14 +8,18 @@ type Rect = { top: number, left: number }
 
 class InfoDialog {
 
+  readonly containerId: string
+
   readonly div: HTMLDivElement
   readonly header: HTMLHeadingElement
   readonly note: HTMLParagraphElement
   readonly code: HTMLDivElement
+
   private isActive = false
 
-  constructor(containerId: string) {
-    const id = `${containerId}-info-dialog`
+  constructor(cid: string) {
+    this.containerId = cid
+    const id = `${this.containerId}-info-dialog`
     const maybeDiv = document.getElementById(id)
     if (maybeDiv !== null) {
       this.div = maybeDiv as HTMLDivElement
@@ -30,7 +34,7 @@ class InfoDialog {
     this.note   = document.createElement("p")
     this.note.classList.add("nt-info-dialog-note")
     this.code  = document.createElement("div")
-    this.code.id = "nettango-info-dialog-code"
+    this.code.id = `${this.containerId}-info-dialog-code`
     this.code.classList.add("nt-info-dialog-code")
     this.div.appendChild(this.header)
     this.div.appendChild(this.note)
@@ -62,7 +66,7 @@ class InfoDialog {
     this.div.style.top  = `${event.y}px`
     if (NetTango.highlighter != null) {
       this.header.innerHTML = `NetLogo code for <em>${event.action}</em> block`
-      NetTango.highlighter("nettango-info-dialog-code", event.codeTip)
+      NetTango.highlighter(`${this.containerId}-info-dialog-code`, event.codeTip)
     } else {
       this.header.innerHTML = `NetLogo code for <em>${event.action}</em> block`
       this.code.innerHTML   = StringUtils.escapeHtml(event.codeTip)
